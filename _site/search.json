@@ -1,0 +1,359 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Documentación Técnica del Proyecto: Chatbot de Compañía para Adultos Mayores",
+    "section": "",
+    "text": "El propósito fundamental de mi Trabajo de Grado (TG) es desarrollar un Chatbot o Inteligencia Artificial (IA) diseñado específicamente para hacer compañía a adultos mayores.\nPara lograr que una máquina interactúe de forma humana, el proyecto se divide en una cadena o pipeline de tres grandes fases: 1. Voz a Texto (STT - Speech to Text): El sistema debe “escuchar” y entender lo que el adulto mayor dice. 2. Cerebro (LLM - Large Language Model): El sistema debe procesar el texto y generar una respuesta empática y coherente. 3. Texto a Voz (TTS - Text to Speech): El sistema debe “hablar” y responderle en voz alta.\nActualmente, este proyecto se encuentra en el Paso 1 (STT).\n\n\nPara saber qué tecnología utilizar en esta primera fase, tuve que buscar candidatos y evaluar de forma empírica cuál era mejor. En este sitio web encontrarás el registro de ese proceso:\n\nBúsqueda y Fundamentos: Exploración de cómo el audio analógico se convierte en digital para que la IA lo entienda (Ver Fundamentos de Audio).\nSelección de Candidatos: Análisis teórico de dos grandes competidores encontrados: Vosk (ligero y local) vs Whisper de OpenAI (pesado pero contextual) (Ver Modelos STT).\nEl Problema de Evaluación: Al hacer las pruebas iniciales y utilizar herramientas de medición, me di cuenta de un error grave: la métrica (Jiwer) no estaba estandarizada y castigaba injustamente la puntuación (Ver El Error de Jiwer).\nEvolución a Biometría: Al avanzar, descubrí que para que el robot de compañía sea efectivo, no solo debe transcribir, sino identificar quién le habla (diferenciar al adulto mayor de un familiar). Esto me llevó a incursionar en Biometría de Voz y a desarrollar una arquitectura de Diarización Híbrida.\n\n\n\n\nUtiliza el menú de navegación lateral para explorar cada uno de los descubrimientos y leer la explicación detallada de los códigos desarrollados durante la investigación."
+  },
+  {
+    "objectID": "index.html#el-viaje-de-investigación",
+    "href": "index.html#el-viaje-de-investigación",
+    "title": "Documentación Técnica del Proyecto: Chatbot de Compañía para Adultos Mayores",
+    "section": "",
+    "text": "Para saber qué tecnología utilizar en esta primera fase, tuve que buscar candidatos y evaluar de forma empírica cuál era mejor. En este sitio web encontrarás el registro de ese proceso:\n\nBúsqueda y Fundamentos: Exploración de cómo el audio analógico se convierte en digital para que la IA lo entienda (Ver Fundamentos de Audio).\nSelección de Candidatos: Análisis teórico de dos grandes competidores encontrados: Vosk (ligero y local) vs Whisper de OpenAI (pesado pero contextual) (Ver Modelos STT).\nEl Problema de Evaluación: Al hacer las pruebas iniciales y utilizar herramientas de medición, me di cuenta de un error grave: la métrica (Jiwer) no estaba estandarizada y castigaba injustamente la puntuación (Ver El Error de Jiwer).\nEvolución a Biometría: Al avanzar, descubrí que para que el robot de compañía sea efectivo, no solo debe transcribir, sino identificar quién le habla (diferenciar al adulto mayor de un familiar). Esto me llevó a incursionar en Biometría de Voz y a desarrollar una arquitectura de Diarización Híbrida."
+  },
+  {
+    "objectID": "index.html#estructura-del-sitio",
+    "href": "index.html#estructura-del-sitio",
+    "title": "Documentación Técnica del Proyecto: Chatbot de Compañía para Adultos Mayores",
+    "section": "",
+    "text": "Utiliza el menú de navegación lateral para explorar cada uno de los descubrimientos y leer la explicación detallada de los códigos desarrollados durante la investigación."
+  },
+  {
+    "objectID": "docs/codigo_vosk.html",
+    "href": "docs/codigo_vosk.html",
+    "title": "Código de VoskHelper",
+    "section": "",
+    "text": "La clase VoskHelper actúa como un Intérprete entre el hardware de audio y el complejo motor de Vosk (basado en Kaldi). Como vimos en la sección de Modelos STT, Vosk es un motor local muy rápido.\n\n\nCargar el modelo en memoria es el proceso más pesado. Al hacerlo dentro del método __init__, nos aseguramos de que el sistema “encienda el cerebro” solo una vez cuando el programa arranca.\nimport os\nimport wave\nimport json\nimport vosk\n\nclass VoskHelper:\n    def __init__(self, model_path=\"model\"):\n        if not os.path.exists(model_path):\n            raise FileNotFoundError(f\"La carpeta del modelo '{model_path}' no existe.\")\n        self.model = vosk.Model(model_path)\n\n\n\nAntes de enviar un archivo al motor, debemos asegurarnos de que cumple las estrictas reglas de Kaldi. La librería wave nos permite leer el encabezado del archivo sin reproducirlo.\n    def preparar_audio_wav(self, ruta_audio):\n        wf = wave.open(ruta_audio, \"rb\")\n        \n        if wf.getnchannels() != 1:\n            print(\"[Advertencia] El audio no es Mono...\")\n        if wf.getsampwidth() != 2:\n            print(\"[Advertencia] El audio no es de 16-bit...\")\n        if wf.getcomptype() != \"NONE\":\n            print(\"[Advertencia] El audio parece estar comprimido (no es PCM puro)...\")\n            \n        return wf\n\ngetnchannels() != 1: Vosk solo puede escuchar por un “oído” a la vez (Mono).\ngetsampwidth() != 2: Se requiere audio de 16 bits de profundidad (ver Fundamentos de Audio).\ngetcomptype() != \"NONE\": Vosk no soporta MP3 o formatos comprimidos directamente.\n\n\n\n\nNo podemos darle un archivo de 10 minutos de golpe al procesador. Debemos cortarlo en “fotos” de sonido llamadas frames. Esto se enlaza con el concepto de Orquestación visto en la sección de Implementación Técnica.\n    def transcribir_archivo(self, ruta_audio):\n        wf = self.preparar_audio_wav(ruta_audio)\n        rec = vosk.KaldiRecognizer(self.model, wf.getframerate())\n        textos = []\n        \n        while True:\n            # Cortamos el archivo en trozos de 4000 frames (0.25 segundos)\n            data = wf.readframes(4000)\n            if len(data) == 0:\n                break # Se acabó el archivo\n            \n            # AcceptWaveform() devuelve True si detectó una pausa clara (silencio)\n            if rec.AcceptWaveform(data):\n                result = json.loads(rec.Result())\n                if result.get('text'):\n                    textos.append(result['text'])\n                    \n        # Limpiamos las palabras que hayan quedado a medias al final del audio\n        final = json.loads(rec.FinalResult())\n        if final.get('text'):\n            textos.append(final['text'])\n            \n        wf.close()\n        return \" \".join(textos).strip()",
+    "crumbs": [
+      "Inicio",
+      "Arquitectura y Códigos",
+      "Código de VoskHelper"
+    ]
+  },
+  {
+    "objectID": "docs/codigo_vosk.html#inicialización-y-carga-de-modelo",
+    "href": "docs/codigo_vosk.html#inicialización-y-carga-de-modelo",
+    "title": "Código de VoskHelper",
+    "section": "",
+    "text": "Cargar el modelo en memoria es el proceso más pesado. Al hacerlo dentro del método __init__, nos aseguramos de que el sistema “encienda el cerebro” solo una vez cuando el programa arranca.\nimport os\nimport wave\nimport json\nimport vosk\n\nclass VoskHelper:\n    def __init__(self, model_path=\"model\"):\n        if not os.path.exists(model_path):\n            raise FileNotFoundError(f\"La carpeta del modelo '{model_path}' no existe.\")\n        self.model = vosk.Model(model_path)",
+    "crumbs": [
+      "Inicio",
+      "Arquitectura y Códigos",
+      "Código de VoskHelper"
+    ]
+  },
+  {
+    "objectID": "docs/codigo_vosk.html#validación-física-del-audio-el-control-de-calidad",
+    "href": "docs/codigo_vosk.html#validación-física-del-audio-el-control-de-calidad",
+    "title": "Código de VoskHelper",
+    "section": "",
+    "text": "Antes de enviar un archivo al motor, debemos asegurarnos de que cumple las estrictas reglas de Kaldi. La librería wave nos permite leer el encabezado del archivo sin reproducirlo.\n    def preparar_audio_wav(self, ruta_audio):\n        wf = wave.open(ruta_audio, \"rb\")\n        \n        if wf.getnchannels() != 1:\n            print(\"[Advertencia] El audio no es Mono...\")\n        if wf.getsampwidth() != 2:\n            print(\"[Advertencia] El audio no es de 16-bit...\")\n        if wf.getcomptype() != \"NONE\":\n            print(\"[Advertencia] El audio parece estar comprimido (no es PCM puro)...\")\n            \n        return wf\n\ngetnchannels() != 1: Vosk solo puede escuchar por un “oído” a la vez (Mono).\ngetsampwidth() != 2: Se requiere audio de 16 bits de profundidad (ver Fundamentos de Audio).\ngetcomptype() != \"NONE\": Vosk no soporta MP3 o formatos comprimidos directamente.",
+    "crumbs": [
+      "Inicio",
+      "Arquitectura y Códigos",
+      "Código de VoskHelper"
+    ]
+  },
+  {
+    "objectID": "docs/codigo_vosk.html#el-bucle-de-transcripción-por-chunks-frames",
+    "href": "docs/codigo_vosk.html#el-bucle-de-transcripción-por-chunks-frames",
+    "title": "Código de VoskHelper",
+    "section": "",
+    "text": "No podemos darle un archivo de 10 minutos de golpe al procesador. Debemos cortarlo en “fotos” de sonido llamadas frames. Esto se enlaza con el concepto de Orquestación visto en la sección de Implementación Técnica.\n    def transcribir_archivo(self, ruta_audio):\n        wf = self.preparar_audio_wav(ruta_audio)\n        rec = vosk.KaldiRecognizer(self.model, wf.getframerate())\n        textos = []\n        \n        while True:\n            # Cortamos el archivo en trozos de 4000 frames (0.25 segundos)\n            data = wf.readframes(4000)\n            if len(data) == 0:\n                break # Se acabó el archivo\n            \n            # AcceptWaveform() devuelve True si detectó una pausa clara (silencio)\n            if rec.AcceptWaveform(data):\n                result = json.loads(rec.Result())\n                if result.get('text'):\n                    textos.append(result['text'])\n                    \n        # Limpiamos las palabras que hayan quedado a medias al final del audio\n        final = json.loads(rec.FinalResult())\n        if final.get('text'):\n            textos.append(final['text'])\n            \n        wf.close()\n        return \" \".join(textos).strip()",
+    "crumbs": [
+      "Inicio",
+      "Arquitectura y Códigos",
+      "Código de VoskHelper"
+    ]
+  },
+  {
+    "objectID": "docs/05_implementacion_tecnica.html",
+    "href": "docs/05_implementacion_tecnica.html",
+    "title": "Implementación Técnica y Abstracción de Código",
+    "section": "",
+    "text": "La solidez teórica expuesta en los capítulos anteriores se fundamenta en un código estructurado meticulosamente bajo el principio de la Programación Orientada a Objetos (POO).\nEl sistema está dividido en tres pilares lógicos que funcionan armónicamente para capturar, aislar, validar y procesar el flujo de datos. Para mantener el código escalable y libre de errores sistemáticos, creamos dos clases “Wrapper” (Envoltorios) encargadas de aislar el complejo funcionamiento neuronal de los motores de IA del resto de las lógicas básicas del sistema.\n\n\n\n\nEl script modulo_vosk.py aísla por completo el núcleo “Kaldi” y se asegura de tres aspectos vitales: 1. Gestión Dinámica de Memoria: Emplea el constructor __init__ para cargar el pesado modelo acústico una única vez al arranque del software, reduciendo las caídas de sistema. 2. Validación Técnica de Fronteras: Utiliza la librería de sistema wave para analizar el encabezado de las estructuras de audio (getnchannels(), getsampwidth(), getcomptype()). Si detecta que un archivo es Estéreo o que está comprimido en MP3, lo reporta de inmediato, evitando que el motor se sature procesando datos inservibles. 3. Deserialización Automática de JSON: Como la respuesta primaria de Vosk es un objeto JSON profundo (que incluye niveles de confianza por fonema y latencias), el envoltorio procesa estos datos brutos y extrae directamente la cadena de texto plano (final.get('text', \"\")), lo que agiliza el tratamiento posterior de las variables.\n\n\n\nAlojado en modulos_wisper.py, este wrapper se encarga de acondicionar el terreno para la delicada red Transformer. Dado que Whisper no tolera desajustes temporales, el Helper inyecta los audios a través de un proceso de estandarización empleando Numpy (np.frombuffer(...) / 32768.0) y Librosa, los cuales toman las grabaciones y las reescalan para que sus armónicos ocupen estrictamente el espacio que abarca de -1.0 a 1.0 (Profundidad de Bits Float32), garantizando una matriz de características impecable.\n\n\n\n\n\nSi Vosk y Whisper son los obreros, el módulo principal de nuestro código actúa como el arquitecto unificador y evaluador. Gestiona tanto el hardware físico (micrófonos) como la generación de documentación resultante (reportes dinámicos de Markdown y diagramas de Mermaid).\n\n\nAl intentar capturar audio del micrófono (y enviárselo a los motores para transcripción en vivo), el mayor desafío técnico no fue el entendimiento acústico, sino el control del flujo de hardware.\nNo podemos inyectar un flujo sonoro masivo de forma asíncrona a un motor lineal. Por ende, usamos la librería PyAudio con un esquema de “Frames”. El Juez está programado para subdividir el flujo temporal y grabar “chunks” limitados y luego despacharlos en secuencias de 4000 frames exactos.\nAl realizar el análisis físico: Si \\(16000\\) frames son \\(1\\) segundo de captura, enviar paquetes de \\(4000\\) frames equivale a que el código procesa exactamente fragmentos fijos de \\(0.25\\) segundos. Este tamaño de ventana es el “Punto Dulce” (Sweet Spot) técnico de nuestra investigación: * Una fracción mayor demoraría el envío (perdiendo la ilusión del “Tiempo Real”). * Una fracción más pequeña ahogaría y sobrecargaría el bus del procesador (i3 local).\n\n\n\nDurante el debate de capacidades, el Juez se encarga del cálculo automático. Extrae el archivo de texto de referencia que sirve como plantilla ideal y en tiempo de corrida ejecuta la normalización de Jiwer, determinando, matemáticamente y sin sesgo, la exactitud (Word Error Rate) del rendimiento del sistema local contra las alucinaciones y omisiones de los wrappers subyacentes.",
+    "crumbs": [
+      "Inicio",
+      "Arquitectura y Códigos",
+      "Implementación Técnica y Abstracción de Código"
+    ]
+  },
+  {
+    "objectID": "docs/05_implementacion_tecnica.html#los-especialistas-wrappers-modulares",
+    "href": "docs/05_implementacion_tecnica.html#los-especialistas-wrappers-modulares",
+    "title": "Implementación Técnica y Abstracción de Código",
+    "section": "",
+    "text": "El script modulo_vosk.py aísla por completo el núcleo “Kaldi” y se asegura de tres aspectos vitales: 1. Gestión Dinámica de Memoria: Emplea el constructor __init__ para cargar el pesado modelo acústico una única vez al arranque del software, reduciendo las caídas de sistema. 2. Validación Técnica de Fronteras: Utiliza la librería de sistema wave para analizar el encabezado de las estructuras de audio (getnchannels(), getsampwidth(), getcomptype()). Si detecta que un archivo es Estéreo o que está comprimido en MP3, lo reporta de inmediato, evitando que el motor se sature procesando datos inservibles. 3. Deserialización Automática de JSON: Como la respuesta primaria de Vosk es un objeto JSON profundo (que incluye niveles de confianza por fonema y latencias), el envoltorio procesa estos datos brutos y extrae directamente la cadena de texto plano (final.get('text', \"\")), lo que agiliza el tratamiento posterior de las variables.\n\n\n\nAlojado en modulos_wisper.py, este wrapper se encarga de acondicionar el terreno para la delicada red Transformer. Dado que Whisper no tolera desajustes temporales, el Helper inyecta los audios a través de un proceso de estandarización empleando Numpy (np.frombuffer(...) / 32768.0) y Librosa, los cuales toman las grabaciones y las reescalan para que sus armónicos ocupen estrictamente el espacio que abarca de -1.0 a 1.0 (Profundidad de Bits Float32), garantizando una matriz de características impecable.",
+    "crumbs": [
+      "Inicio",
+      "Arquitectura y Códigos",
+      "Implementación Técnica y Abstracción de Código"
+    ]
+  },
+  {
+    "objectID": "docs/05_implementacion_tecnica.html#el-orquestador-central-juez.py",
+    "href": "docs/05_implementacion_tecnica.html#el-orquestador-central-juez.py",
+    "title": "Implementación Técnica y Abstracción de Código",
+    "section": "",
+    "text": "Si Vosk y Whisper son los obreros, el módulo principal de nuestro código actúa como el arquitecto unificador y evaluador. Gestiona tanto el hardware físico (micrófonos) como la generación de documentación resultante (reportes dinámicos de Markdown y diagramas de Mermaid).\n\n\nAl intentar capturar audio del micrófono (y enviárselo a los motores para transcripción en vivo), el mayor desafío técnico no fue el entendimiento acústico, sino el control del flujo de hardware.\nNo podemos inyectar un flujo sonoro masivo de forma asíncrona a un motor lineal. Por ende, usamos la librería PyAudio con un esquema de “Frames”. El Juez está programado para subdividir el flujo temporal y grabar “chunks” limitados y luego despacharlos en secuencias de 4000 frames exactos.\nAl realizar el análisis físico: Si \\(16000\\) frames son \\(1\\) segundo de captura, enviar paquetes de \\(4000\\) frames equivale a que el código procesa exactamente fragmentos fijos de \\(0.25\\) segundos. Este tamaño de ventana es el “Punto Dulce” (Sweet Spot) técnico de nuestra investigación: * Una fracción mayor demoraría el envío (perdiendo la ilusión del “Tiempo Real”). * Una fracción más pequeña ahogaría y sobrecargaría el bus del procesador (i3 local).\n\n\n\nDurante el debate de capacidades, el Juez se encarga del cálculo automático. Extrae el archivo de texto de referencia que sirve como plantilla ideal y en tiempo de corrida ejecuta la normalización de Jiwer, determinando, matemáticamente y sin sesgo, la exactitud (Word Error Rate) del rendimiento del sistema local contra las alucinaciones y omisiones de los wrappers subyacentes.",
+    "crumbs": [
+      "Inicio",
+      "Arquitectura y Códigos",
+      "Implementación Técnica y Abstracción de Código"
+    ]
+  },
+  {
+    "objectID": "docs/03_biometria_voz_xvectors.html",
+    "href": "docs/03_biometria_voz_xvectors.html",
+    "title": "Biometría de Voz y X-Vectors",
+    "section": "",
+    "text": "Más allá de la transcripción de texto (STT), el sistema requiere la capacidad de identificar quién está hablando. Para ello, implementamos una arquitectura de Biometría de Voz utilizando el modelo vosk-model-spk (Speaker Model).\n\n\n\nModelo de Lenguaje (STT): Entrena a la IA para entender qué palabras se están pronunciando mediante la búsqueda de fonemas.\nModelo de Locutor (Biometría): Entrena a la IA para identificar quién habla. Ignora el significado del texto y se enfoca exclusivamente en las texturas físicas del sonido (características paralingüísticas).\n\n\n\n\nEl “Speaker Model” de Vosk actúa como un extractor de características profundas. Cuando recibe el audio, analiza la anatomía acústica del tracto vocal del hablante (coeficientes MFCC, formantes, resonancia de la boca, garganta y nariz).\nA través de una red neuronal profunda, esta información abstracta se condensa y mapea en un espacio matemático vectorial. El resultado final es un X-Vector: una lista estricta de 128 números de coma flotante (un “Speaker Embedding”).\n¿Por qué 128 dimensiones? * Capacidad: Es matemáticamente suficiente para capturar las variaciones únicas de la anatomía humana, permitiendo diferenciar entre miles de identidades vocales (“Huellas Vocales”). * Eficiencia: Es un vector lo suficientemente pequeño para permitir miles de operaciones matriciales por segundo en el procesador (CPU), algo vital para ejecutar comprobaciones en tiempo real sin saturar el sistema.\n\n\n\nUna vez que tenemos la “huella” de la persona guardada en la base de datos y extraemos la huella de quien está hablando en el micrófono, necesitamos compararlas.\nEn biometría de voz, no se utiliza la distancia lineal (Euclidiana) debido a que cambios en el volumen de la voz o cercanía al micrófono alterarían la magnitud del vector, dando falsos negativos.\nEn su lugar, el proyecto utiliza la Distancia Coseno a través de la librería Numpy: * Esta métrica mide el ángulo de inclinación entre los dos vectores de 128D, ignorando por completo la “longitud” o intensidad de los mismos. * Si el ángulo es cercano a \\(0°\\) (coseno cercano a \\(1.0\\)), el sistema asegura matemáticamente que la textura de voz proviene de la misma persona, independientemente del volumen o pequeñas variaciones de ruido. * El código establece un Umbral de Confianza. Generalmente, cualquier similitud inferior al \\(65\\%\\) clasifica automáticamente a la voz como DESCONOCIDO.\n\n\n\nEl proceso biométrico se divide en dos fases:\n\nEnrolamiento (Registro): La persona dicta un texto preestablecido de varios segundos. El modelo extrae múltiples X-Vectors a medida que avanza la frase y calcula el promedio de todos ellos. Esto “limpia” el vector de cualquier ruido aleatorio y genera una huella vocal altamente confiable que se almacena en un archivo .json.\nInferencia: Durante el funcionamiento del sistema, Vosk genera un vector nuevo al finalizar cada frase. Inmediatamente se calcula la distancia coseno contra todos los perfiles en los archivos .json registrados, buscando la coincidencia máxima.\n\nPara el análisis técnico, hemos desarrollado un visualizador paramétrico que toma los 128 datos del .json y genera gráficas de barras, permitiendo a los investigadores observar los picos positivos y negativos de resonancia de los distintos locutores.",
+    "crumbs": [
+      "Inicio",
+      "Biometría Avanzada",
+      "Biometría de Voz y X-Vectors"
+    ]
+  },
+  {
+    "objectID": "docs/03_biometria_voz_xvectors.html#la-arquitectura-x-vector-speaker-embeddings",
+    "href": "docs/03_biometria_voz_xvectors.html#la-arquitectura-x-vector-speaker-embeddings",
+    "title": "Biometría de Voz y X-Vectors",
+    "section": "",
+    "text": "El “Speaker Model” de Vosk actúa como un extractor de características profundas. Cuando recibe el audio, analiza la anatomía acústica del tracto vocal del hablante (coeficientes MFCC, formantes, resonancia de la boca, garganta y nariz).\nA través de una red neuronal profunda, esta información abstracta se condensa y mapea en un espacio matemático vectorial. El resultado final es un X-Vector: una lista estricta de 128 números de coma flotante (un “Speaker Embedding”).\n¿Por qué 128 dimensiones? * Capacidad: Es matemáticamente suficiente para capturar las variaciones únicas de la anatomía humana, permitiendo diferenciar entre miles de identidades vocales (“Huellas Vocales”). * Eficiencia: Es un vector lo suficientemente pequeño para permitir miles de operaciones matriciales por segundo en el procesador (CPU), algo vital para ejecutar comprobaciones en tiempo real sin saturar el sistema.",
+    "crumbs": [
+      "Inicio",
+      "Biometría Avanzada",
+      "Biometría de Voz y X-Vectors"
+    ]
+  },
+  {
+    "objectID": "docs/03_biometria_voz_xvectors.html#métrica-de-similitud-la-distancia-coseno",
+    "href": "docs/03_biometria_voz_xvectors.html#métrica-de-similitud-la-distancia-coseno",
+    "title": "Biometría de Voz y X-Vectors",
+    "section": "",
+    "text": "Una vez que tenemos la “huella” de la persona guardada en la base de datos y extraemos la huella de quien está hablando en el micrófono, necesitamos compararlas.\nEn biometría de voz, no se utiliza la distancia lineal (Euclidiana) debido a que cambios en el volumen de la voz o cercanía al micrófono alterarían la magnitud del vector, dando falsos negativos.\nEn su lugar, el proyecto utiliza la Distancia Coseno a través de la librería Numpy: * Esta métrica mide el ángulo de inclinación entre los dos vectores de 128D, ignorando por completo la “longitud” o intensidad de los mismos. * Si el ángulo es cercano a \\(0°\\) (coseno cercano a \\(1.0\\)), el sistema asegura matemáticamente que la textura de voz proviene de la misma persona, independientemente del volumen o pequeñas variaciones de ruido. * El código establece un Umbral de Confianza. Generalmente, cualquier similitud inferior al \\(65\\%\\) clasifica automáticamente a la voz como DESCONOCIDO.",
+    "crumbs": [
+      "Inicio",
+      "Biometría Avanzada",
+      "Biometría de Voz y X-Vectors"
+    ]
+  },
+  {
+    "objectID": "docs/03_biometria_voz_xvectors.html#flujo-operativo-y-visualización",
+    "href": "docs/03_biometria_voz_xvectors.html#flujo-operativo-y-visualización",
+    "title": "Biometría de Voz y X-Vectors",
+    "section": "",
+    "text": "El proceso biométrico se divide en dos fases:\n\nEnrolamiento (Registro): La persona dicta un texto preestablecido de varios segundos. El modelo extrae múltiples X-Vectors a medida que avanza la frase y calcula el promedio de todos ellos. Esto “limpia” el vector de cualquier ruido aleatorio y genera una huella vocal altamente confiable que se almacena en un archivo .json.\nInferencia: Durante el funcionamiento del sistema, Vosk genera un vector nuevo al finalizar cada frase. Inmediatamente se calcula la distancia coseno contra todos los perfiles en los archivos .json registrados, buscando la coincidencia máxima.\n\nPara el análisis técnico, hemos desarrollado un visualizador paramétrico que toma los 128 datos del .json y genera gráficas de barras, permitiendo a los investigadores observar los picos positivos y negativos de resonancia de los distintos locutores.",
+    "crumbs": [
+      "Inicio",
+      "Biometría Avanzada",
+      "Biometría de Voz y X-Vectors"
+    ]
+  },
+  {
+    "objectID": "docs/01_fundamentos_audio.html",
+    "href": "docs/01_fundamentos_audio.html",
+    "title": "Fundamentos de Procesamiento de Audio",
+    "section": "",
+    "text": "El sonido es una onda continua que contiene un número infinito de valores en un tiempo dado. Para que los dispositivos digitales puedan procesar y analizar la voz, es necesario convertirla en una representación digital. Este capítulo explica los conceptos fundamentales detrás de este proceso.\n\n\nLa señal acústica es capturada y transformada siguiendo este flujo técnico:\n\n\n\n\n\ngraph TD\n    A[Ondas Sonoras - Aire] --&gt; B[Micrófono]\n    B --&gt; C[Señal Eléctrica Analógica]\n    C --&gt; D[ADC - Conversor]\n    D --&gt; E[Muestreo]\n    E --&gt; F[Cuantización]\n    F --&gt; G[Archivo Digital WAV, FLAC, MP3]\n\n\n\n\n\n\nEl audio digital se crea capturando muestras de una señal analógica a intervalos regulares. Este proceso se llama muestreo, y la frecuencia de muestreo determina cuántas veces por segundo se toma una “foto” del sonido.\n\n\nLa frecuencia de muestreo es el número de muestras tomadas por segundo al digitalizar audio, medida en hercios (Hz).\n\nVoz Humana (16,000 Hz / 16 kHz): Suficiente para capturar frecuencias audibles del habla. Es el estándar para modelos de IA como Whisper y Vosk.\nCalidad CD (44,100 Hz): Estándar de la industria musical.\nAlta Resolución (192,000 Hz): Producción profesional.\n\n\n\nEl teorema de Nyquist-Shannon establece que para capturar correctamente una señal, la frecuencia de muestreo debe ser al menos el doble de la frecuencia más alta que queremos grabar.\nSi las vocales humanas están entre 300 Hz y 3 kHz y las consonantes llegan hasta 8 kHz, la frecuencia mínima requerida para capturarlas sin perder información es de 16 kHz (\\(8 kHz \\times 2\\)).\n¿Qué pasa si muestreamos mal? * Submuestreo (Aliasing): Si grabamos a 8 kHz (telefonía antigua), no capturamos frecuencias altas. El audio suena amortiguado y se produce “aliasing”, donde la IA interpreta erróneamente ciertas consonantes fricativas (\\(s, f, sh\\)). * Sobremuestreo: Frecuencias muy altas (44.1kHz+) no aportan mejoría para la transcripción de voz y solo aumentan el costo computacional.\n\n\n\n\n\nAmplitud: Es la intensidad o presión sonora percibida como volumen (medido en Decibelios - dB). Si el audio es muy bajo, se funde con el ruido de fondo. Si es muy alto, ocurre clipping (las crestas de la onda se recortan o distorsionan, causando armónicos falsos que confunden a la IA).\nProfundidad de Bits (Bit Depth): Determina la precisión con la que se guarda la amplitud en cada muestra.\n\n16-bit: 65,536 niveles de volumen. Es el formato estándar.\n32-bit (Float): Usa puntos decimales \\([-1.0, 1.0]\\). Ideal para normalización y redes neuronales.\n\n\n\n\n\n\n\nLos modelos de Machine Learning no “escuchan” el archivo .wav directamente. Requieren ver el audio como un conjunto matemático o una imagen.\n\n\nMuestra cómo cambia la amplitud a lo largo del tiempo. Es útil para identificar silencios y volumen, pero no dice qué “tonos” (frecuencias) están sonando.\n\n\n\nMuestra qué frecuencias componen el sonido en un instante específico utilizando la STFT (Transformada de Fourier de Tiempo Corto). Si en el audio hay un ventilador (60 Hz), aquí lo veremos como una “mancha” en esa frecuencia específica.\n\n\n\nEs la representación más utilizada en el Procesamiento de Lenguaje Natural (PLN). Combina tiempo, frecuencia y amplitud en un “mapa de calor”. Además, utiliza la Escala Mel, una escala logarítmica que imita el oído humano: somos mucho más precisos diferenciando cambios en frecuencias graves que en agudas.\n\n\n\n\n\ngraph TD\n    STFT[Audio Crudo - STFT] --&gt; FB[Banco de Filtros Mel]\n    FB --&gt; LOG[Logaritmo - Decibelios]\n    LOG --&gt; ML[Input para Modelos Transformers]\n\n\n\n\n\n\n\n\n\n\n\nPara que la IA funcione correctamente y no sufra de “alucinaciones”, el audio original debe pasar por un pipeline de limpieza:\n\nConversión a Mono: El estéreo no sirve para PLN y puede causar “cancelación de fase” (frecuencias que se anulan entre sí).\nResampler: Remuestreo para asegurar que todo audio quede estandarizado a 16 kHz.\nNoise Gate / VAD: (Voice Activity Detection) Detecta silencios y envía a la IA solo los fragmentos donde hay voz humana real.\nNormalización de Ganancia: Estabiliza el volumen para evitar el clipping.\nFiltro Pasa-Banda: Elimina todo el sonido debajo de 80Hz (zumbidos mecánicos) y arriba de 8000Hz (ruidos de alta frecuencia innecesarios).",
+    "crumbs": [
+      "Inicio",
+      "Conceptos Teóricos",
+      "Fundamentos de Procesamiento de Audio"
+    ]
+  },
+  {
+    "objectID": "docs/01_fundamentos_audio.html#el-proceso-de-digitalización",
+    "href": "docs/01_fundamentos_audio.html#el-proceso-de-digitalización",
+    "title": "Fundamentos de Procesamiento de Audio",
+    "section": "",
+    "text": "La señal acústica es capturada y transformada siguiendo este flujo técnico:\n\n\n\n\n\ngraph TD\n    A[Ondas Sonoras - Aire] --&gt; B[Micrófono]\n    B --&gt; C[Señal Eléctrica Analógica]\n    C --&gt; D[ADC - Conversor]\n    D --&gt; E[Muestreo]\n    E --&gt; F[Cuantización]\n    F --&gt; G[Archivo Digital WAV, FLAC, MP3]\n\n\n\n\n\n\nEl audio digital se crea capturando muestras de una señal analógica a intervalos regulares. Este proceso se llama muestreo, y la frecuencia de muestreo determina cuántas veces por segundo se toma una “foto” del sonido.\n\n\nLa frecuencia de muestreo es el número de muestras tomadas por segundo al digitalizar audio, medida en hercios (Hz).\n\nVoz Humana (16,000 Hz / 16 kHz): Suficiente para capturar frecuencias audibles del habla. Es el estándar para modelos de IA como Whisper y Vosk.\nCalidad CD (44,100 Hz): Estándar de la industria musical.\nAlta Resolución (192,000 Hz): Producción profesional.\n\n\n\nEl teorema de Nyquist-Shannon establece que para capturar correctamente una señal, la frecuencia de muestreo debe ser al menos el doble de la frecuencia más alta que queremos grabar.\nSi las vocales humanas están entre 300 Hz y 3 kHz y las consonantes llegan hasta 8 kHz, la frecuencia mínima requerida para capturarlas sin perder información es de 16 kHz (\\(8 kHz \\times 2\\)).\n¿Qué pasa si muestreamos mal? * Submuestreo (Aliasing): Si grabamos a 8 kHz (telefonía antigua), no capturamos frecuencias altas. El audio suena amortiguado y se produce “aliasing”, donde la IA interpreta erróneamente ciertas consonantes fricativas (\\(s, f, sh\\)). * Sobremuestreo: Frecuencias muy altas (44.1kHz+) no aportan mejoría para la transcripción de voz y solo aumentan el costo computacional.\n\n\n\n\n\nAmplitud: Es la intensidad o presión sonora percibida como volumen (medido en Decibelios - dB). Si el audio es muy bajo, se funde con el ruido de fondo. Si es muy alto, ocurre clipping (las crestas de la onda se recortan o distorsionan, causando armónicos falsos que confunden a la IA).\nProfundidad de Bits (Bit Depth): Determina la precisión con la que se guarda la amplitud en cada muestra.\n\n16-bit: 65,536 niveles de volumen. Es el formato estándar.\n32-bit (Float): Usa puntos decimales \\([-1.0, 1.0]\\). Ideal para normalización y redes neuronales.",
+    "crumbs": [
+      "Inicio",
+      "Conceptos Teóricos",
+      "Fundamentos de Procesamiento de Audio"
+    ]
+  },
+  {
+    "objectID": "docs/01_fundamentos_audio.html#representación-de-datos-de-audio",
+    "href": "docs/01_fundamentos_audio.html#representación-de-datos-de-audio",
+    "title": "Fundamentos de Procesamiento de Audio",
+    "section": "",
+    "text": "Los modelos de Machine Learning no “escuchan” el archivo .wav directamente. Requieren ver el audio como un conjunto matemático o una imagen.\n\n\nMuestra cómo cambia la amplitud a lo largo del tiempo. Es útil para identificar silencios y volumen, pero no dice qué “tonos” (frecuencias) están sonando.\n\n\n\nMuestra qué frecuencias componen el sonido en un instante específico utilizando la STFT (Transformada de Fourier de Tiempo Corto). Si en el audio hay un ventilador (60 Hz), aquí lo veremos como una “mancha” en esa frecuencia específica.\n\n\n\nEs la representación más utilizada en el Procesamiento de Lenguaje Natural (PLN). Combina tiempo, frecuencia y amplitud en un “mapa de calor”. Además, utiliza la Escala Mel, una escala logarítmica que imita el oído humano: somos mucho más precisos diferenciando cambios en frecuencias graves que en agudas.\n\n\n\n\n\ngraph TD\n    STFT[Audio Crudo - STFT] --&gt; FB[Banco de Filtros Mel]\n    FB --&gt; LOG[Logaritmo - Decibelios]\n    LOG --&gt; ML[Input para Modelos Transformers]",
+    "crumbs": [
+      "Inicio",
+      "Conceptos Teóricos",
+      "Fundamentos de Procesamiento de Audio"
+    ]
+  },
+  {
+    "objectID": "docs/01_fundamentos_audio.html#el-módulo-de-preprocesamiento-ideal",
+    "href": "docs/01_fundamentos_audio.html#el-módulo-de-preprocesamiento-ideal",
+    "title": "Fundamentos de Procesamiento de Audio",
+    "section": "",
+    "text": "Para que la IA funcione correctamente y no sufra de “alucinaciones”, el audio original debe pasar por un pipeline de limpieza:\n\nConversión a Mono: El estéreo no sirve para PLN y puede causar “cancelación de fase” (frecuencias que se anulan entre sí).\nResampler: Remuestreo para asegurar que todo audio quede estandarizado a 16 kHz.\nNoise Gate / VAD: (Voice Activity Detection) Detecta silencios y envía a la IA solo los fragmentos donde hay voz humana real.\nNormalización de Ganancia: Estabiliza el volumen para evitar el clipping.\nFiltro Pasa-Banda: Elimina todo el sonido debajo de 80Hz (zumbidos mecánicos) y arriba de 8000Hz (ruidos de alta frecuencia innecesarios).",
+    "crumbs": [
+      "Inicio",
+      "Conceptos Teóricos",
+      "Fundamentos de Procesamiento de Audio"
+    ]
+  },
+  {
+    "objectID": "docs/02_modelos_stt_y_evaluacion.html",
+    "href": "docs/02_modelos_stt_y_evaluacion.html",
+    "title": "Modelos de Transcripción (STT) y Evaluación",
+    "section": "",
+    "text": "Una vez que el audio ha sido digitalizado y preprocesado adecuadamente, es procesado por un motor de Inteligencia Artificial de tipo STT (Speech-to-Text). En este proyecto, hemos implementado y comparado dos enfoques arquitectónicos radicalmente diferentes: Vosk y Whisper.\n\n\n\n\n\n\n\n\n\n\nCaracterística\nWhisper (OpenAI)\nVosk (Kaldi-based)\n\n\n\n\nArquitectura\nRed Neuronal Transformer (masiva).\nModelo Acústico Kaldi (HMM/DNN).\n\n\nEntrada Principal\nEspectrograma de Log-Mel (imágenes de audio).\nCaracterísticas Acústicas (MFCC).\n\n\nFlexibilidad de Entrada\n16,000 Hz fija (remuestrea internamente).\nFlexible (8k / 16k, dependiendo del modelo).\n\n\nPunto Fuerte\nMuy resistente a ruidos de fondo. Analiza contexto.\nExtremadamente rápido y funciona 100% offline.\n\n\nPunto Débil\nTiende a “alucinar” en silencios o ecos prolongados.\nMuy sensible al ruido; falla si la voz no es clara.\n\n\nProcesamiento\nDivide el audio en bloques fijos (30 segundos).\nProcesa de manera continua en tiempo real (streaming).\n\n\n\n\n\nDebido a que Whisper intenta encontrar un “contexto” o sentido lógico a todo sonido, en ocasiones en las que la acústica es defectuosa (presencia de eco excesivo, compresión agresiva como MP3, o silencios largos), la IA puede intentar rellenar los vacíos “inventando” palabras que lógicamente deberían estar allí. Esto se soluciona alimentando al modelo con audios muy limpios utilizando filtros VAD (Voice Activity Detection).\n\n\n\n\n\nPara juzgar objetivamente a estos dos modelos utilizamos la librería científica Jiwer, la cual se basa en la Distancia de Levenshtein para calcular la Tasa de Error de Palabra (WER).\nEl WER compara una frase de referencia contra el resultado obtenido por la IA y contabiliza tres tipos de fallos:\n\nSustituciones (S): La IA escuchó una palabra pero escribió otra (ej. “hola” vs “ola”).\nEliminaciones (D): La IA omitió una palabra que sí se pronunció.\nInserciones (I): La IA añadió palabras extra (frecuente en las alucinaciones de Whisper).\n\n\n\nDurante el desarrollo (documentado en el Semillero), descubrimos una Hipótesis de Falsos Negativos. Notamos que Whisper parecía tener peores puntuaciones que Vosk, a pesar de que su transcripción gramatical parecía más exacta a simple vista.\nLa causa: Jiwer no evaluaba únicamente las palabras, sino también la puntuación y el formato. Si la referencia era \"hola,\" (con coma) y el modelo entregaba \"Hola\" (con mayúscula y sin coma), Jiwer lo marcaba como un error completo de sustitución. Ya que Whisper es capaz de inferir la ortografía (añadiendo comas y puntos lógicos) y Vosk transcribe un bloque de texto en crudo, Vosk sacaba ventaja injustamente.\nSolución (Estandarización): Para realizar una evaluación métrica justa, el código de evaluación (juez.py) implementa un sistema de limpieza previo: 1. Minusculización: Convierte todo el texto a minúsculas (texto.lower()). 2. Limpieza de Signos: Se remueven comas, puntos y símbolos especiales antes de pasar los textos a Jiwer.\nEsto garantiza que la métrica refleje la verdadera capacidad del modelo para “entender” la pronunciación, independientemente del formato ortográfico final.",
+    "crumbs": [
+      "Inicio",
+      "Conceptos Teóricos",
+      "Modelos de Transcripción (STT) y Evaluación"
+    ]
+  },
+  {
+    "objectID": "docs/02_modelos_stt_y_evaluacion.html#comparativa-de-tecnologías-stt",
+    "href": "docs/02_modelos_stt_y_evaluacion.html#comparativa-de-tecnologías-stt",
+    "title": "Modelos de Transcripción (STT) y Evaluación",
+    "section": "",
+    "text": "Característica\nWhisper (OpenAI)\nVosk (Kaldi-based)\n\n\n\n\nArquitectura\nRed Neuronal Transformer (masiva).\nModelo Acústico Kaldi (HMM/DNN).\n\n\nEntrada Principal\nEspectrograma de Log-Mel (imágenes de audio).\nCaracterísticas Acústicas (MFCC).\n\n\nFlexibilidad de Entrada\n16,000 Hz fija (remuestrea internamente).\nFlexible (8k / 16k, dependiendo del modelo).\n\n\nPunto Fuerte\nMuy resistente a ruidos de fondo. Analiza contexto.\nExtremadamente rápido y funciona 100% offline.\n\n\nPunto Débil\nTiende a “alucinar” en silencios o ecos prolongados.\nMuy sensible al ruido; falla si la voz no es clara.\n\n\nProcesamiento\nDivide el audio en bloques fijos (30 segundos).\nProcesa de manera continua en tiempo real (streaming).\n\n\n\n\n\nDebido a que Whisper intenta encontrar un “contexto” o sentido lógico a todo sonido, en ocasiones en las que la acústica es defectuosa (presencia de eco excesivo, compresión agresiva como MP3, o silencios largos), la IA puede intentar rellenar los vacíos “inventando” palabras que lógicamente deberían estar allí. Esto se soluciona alimentando al modelo con audios muy limpios utilizando filtros VAD (Voice Activity Detection).",
+    "crumbs": [
+      "Inicio",
+      "Conceptos Teóricos",
+      "Modelos de Transcripción (STT) y Evaluación"
+    ]
+  },
+  {
+    "objectID": "docs/02_modelos_stt_y_evaluacion.html#sec-wer",
+    "href": "docs/02_modelos_stt_y_evaluacion.html#sec-wer",
+    "title": "Modelos de Transcripción (STT) y Evaluación",
+    "section": "",
+    "text": "Para juzgar objetivamente a estos dos modelos utilizamos la librería científica Jiwer, la cual se basa en la Distancia de Levenshtein para calcular la Tasa de Error de Palabra (WER).\nEl WER compara una frase de referencia contra el resultado obtenido por la IA y contabiliza tres tipos de fallos:\n\nSustituciones (S): La IA escuchó una palabra pero escribió otra (ej. “hola” vs “ola”).\nEliminaciones (D): La IA omitió una palabra que sí se pronunció.\nInserciones (I): La IA añadió palabras extra (frecuente en las alucinaciones de Whisper).\n\n\n\nDurante el desarrollo (documentado en el Semillero), descubrimos una Hipótesis de Falsos Negativos. Notamos que Whisper parecía tener peores puntuaciones que Vosk, a pesar de que su transcripción gramatical parecía más exacta a simple vista.\nLa causa: Jiwer no evaluaba únicamente las palabras, sino también la puntuación y el formato. Si la referencia era \"hola,\" (con coma) y el modelo entregaba \"Hola\" (con mayúscula y sin coma), Jiwer lo marcaba como un error completo de sustitución. Ya que Whisper es capaz de inferir la ortografía (añadiendo comas y puntos lógicos) y Vosk transcribe un bloque de texto en crudo, Vosk sacaba ventaja injustamente.\nSolución (Estandarización): Para realizar una evaluación métrica justa, el código de evaluación (juez.py) implementa un sistema de limpieza previo: 1. Minusculización: Convierte todo el texto a minúsculas (texto.lower()). 2. Limpieza de Signos: Se remueven comas, puntos y símbolos especiales antes de pasar los textos a Jiwer.\nEsto garantiza que la métrica refleje la verdadera capacidad del modelo para “entender” la pronunciación, independientemente del formato ortográfico final.",
+    "crumbs": [
+      "Inicio",
+      "Conceptos Teóricos",
+      "Modelos de Transcripción (STT) y Evaluación"
+    ]
+  },
+  {
+    "objectID": "docs/04_diarizacion_hibrida.html",
+    "href": "docs/04_diarizacion_hibrida.html",
+    "title": "El Reto de la Diarización Continua y la Arquitectura Híbrida",
+    "section": "",
+    "text": "Uno de los mayores desafíos en el Procesamiento de Lenguaje Natural es la Diarización de Locutores (el proceso sistemático de responder a la pregunta “¿quién habló y cuándo?”).\nDurante la fase de validación con el script biométrico de Vosk, descubrimos una limitación arquitectónica crítica al momento de procesar conversaciones naturales en las que los locutores interactúan sin dejar espacios claros de silencio.\n\n\nEl modelo SpkModel de Vosk funciona procesando la señal de audio en bloques completos, y dichos bloques se delimitan internamente única y exclusivamente por los silencios detectados (utilizando la función AcceptWaveform()).\n\nFalta de Separación Temporal: Si la “Persona 1” y la “Persona 2” hablan fluidamente y se interrumpen o solapan sus voces sin realizar una pausa respiratoria de más de \\(0.5\\) segundos, Vosk sigue acumulando todo el audio entrante en un solo “buffer” o bloque de procesamiento.\nCorrupción del Vector Biométrica: Cuando finalmente ocurre la pausa, el modelo toma todo el bloque de audio continuo para la extracción acústica. Como resultado lógico de intentar encontrar los rasgos paralingüísticos dominantes, la red neuronal genera un único X-Vector de 128 dimensiones que resulta ser el promedio matemático de las dos voces originales.\nFalla del Sistema: Al intentar aplicar la Distancia Coseno de este vector “mezclado” contra la base de datos, el resultado no coincide con ninguna huella aislada conocida, colapsando y marcando el segmento completo como DESCONOCIDO.\n\nDeducimos formalmente que Vosk, por sí solo, es incapaz de realizar diarización en tiempo real sobre locutores superpuestos debido a su diseño de procesamiento basado en silencios lógicos y no en ventanas cronológicas fijas.\n\n\n\n\nPara resolver la mezcla de perfiles biométricos y la falla de diarización, ideamos un algoritmo híbrido (WHISPER_PRUEBA.py) que aprovecha las ventajas de los dos motores evaluados. Esta solución opera fuera de línea (offline) en un modelo asíncrono, analizando grabaciones completas.\nLa arquitectura se fundamenta en separar de manera tajante el reconocimiento temporal de eventos sonoros del análisis biométrico subyacente.\n\n\n\n\n\ngraph TD\n    A[Grabación Completa] --&gt; B(Whisper - \"El Escriba Temporal\")\n    B --&gt;|Segmentos Marcados| C[0.5s - 1.2s: 'Texto']\n    B --&gt;|Segmentos Marcados| D[1.3s - 2.8s: 'Texto']\n    C --&gt; E{Librosa: Recorte Preciso}\n    D --&gt; E\n    E --&gt;|Audio 1 Aislado| F[Vosk SpkModel - \"El Detective\"]\n    E --&gt;|Audio 2 Aislado| F\n    F --&gt;|Comparación X-Vector| G[Asignación de Identidad Biométrica]\n    G --&gt; H[Reporte Final Mermaid]\n\n\n\n\n\n\n\n\nLa red Transformer de Whisper posee un excepcional “oído” cronológico. En lugar de detenerse en las pausas respiratorias, Whisper está diseñado para mapear el texto a lo largo del tiempo de grabación, y es capaz de detectar en qué segundo y milisegundo exacto inició y finalizó cada fonema pronunciado, incluso en audios con ruido.\nEn esta fase, Whisper escanea el archivo y genera un mapa temporal estructurado de cada frase, ignorando por completo quién es el interlocutor.\n\n\n\nUna vez que se dispone del mapa temporal de los segmentos, entra en juego la segunda fase del pipeline:\n\nRecorte Quirúrgico: Utilizando la librería científica Librosa, el script localiza los milisegundos exactos indicados por Whisper y recorta físicamente el vector de audio general, aislando cada intervención como un evento completamente estanco.\nIdentificación Aislada: Estos diminutos audios, ahora libres de solapamientos o cruces con otros locutores debido al corte abrupto de los extremos, se suministran de manera individual al SpkModel de Vosk (“El Detective”).\nExtracción Pura: Como el audio suministrado solo contiene la vibración de las cuerdas vocales de la persona que abarcó ese preciso segmento de tiempo, el X-Vector generado resulta ser puro y la coincidencia por Distancia Coseno es inmediata y altamente confiable.\n\n\n\n\nAl no tener que ejecutar la pesada red Transformer en streaming, sino aplicarla de forma iterativa sobre un archivo ya cerrado, y empleando Vosk (que es extremadamente ligero) para la asignación biométrica, logramos un nivel de Diarización Híbrida Profesional que es capaz de ejecutarse sobre hardware sumamente básico sin requerir el uso de tarjetas GPU.",
+    "crumbs": [
+      "Inicio",
+      "Biometría Avanzada",
+      "El Reto de la Diarización Continua y la Arquitectura Híbrida"
+    ]
+  },
+  {
+    "objectID": "docs/04_diarizacion_hibrida.html#el-problema-matemático-de-vosk-en-habla-fluida",
+    "href": "docs/04_diarizacion_hibrida.html#el-problema-matemático-de-vosk-en-habla-fluida",
+    "title": "El Reto de la Diarización Continua y la Arquitectura Híbrida",
+    "section": "",
+    "text": "El modelo SpkModel de Vosk funciona procesando la señal de audio en bloques completos, y dichos bloques se delimitan internamente única y exclusivamente por los silencios detectados (utilizando la función AcceptWaveform()).\n\nFalta de Separación Temporal: Si la “Persona 1” y la “Persona 2” hablan fluidamente y se interrumpen o solapan sus voces sin realizar una pausa respiratoria de más de \\(0.5\\) segundos, Vosk sigue acumulando todo el audio entrante en un solo “buffer” o bloque de procesamiento.\nCorrupción del Vector Biométrica: Cuando finalmente ocurre la pausa, el modelo toma todo el bloque de audio continuo para la extracción acústica. Como resultado lógico de intentar encontrar los rasgos paralingüísticos dominantes, la red neuronal genera un único X-Vector de 128 dimensiones que resulta ser el promedio matemático de las dos voces originales.\nFalla del Sistema: Al intentar aplicar la Distancia Coseno de este vector “mezclado” contra la base de datos, el resultado no coincide con ninguna huella aislada conocida, colapsando y marcando el segmento completo como DESCONOCIDO.\n\nDeducimos formalmente que Vosk, por sí solo, es incapaz de realizar diarización en tiempo real sobre locutores superpuestos debido a su diseño de procesamiento basado en silencios lógicos y no en ventanas cronológicas fijas.",
+    "crumbs": [
+      "Inicio",
+      "Biometría Avanzada",
+      "El Reto de la Diarización Continua y la Arquitectura Híbrida"
+    ]
+  },
+  {
+    "objectID": "docs/04_diarizacion_hibrida.html#solución-arquitectura-de-diarización-híbrida-ligera",
+    "href": "docs/04_diarizacion_hibrida.html#solución-arquitectura-de-diarización-híbrida-ligera",
+    "title": "El Reto de la Diarización Continua y la Arquitectura Híbrida",
+    "section": "",
+    "text": "Para resolver la mezcla de perfiles biométricos y la falla de diarización, ideamos un algoritmo híbrido (WHISPER_PRUEBA.py) que aprovecha las ventajas de los dos motores evaluados. Esta solución opera fuera de línea (offline) en un modelo asíncrono, analizando grabaciones completas.\nLa arquitectura se fundamenta en separar de manera tajante el reconocimiento temporal de eventos sonoros del análisis biométrico subyacente.\n\n\n\n\n\ngraph TD\n    A[Grabación Completa] --&gt; B(Whisper - \"El Escriba Temporal\")\n    B --&gt;|Segmentos Marcados| C[0.5s - 1.2s: 'Texto']\n    B --&gt;|Segmentos Marcados| D[1.3s - 2.8s: 'Texto']\n    C --&gt; E{Librosa: Recorte Preciso}\n    D --&gt; E\n    E --&gt;|Audio 1 Aislado| F[Vosk SpkModel - \"El Detective\"]\n    E --&gt;|Audio 2 Aislado| F\n    F --&gt;|Comparación X-Vector| G[Asignación de Identidad Biométrica]\n    G --&gt; H[Reporte Final Mermaid]\n\n\n\n\n\n\n\n\nLa red Transformer de Whisper posee un excepcional “oído” cronológico. En lugar de detenerse en las pausas respiratorias, Whisper está diseñado para mapear el texto a lo largo del tiempo de grabación, y es capaz de detectar en qué segundo y milisegundo exacto inició y finalizó cada fonema pronunciado, incluso en audios con ruido.\nEn esta fase, Whisper escanea el archivo y genera un mapa temporal estructurado de cada frase, ignorando por completo quién es el interlocutor.\n\n\n\nUna vez que se dispone del mapa temporal de los segmentos, entra en juego la segunda fase del pipeline:\n\nRecorte Quirúrgico: Utilizando la librería científica Librosa, el script localiza los milisegundos exactos indicados por Whisper y recorta físicamente el vector de audio general, aislando cada intervención como un evento completamente estanco.\nIdentificación Aislada: Estos diminutos audios, ahora libres de solapamientos o cruces con otros locutores debido al corte abrupto de los extremos, se suministran de manera individual al SpkModel de Vosk (“El Detective”).\nExtracción Pura: Como el audio suministrado solo contiene la vibración de las cuerdas vocales de la persona que abarcó ese preciso segmento de tiempo, el X-Vector generado resulta ser puro y la coincidencia por Distancia Coseno es inmediata y altamente confiable.\n\n\n\n\nAl no tener que ejecutar la pesada red Transformer en streaming, sino aplicarla de forma iterativa sobre un archivo ya cerrado, y empleando Vosk (que es extremadamente ligero) para la asignación biométrica, logramos un nivel de Diarización Híbrida Profesional que es capaz de ejecutarse sobre hardware sumamente básico sin requerir el uso de tarjetas GPU.",
+    "crumbs": [
+      "Inicio",
+      "Biometría Avanzada",
+      "El Reto de la Diarización Continua y la Arquitectura Híbrida"
+    ]
+  },
+  {
+    "objectID": "docs/codigo_juez.html",
+    "href": "docs/codigo_juez.html",
+    "title": "Orquestador Principal (juez.py)",
+    "section": "",
+    "text": "El archivo juez.py es el cerebro central del sistema. Tal como se expone en la sección de Implementación Técnica, este script toma el control del hardware físico (micrófono) y enfrenta a los dos modelos calculando sus errores con Jiwer.\n\n\nPara grabar, el sistema “congela” la terminal hasta que el usuario presione la tecla Espacio, luego escucha en fragmentos (chunks) y arma el archivo temporal.\nimport pyaudio\nimport keyboard\nimport wave\n\ndef grabar_audio():\n    p = pyaudio.PyAudio()\n    rate = 16000\n    chunk = 1024 # Tamaño de bloque de memoria RAM temporal\n    \n    print(\"Presiona ESPACIO para comenzar a grabar...\")\n    keyboard.wait('space')\n    \n    print(\"Grabando...\")\n    frames = []\n    \n    # Abre el canal de comunicación con el micrófono físico\n    stream = p.open(format=pyaudio.paInt16, channels=1, rate=rate,\n                    input=True, frames_per_buffer=chunk)\n    \n    while True:\n        data = stream.read(chunk, exception_on_overflow=False)\n        frames.append(data)\n        # Detiene la grabación si vuelves a presionar Espacio\n        if keyboard.is_pressed('space'): \n            break\n            \n    # Empaqueta todos los frames grabados y crea un archivo WAV\n    wf = wave.open(\"temp_comparacion.wav\", 'wb')\n    wf.setnchannels(1)\n    wf.setsampwidth(p.get_sample_size(pyaudio.paInt16)) \n    wf.setframerate(rate)\n    wf.writeframes(b''.join(frames))\n    wf.close()\n    \n    return \"temp_comparacion.wav\"\n\n\n\nEl juez llama a los dos modelos (explicados en Código de Vosk y Código de Whisper) para procesar el mismo audio y luego los enfrenta usando la métrica WER.\ndef calcular_y_mostrar_resultados(ruta_audio, referencia, vosk_motor, whisper_motor):\n    print(\"TRANSCRIBIENDO...\")\n    \n    # 1. Llamada a los expertos\n    texto_vosk = vosk_motor.transcribir_archivo(ruta_audio).lower()\n    texto_whisper = whisper_motor.transcribir(ruta_audio, es_archivo=True).lower()\n\n    # 2. Cálculo del WER (Error)\n    # Importante: Ambos textos han sido estandarizados con .lower() para evitar penalizaciones injustas\n    import jiwer\n    error_v = jiwer.wer(referencia, texto_vosk)\n    error_w = jiwer.wer(referencia, texto_whisper)\n\n    # 3. Lógica de Ganador\n    if error_w &lt; error_v: ganador = \"WHISPER\"\n    elif error_v &lt; error_w: ganador = \"VOSK\"\n    else: ganador = \"EMPATE TÉCNICO\"\n        \n    print(f\"Ganador de la ronda: {ganador}\")",
+    "crumbs": [
+      "Inicio",
+      "Arquitectura y Códigos",
+      "Orquestador Principal (juez.py)"
+    ]
+  },
+  {
+    "objectID": "docs/codigo_juez.html#grabación-en-tiempo-real-con-pyaudio",
+    "href": "docs/codigo_juez.html#grabación-en-tiempo-real-con-pyaudio",
+    "title": "Orquestador Principal (juez.py)",
+    "section": "",
+    "text": "Para grabar, el sistema “congela” la terminal hasta que el usuario presione la tecla Espacio, luego escucha en fragmentos (chunks) y arma el archivo temporal.\nimport pyaudio\nimport keyboard\nimport wave\n\ndef grabar_audio():\n    p = pyaudio.PyAudio()\n    rate = 16000\n    chunk = 1024 # Tamaño de bloque de memoria RAM temporal\n    \n    print(\"Presiona ESPACIO para comenzar a grabar...\")\n    keyboard.wait('space')\n    \n    print(\"Grabando...\")\n    frames = []\n    \n    # Abre el canal de comunicación con el micrófono físico\n    stream = p.open(format=pyaudio.paInt16, channels=1, rate=rate,\n                    input=True, frames_per_buffer=chunk)\n    \n    while True:\n        data = stream.read(chunk, exception_on_overflow=False)\n        frames.append(data)\n        # Detiene la grabación si vuelves a presionar Espacio\n        if keyboard.is_pressed('space'): \n            break\n            \n    # Empaqueta todos los frames grabados y crea un archivo WAV\n    wf = wave.open(\"temp_comparacion.wav\", 'wb')\n    wf.setnchannels(1)\n    wf.setsampwidth(p.get_sample_size(pyaudio.paInt16)) \n    wf.setframerate(rate)\n    wf.writeframes(b''.join(frames))\n    wf.close()\n    \n    return \"temp_comparacion.wav\"",
+    "crumbs": [
+      "Inicio",
+      "Arquitectura y Códigos",
+      "Orquestador Principal (juez.py)"
+    ]
+  },
+  {
+    "objectID": "docs/codigo_juez.html#evaluación-de-errores-con-jiwer",
+    "href": "docs/codigo_juez.html#evaluación-de-errores-con-jiwer",
+    "title": "Orquestador Principal (juez.py)",
+    "section": "",
+    "text": "El juez llama a los dos modelos (explicados en Código de Vosk y Código de Whisper) para procesar el mismo audio y luego los enfrenta usando la métrica WER.\ndef calcular_y_mostrar_resultados(ruta_audio, referencia, vosk_motor, whisper_motor):\n    print(\"TRANSCRIBIENDO...\")\n    \n    # 1. Llamada a los expertos\n    texto_vosk = vosk_motor.transcribir_archivo(ruta_audio).lower()\n    texto_whisper = whisper_motor.transcribir(ruta_audio, es_archivo=True).lower()\n\n    # 2. Cálculo del WER (Error)\n    # Importante: Ambos textos han sido estandarizados con .lower() para evitar penalizaciones injustas\n    import jiwer\n    error_v = jiwer.wer(referencia, texto_vosk)\n    error_w = jiwer.wer(referencia, texto_whisper)\n\n    # 3. Lógica de Ganador\n    if error_w &lt; error_v: ganador = \"WHISPER\"\n    elif error_v &lt; error_w: ganador = \"VOSK\"\n    else: ganador = \"EMPATE TÉCNICO\"\n        \n    print(f\"Ganador de la ronda: {ganador}\")",
+    "crumbs": [
+      "Inicio",
+      "Arquitectura y Códigos",
+      "Orquestador Principal (juez.py)"
+    ]
+  },
+  {
+    "objectID": "docs/codigo_whisper.html",
+    "href": "docs/codigo_whisper.html",
+    "title": "Código de WhisperHelper",
+    "section": "",
+    "text": "A diferencia de Vosk, Whisper utiliza redes Transformer de OpenAI, y es mucho más exigente matemáticamente con el audio entrante. Su especialidad es el análisis del contexto, como se explica en la comparativa de Modelos STT.\n\n\nDescargamos y cargamos el modelo utilizando la librería oficial de Whisper. El modelo “Base” ofrece un balance perfecto entre velocidad y precisión sin necesidad de GPU.\nimport whisper\nimport librosa\nimport numpy as np\n\nclass WhisperHelper:\n    def __init__(self, model_name=\"base\", device=\"cpu\"):\n        # Descarga/carga el modelo pre-entrenado\n        self.model = whisper.load_model(model_name, device=device)\n\n\n\nComo explicamos en la sección de Fundamentos de Audio, Whisper exige que el audio esté formateado en Float32 (decimales entre -1.0 y 1.0). La librería Numpy hace este cálculo matemático dividiendo la señal eléctrica bruta entre el límite máximo de 16 bits.\n    def preparar_audio_archivo(self, ruta_audio):\n        # Librosa fuerza el audio a 16kHz\n        audio_array, _ = librosa.load(ruta_audio, sr=16000)\n        return audio_array\n\n    def preparar_audio_bytes(self, frames_bytes):\n        # Convierte los bytes eléctricos a números y los divide por 32768\n        # (El límite matemático de 16 bits) para llevarlos a la escala Float32\n        audio_np = np.frombuffer(frames_bytes, dtype=np.int16).astype(np.float32) / 32768.0\n        return audio_np\n\n\n\nUna vez el audio está correctamente escalado y muestreado, se envía al motor.\n    def transcribir(self, input_data, language=\"es\", es_archivo=False):\n        if es_archivo:\n            audio = self.preparar_audio_archivo(input_data)\n        else:\n            audio = input_data\n            \n        # Realiza la transcripción final\n        result = self.model.transcribe(audio, language=language, fp16=False)\n        return result[\"text\"].strip()",
+    "crumbs": [
+      "Inicio",
+      "Arquitectura y Códigos",
+      "Código de WhisperHelper"
+    ]
+  },
+  {
+    "objectID": "docs/codigo_whisper.html#carga-del-modelo-base",
+    "href": "docs/codigo_whisper.html#carga-del-modelo-base",
+    "title": "Código de WhisperHelper",
+    "section": "",
+    "text": "Descargamos y cargamos el modelo utilizando la librería oficial de Whisper. El modelo “Base” ofrece un balance perfecto entre velocidad y precisión sin necesidad de GPU.\nimport whisper\nimport librosa\nimport numpy as np\n\nclass WhisperHelper:\n    def __init__(self, model_name=\"base\", device=\"cpu\"):\n        # Descarga/carga el modelo pre-entrenado\n        self.model = whisper.load_model(model_name, device=device)",
+    "crumbs": [
+      "Inicio",
+      "Arquitectura y Códigos",
+      "Código de WhisperHelper"
+    ]
+  },
+  {
+    "objectID": "docs/codigo_whisper.html#normalización-matemática-y-resampling-librosa",
+    "href": "docs/codigo_whisper.html#normalización-matemática-y-resampling-librosa",
+    "title": "Código de WhisperHelper",
+    "section": "",
+    "text": "Como explicamos en la sección de Fundamentos de Audio, Whisper exige que el audio esté formateado en Float32 (decimales entre -1.0 y 1.0). La librería Numpy hace este cálculo matemático dividiendo la señal eléctrica bruta entre el límite máximo de 16 bits.\n    def preparar_audio_archivo(self, ruta_audio):\n        # Librosa fuerza el audio a 16kHz\n        audio_array, _ = librosa.load(ruta_audio, sr=16000)\n        return audio_array\n\n    def preparar_audio_bytes(self, frames_bytes):\n        # Convierte los bytes eléctricos a números y los divide por 32768\n        # (El límite matemático de 16 bits) para llevarlos a la escala Float32\n        audio_np = np.frombuffer(frames_bytes, dtype=np.int16).astype(np.float32) / 32768.0\n        return audio_np",
+    "crumbs": [
+      "Inicio",
+      "Arquitectura y Códigos",
+      "Código de WhisperHelper"
+    ]
+  },
+  {
+    "objectID": "docs/codigo_whisper.html#inferencia-y-transcripción",
+    "href": "docs/codigo_whisper.html#inferencia-y-transcripción",
+    "title": "Código de WhisperHelper",
+    "section": "",
+    "text": "Una vez el audio está correctamente escalado y muestreado, se envía al motor.\n    def transcribir(self, input_data, language=\"es\", es_archivo=False):\n        if es_archivo:\n            audio = self.preparar_audio_archivo(input_data)\n        else:\n            audio = input_data\n            \n        # Realiza la transcripción final\n        result = self.model.transcribe(audio, language=language, fp16=False)\n        return result[\"text\"].strip()",
+    "crumbs": [
+      "Inicio",
+      "Arquitectura y Códigos",
+      "Código de WhisperHelper"
+    ]
+  }
+]

@@ -1,0 +1,28 @@
+---
+title: "Documentación Técnica del Proyecto: Chatbot de Compañía para Adultos Mayores"
+author: "Esteban Mauricio"
+date: today
+---
+
+# Introducción al Sistema
+
+El propósito fundamental de mi Trabajo de Grado (TG) es desarrollar un **Chatbot o Inteligencia Artificial (IA)** diseñado específicamente para hacer compañía a adultos mayores. 
+
+Para lograr que una máquina interactúe de forma humana, el proyecto se divide en una cadena o *pipeline* de tres grandes fases:
+1.  **Voz a Texto (STT - Speech to Text):** El sistema debe "escuchar" y entender lo que el adulto mayor dice.
+2.  **Cerebro (LLM - Large Language Model):** El sistema debe procesar el texto y generar una respuesta empática y coherente.
+3.  **Texto a Voz (TTS - Text to Speech):** El sistema debe "hablar" y responderle en voz alta.
+
+Actualmente, **este proyecto se encuentra en el Paso 1 (STT)**. 
+
+## El Viaje de Investigación
+
+Para saber qué tecnología utilizar en esta primera fase, tuve que buscar candidatos y evaluar de forma empírica cuál era mejor. En este sitio web encontrarás el registro de ese proceso:
+
+1.  **Búsqueda y Fundamentos:** Exploración de cómo el audio analógico se convierte en digital para que la IA lo entienda (Ver [Fundamentos de Audio](docs/01_fundamentos_audio.qmd#sec-audio-fund)).
+2.  **Selección de Candidatos:** Análisis teórico de dos grandes competidores encontrados: Vosk (ligero y local) vs Whisper de OpenAI (pesado pero contextual) (Ver [Modelos STT](docs/02_modelos_stt_y_evaluacion.qmd#sec-stt)).
+3.  **El Problema de Evaluación:** Al hacer las pruebas iniciales y utilizar herramientas de medición, me di cuenta de un error grave: la métrica (Jiwer) no estaba estandarizada y castigaba injustamente la puntuación (Ver [El Error de Jiwer](docs/02_modelos_stt_y_evaluacion.qmd#sec-wer)).
+4.  **Evolución a Biometría:** Al avanzar, descubrí que para que el robot de compañía sea efectivo, no solo debe transcribir, sino **identificar quién le habla** (diferenciar al adulto mayor de un familiar). Esto me llevó a incursionar en [Biometría de Voz](docs/03_biometria_voz_xvectors.qmd#sec-biometria) y a desarrollar una arquitectura de [Diarización Híbrida](docs/04_diarizacion_hibrida.qmd#sec-diarizacion).
+
+## Estructura del Sitio
+Utiliza el **menú de navegación lateral** para explorar cada uno de los descubrimientos y leer la [explicación detallada de los códigos](docs/05_implementacion_tecnica.qmd#sec-arq) desarrollados durante la investigación.

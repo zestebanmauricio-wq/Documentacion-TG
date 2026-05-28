@@ -1,0 +1,69 @@
+# Orquestador Principal (juez.py) {#sec-cod-juez}
+
+El archivo `juez.py` es el cerebro central del sistema. Tal como se expone en la sección de [Implementación Técnica](05_implementacion_tecnica.qmd#sec-arq), este script toma el control del hardware físico (micrófono) y enfrenta a los dos modelos calculando sus errores con Jiwer.
+
+## 1. Grabación en Tiempo Real con PyAudio
+Para grabar, el sistema "congela" la terminal hasta que el usuario presione la tecla Espacio, luego escucha en fragmentos (chunks) y arma el archivo temporal.
+
+```python
+import pyaudio
+import keyboard
+import wave
+
+def grabar_audio():
+    p = pyaudio.PyAudio()
+    rate = 16000
+    chunk = 1024 # Tamaño de bloque de memoria RAM temporal
+    
+    print("Presiona ESPACIO para comenzar a grabar...")
+    keyboard.wait('space')
+    
+    print("Grabando...")
+    frames = []
+    
+    # Abre el canal de comunicación con el micrófono físico
+    stream = p.open(format=pyaudio.paInt16, channels=1, rate=rate,
+                    input=True, frames_per_buffer=chunk)
+    
+    while True:
+        data = stream.read(chunk, exception_on_overflow=False)
+        frames.append(data)
+        # Detiene la grabación si vuelves a presionar Espacio
+        if keyboard.is_pressed('space'): 
+            break
+            
+    # Empaqueta todos los frames grabados y crea un archivo WAV
+    wf = wave.open("temp_comparacion.wav", 'wb')
+    wf.setnchannels(1)
+    wf.setsampwidth(p.get_sample_size(pyaudio.paInt16)) 
+    wf.setframerate(rate)
+    wf.writeframes(b''.join(frames))
+    wf.close()
+    
+    return "temp_comparacion.wav"
+```
+
+## 2. Evaluación de Errores con Jiwer
+El juez llama a los dos modelos (explicados en [Código de Vosk](codigo_vosk.qmd#sec-cod-vosk) y [Código de Whisper](codigo_whisper.qmd#sec-cod-whisper)) para procesar el mismo audio y luego los enfrenta usando la [métrica WER](02_modelos_stt_y_evaluacion.qmd#sec-wer).
+
+```python
+def calcular_y_mostrar_resultados(ruta_audio, referencia, vosk_motor, whisper_motor):
+    print("TRANSCRIBIENDO...")
+    
+    # 1. Llamada a los expertos
+    texto_vosk = vosk_motor.transcribir_archivo(ruta_audio).lower()
+    texto_whisper = whisper_motor.transcribir(ruta_audio, es_archivo=True).lower()
+
+    # 2. Cálculo del WER (Error)
+    # Importante: Ambos textos han sido estandarizados con .lower() para evitar penalizaciones injustas
+    import jiwer
+    error_v = jiwer.wer(referencia, texto_vosk)
+    error_w = jiwer.wer(referencia, texto_whisper)
+
+    # 3. Lógica de Ganador
+    if error_w < error_v: ganador = "WHISPER"
+    elif error_v < error_w: ganador = "VOSK"
+    else: ganador = "EMPATE TÉCNICO"
+        
+    print(f"Ganador de la ronda: {ganador}")
+```

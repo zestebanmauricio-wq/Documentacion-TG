@@ -1,0 +1,44 @@
+# Modelos de Transcripción (STT) y Evaluación {#sec-stt}
+
+Una vez que el audio ha sido digitalizado y preprocesado adecuadamente, es procesado por un motor de Inteligencia Artificial de tipo **STT (Speech-to-Text)**. En este proyecto, hemos implementado y comparado dos enfoques arquitectónicos radicalmente diferentes: **Vosk** y **Whisper**.
+
+## Comparativa de Tecnologías STT
+
+| Característica | **Whisper (OpenAI)** | **Vosk (Kaldi-based)** |
+| :--- | :--- | :--- |
+| **Arquitectura** | Red Neuronal Transformer (masiva). | Modelo Acústico Kaldi (HMM/DNN). |
+| **Entrada Principal** | Espectrograma de Log-Mel (imágenes de audio). | Características Acústicas (MFCC). |
+| **Flexibilidad de Entrada** | 16,000 Hz fija (remuestrea internamente). | Flexible (8k / 16k, dependiendo del modelo). |
+| **Punto Fuerte** | Muy resistente a ruidos de fondo. Analiza contexto. | Extremadamente rápido y funciona 100% offline. |
+| **Punto Débil** | Tiende a "alucinar" en silencios o ecos prolongados. | Muy sensible al ruido; falla si la voz no es clara. |
+| **Procesamiento** | Divide el audio en bloques fijos (30 segundos). | Procesa de manera continua en tiempo real (streaming). |
+
+### Las "Alucinaciones" de Whisper
+
+Debido a que Whisper intenta encontrar un "contexto" o sentido lógico a todo sonido, en ocasiones en las que la acústica es defectuosa (presencia de eco excesivo, compresión agresiva como MP3, o silencios largos), la IA puede intentar rellenar los vacíos "inventando" palabras que lógicamente deberían estar allí. Esto se soluciona alimentando al modelo con audios muy limpios utilizando filtros VAD (Voice Activity Detection).
+
+---
+
+## Métrica Científica: El Word Error Rate (WER) {#sec-wer}
+
+Para juzgar objetivamente a estos dos modelos utilizamos la librería científica **Jiwer**, la cual se basa en la Distancia de Levenshtein para calcular la Tasa de Error de Palabra (WER).
+
+El WER compara una frase de referencia contra el resultado obtenido por la IA y contabiliza tres tipos de fallos:
+
+1.  **Sustituciones (S):** La IA escuchó una palabra pero escribió otra (ej. "hola" vs "ola").
+2.  **Eliminaciones (D):** La IA omitió una palabra que sí se pronunció.
+3.  **Inserciones (I):** La IA añadió palabras extra (frecuente en las alucinaciones de Whisper).
+
+### El Problema de Jiwer y la Normalización de Texto
+
+Durante el desarrollo (documentado en el Semillero), descubrimos una **Hipótesis de Falsos Negativos**. Notamos que Whisper parecía tener peores puntuaciones que Vosk, a pesar de que su transcripción gramatical parecía más exacta a simple vista.
+
+**La causa:** Jiwer no evaluaba únicamente las palabras, sino también la **puntuación y el formato**.
+Si la referencia era `"hola,"` (con coma) y el modelo entregaba `"Hola"` (con mayúscula y sin coma), Jiwer lo marcaba como un error completo de sustitución. Ya que Whisper es capaz de inferir la ortografía (añadiendo comas y puntos lógicos) y Vosk transcribe un bloque de texto en crudo, Vosk sacaba ventaja injustamente.
+
+**Solución (Estandarización):**
+Para realizar una evaluación métrica justa, el código de evaluación (`juez.py`) implementa un sistema de limpieza previo:
+1.  **Minusculización:** Convierte todo el texto a minúsculas (`texto.lower()`).
+2.  **Limpieza de Signos:** Se remueven comas, puntos y símbolos especiales antes de pasar los textos a Jiwer.
+
+Esto garantiza que la métrica refleje la verdadera capacidad del modelo para "entender" la pronunciación, independientemente del formato ortográfico final.

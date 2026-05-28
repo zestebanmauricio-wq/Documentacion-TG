@@ -1,0 +1,43 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "STT & Biometría"
+  page-navigation: true
+  search: true
+  navbar:
+    background: primary
+    left:
+      - href: index.qmd
+        text: Inicio
+  sidebar:
+    style: "floating"
+    collapse-level: 1
+    contents:
+      - section: "Conceptos Teóricos"
+        contents:
+          - docs/01_fundamentos_audio.qmd
+          - docs/02_modelos_stt_y_evaluacion.qmd
+      - section: "Biometría Avanzada"
+        contents:
+          - docs/03_biometria_voz_xvectors.qmd
+          - docs/04_diarizacion_hibrida.qmd
+      - section: "Arquitectura y Códigos"
+        contents:
+          - docs/05_implementacion_tecnica.qmd
+          - docs/codigo_vosk.qmd
+          - docs/codigo_whisper.qmd
+          - docs/codigo_juez.qmd
+
+format:
+  html:
+    theme:
+      dark: [darkly, styles.css]
+      light: [cosmo, styles.css]
+    toc: true
+    toc-depth: 3
+    number-sections: false
+    smooth-scroll: true
+    mermaid:
+      theme: dark
