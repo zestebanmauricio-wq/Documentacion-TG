@@ -7,6 +7,17 @@ Más allá de la transcripción de texto (STT), el sistema requiere la capacidad
 *   **Modelo de Lenguaje (STT):** Entrena a la IA para entender *qué* palabras se están pronunciando mediante la búsqueda de fonemas.
 *   **Modelo de Locutor (Biometría):** Entrena a la IA para identificar *quién* habla. Ignora el significado del texto y se enfoca exclusivamente en las texturas físicas del sonido (características paralingüísticas).
 
+## Implementación práctica en el código
+
+En `Codigos/VOSK_PRUEBA.py` se ve claramente esta separación de roles:
+
+1.  **`cargar_voces_conocidas()`** lee los archivos `.json` guardados en `Codigos/voces_guardadas/` y convierte cada vector guardado en arrays de NumPy.
+2.  **`obtener_vector_vosk(...)`** recorta el audio a partir de los tiempos de inicio y fin, convierte los valores a 16-bit PCM y llama a `KaldiRecognizer`.
+3.  **`calcular_distancia_coseno(v1, v2)`** compara el vector nuevo con cada perfil guardado y devuelve la similitud máxima.
+4.  El umbral de confianza aplicado en el código es **0.65**: por debajo de ese valor se devuelve `Desconocido`.
+
+Esto significa que la biometría del proyecto no es solo teoría; está codificada en un flujo real que usa `Vosk` para extraer X-vectors y `NumPy` para comparar matemáticamente las voces.
+
 ## La Arquitectura X-Vector (Speaker Embeddings)
 
 El "Speaker Model" de Vosk actúa como un extractor de características profundas. Cuando recibe el audio, analiza la anatomía acústica del tracto vocal del hablante (coeficientes MFCC, formantes, resonancia de la boca, garganta y nariz).

@@ -411,6 +411,7 @@ window.Quarto = {
   <li><a href="#el-problema-matemático-de-vosk-en-habla-fluida" id="toc-el-problema-matemático-de-vosk-en-habla-fluida" class="nav-link" data-scroll-target="#el-problema-matemático-de-vosk-en-habla-fluida">El Problema Matemático de Vosk en Habla Fluida</a></li>
   <li><a href="#solución-arquitectura-de-diarización-híbrida-ligera" id="toc-solución-arquitectura-de-diarización-híbrida-ligera" class="nav-link" data-scroll-target="#solución-arquitectura-de-diarización-híbrida-ligera">Solución: Arquitectura de Diarización Híbrida Ligera</a>
   <ul class="collapse">
+  <li><a href="#nota-técnica-del-código" id="toc-nota-técnica-del-código" class="nav-link" data-scroll-target="#nota-técnica-del-código">Nota técnica del código</a></li>
   <li><a href="#el-papel-de-el-escriba-temporal-whisper" id="toc-el-papel-de-el-escriba-temporal-whisper" class="nav-link" data-scroll-target="#el-papel-de-el-escriba-temporal-whisper">El Papel de “El Escriba Temporal” (Whisper)</a></li>
   <li><a href="#el-bisturí-acústico-y-la-extracción-librosa-vosk" id="toc-el-bisturí-acústico-y-la-extracción-librosa-vosk" class="nav-link" data-scroll-target="#el-bisturí-acústico-y-la-extracción-librosa-vosk">El “Bisturí Acústico” y la Extracción (Librosa + Vosk)</a></li>
   <li><a href="#balance-de-hardware" id="toc-balance-de-hardware" class="nav-link" data-scroll-target="#balance-de-hardware">Balance de Hardware</a></li>
@@ -451,21 +452,23 @@ window.Quarto = {
 <p></p><figure class="figure"><p></p>
 <div>
 <pre class="mermaid mermaid-js">graph TD
-    A[Grabación Completa] --&gt; B(Whisper - "El Escriba Temporal")
-    B --&gt;|Segmentos Marcados| C[0.5s - 1.2s: 'Texto']
-    B --&gt;|Segmentos Marcados| D[1.3s - 2.8s: 'Texto']
-    C --&gt; E{Librosa: Recorte Preciso}
-    D --&gt; E
-    E --&gt;|Audio 1 Aislado| F[Vosk SpkModel - "El Detective"]
-    E --&gt;|Audio 2 Aislado| F
-    F --&gt;|Comparación X-Vector| G[Asignación de Identidad Biométrica]
-    G --&gt; H[Reporte Final Mermaid]
+    A[Grabación Completa] --&gt; B[Whisper]
+    B --&gt; C[Segmentos Temporales]
+    C --&gt; D[Recorte con Librosa]
+    D --&gt; E[Vosk SpkModel]
+    E --&gt; F[Identidad Biométrica]
+    F --&gt; G[Reporte Final]
 </pre>
 </div>
 <p></p></figure><p></p>
 </div>
 </div>
 </div>
+<section id="nota-técnica-del-código" class="level3">
+<h3 class="anchored" data-anchor-id="nota-técnica-del-código">Nota técnica del código</h3>
+<p>El script real <code>Codigos/WHISPER_PRUEBA.py</code> utiliza: * <code>whisper.load_model("base")</code> para cargar el modelo de Whisper. * <code>librosa.load(ruta_audio, sr=16000)</code> para normalizar la frecuencia a 16 kHz. * <code>obtener_vector_vosk(ruta_audio, inicio, fin, vosk_model, spk_model)</code> para cargar cada segmento exacto con <code>offset</code> y <code>duration</code>.</p>
+<p>De este modo, cada segmento extraído por Whisper se transforma en un fragmento de audio que Vosk procesa de manera aislada, evitando la mezcla de voces.</p>
+</section>
 <section id="el-papel-de-el-escriba-temporal-whisper" class="level3">
 <h3 class="anchored" data-anchor-id="el-papel-de-el-escriba-temporal-whisper">El Papel de “El Escriba Temporal” (Whisper)</h3>
 <p>La red Transformer de Whisper posee un excepcional “oído” cronológico. En lugar de detenerse en las pausas respiratorias, Whisper está diseñado para mapear el texto a lo largo del tiempo de grabación, y es capaz de detectar en qué segundo y milisegundo exacto inició y finalizó cada fonema pronunciado, incluso en audios con ruido.</p>
@@ -576,7 +579,7 @@ window.Quarto = {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/zestebanmauricio-wq\.github\.io\/Documentacion-TG\/");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

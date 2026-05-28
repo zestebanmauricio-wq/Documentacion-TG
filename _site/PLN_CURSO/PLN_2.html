@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>pln_2 – STT &amp; Biometría</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-09ba96c0d5bd9b5a424140e5f62c27f6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-0c37c67c5a2489b69ddbaf0001f5d64b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = true;
+    const darkModeDefault = authorPrefersDark;
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">STT &amp; Biometría</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Inicio</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Conceptos Teóricos</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/01_fundamentos_audio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fundamentos de Procesamiento de Audio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/02_modelos_stt_y_evaluacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Modelos de Transcripción (STT) y Evaluación</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Biometría Avanzada</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/03_biometria_voz_xvectors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Biometría de Voz y X-Vectors</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/04_diarizacion_hibrida.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">El Reto de la Diarización Continua y la Arquitectura Híbrida</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Arquitectura y Códigos</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/05_implementacion_tecnica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Implementación Técnica y Abstracción de Código</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/codigo_vosk.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Código de VoskHelper</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/codigo_whisper.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Código de WhisperHelper</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/codigo_juez.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Orquestador Principal (juez.py)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#llm_audio" id="toc-llm_audio" class="nav-link active" data-scroll-target="#llm_audio">Llm_audio</a>
+  <ul class="collapse">
+  <li><a href="#wav-archivo-de-audio-de-forma-de-onda" id="toc-wav-archivo-de-audio-de-forma-de-onda" class="nav-link" data-scroll-target="#wav-archivo-de-audio-de-forma-de-onda">WAV (Archivo de audio de forma de onda)</a></li>
+  <li><a href="#flac-códec-de-audio-gratuito-sin-pérdidas" id="toc-flac-códec-de-audio-gratuito-sin-pérdidas" class="nav-link" data-scroll-target="#flac-códec-de-audio-gratuito-sin-pérdidas">FLAC (Códec de audio gratuito sin pérdidas)</a></li>
+  <li><a href="#mp3-capa-de-audio-mpeg-1-3" id="toc-mp3-capa-de-audio-mpeg-1-3" class="nav-link" data-scroll-target="#mp3-capa-de-audio-mpeg-1-3">MP3 (Capa de audio MPEG-1 3)</a></li>
+  <li><a href="#del-sonido-analógico-al-audio-digital" id="toc-del-sonido-analógico-al-audio-digital" class="nav-link" data-scroll-target="#del-sonido-analógico-al-audio-digital">Del sonido analógico al audio digital</a>
+  <ul class="collapse">
+  <li><a href="#explicación" id="toc-explicación" class="nav-link" data-scroll-target="#explicación">Explicación</a></li>
+  <li><a href="#ejemplo-visual-del-muestreo" id="toc-ejemplo-visual-del-muestreo" class="nav-link" data-scroll-target="#ejemplo-visual-del-muestreo">Ejemplo visual del muestreo</a></li>
+  </ul></li>
+  <li><a href="#frecuencia-de-muestreo" id="toc-frecuencia-de-muestreo" class="nav-link" data-scroll-target="#frecuencia-de-muestreo">Frecuencia de muestreo</a></li>
+  <li><a href="#resumen-del-sonido-analógico-al-digital" id="toc-resumen-del-sonido-analógico-al-digital" class="nav-link" data-scroll-target="#resumen-del-sonido-analógico-al-digital">Resumen: Del sonido analógico al digital</a></li>
+  <li><a href="#el-límite-de-nyquist" id="toc-el-límite-de-nyquist" class="nav-link" data-scroll-target="#el-límite-de-nyquist">El límite de Nyquist</a>
+  <ul class="collapse">
+  <li><a href="#por-qué-16-khz-es-suficiente-para-habla" id="toc-por-qué-16-khz-es-suficiente-para-habla" class="nav-link" data-scroll-target="#por-qué-16-khz-es-suficiente-para-habla">¿Por qué 16 kHz es suficiente para habla?</a></li>
+  <li><a href="#qué-pasa-si-muestreamos-muy-bajo" id="toc-qué-pasa-si-muestreamos-muy-bajo" class="nav-link" data-scroll-target="#qué-pasa-si-muestreamos-muy-bajo">¿Qué pasa si muestreamos muy bajo?</a></li>
+  <li><a href="#qué-pasa-si-muestreamos-muy-alto" id="toc-qué-pasa-si-muestreamos-muy-alto" class="nav-link" data-scroll-target="#qué-pasa-si-muestreamos-muy-alto">¿Qué pasa si muestreamos muy alto?</a></li>
+  <li><a href="#tabla-de-referencia" id="toc-tabla-de-referencia" class="nav-link" data-scroll-target="#tabla-de-referencia">Tabla de referencia</a></li>
+  </ul></li>
+  <li><a href="#resumen-importancia-de-la-frecuencia-de-muestreo-y-preprocesamiento-de-audio" id="toc-resumen-importancia-de-la-frecuencia-de-muestreo-y-preprocesamiento-de-audio" class="nav-link" data-scroll-target="#resumen-importancia-de-la-frecuencia-de-muestreo-y-preprocesamiento-de-audio">Resumen: Importancia de la Frecuencia de Muestreo y Preprocesamiento de Audio</a>
+  <ul class="collapse">
+  <li><a href="#frecuencia-de-muestreo-uniforme" id="toc-frecuencia-de-muestreo-uniforme" class="nav-link" data-scroll-target="#frecuencia-de-muestreo-uniforme">1. Frecuencia de Muestreo Uniforme</a></li>
+  <li><a href="#amplitud-y-profundidad-de-bits" id="toc-amplitud-y-profundidad-de-bits" class="nav-link" data-scroll-target="#amplitud-y-profundidad-de-bits">2. Amplitud y Profundidad de Bits</a></li>
+  <li><a href="#visualizaciones-de-audio" id="toc-visualizaciones-de-audio" class="nav-link" data-scroll-target="#visualizaciones-de-audio">3. Visualizaciones de Audio</a></li>
+  <li><a href="#a-forma-de-onda-dominio-del-tiempo" id="toc-a-forma-de-onda-dominio-del-tiempo" class="nav-link" data-scroll-target="#a-forma-de-onda-dominio-del-tiempo">a) Forma de Onda (Dominio del Tiempo)</a></li>
+  <li><a href="#b-espectro-de-frecuencia-dominio-de-frecuencia" id="toc-b-espectro-de-frecuencia-dominio-de-frecuencia" class="nav-link" data-scroll-target="#b-espectro-de-frecuencia-dominio-de-frecuencia">b) Espectro de Frecuencia (Dominio de Frecuencia)</a></li>
+  <li><a href="#c-espectrograma" id="toc-c-espectrograma" class="nav-link" data-scroll-target="#c-espectrograma">c) Espectrograma</a></li>
+  <li><a href="#d-espectrograma-mel" id="toc-d-espectrograma-mel" class="nav-link" data-scroll-target="#d-espectrograma-mel">d) Espectrograma Mel</a></li>
+  <li><a href="#preprocesamiento-para-modelos-de-ia" id="toc-preprocesamiento-para-modelos-de-ia" class="nav-link" data-scroll-target="#preprocesamiento-para-modelos-de-ia">4. Preprocesamiento para Modelos de IA</a></li>
+  <li><a href="#ejemplo-whisper-modelo-de-reconocimiento-de-voz" id="toc-ejemplo-whisper-modelo-de-reconocimiento-de-voz" class="nav-link" data-scroll-target="#ejemplo-whisper-modelo-de-reconocimiento-de-voz">Ejemplo: Whisper (modelo de reconocimiento de voz)</a></li>
+  <li><a href="#herramientas-en-transformers" id="toc-herramientas-en-transformers" class="nav-link" data-scroll-target="#herramientas-en-transformers">Herramientas en 🤗 Transformers</a></li>
+  <li><a href="#pasos-prácticos-de-preprocesamiento" id="toc-pasos-prácticos-de-preprocesamiento" class="nav-link" data-scroll-target="#pasos-prácticos-de-preprocesamiento">5. Pasos Prácticos de Preprocesamiento</a></li>
+  </ul></li>
+  <li><a href="#mapa-conceptual-del-sonido-analógico-al-modelo-de-ia" id="toc-mapa-conceptual-del-sonido-analógico-al-modelo-de-ia" class="nav-link" data-scroll-target="#mapa-conceptual-del-sonido-analógico-al-modelo-de-ia">Mapa Conceptual: Del Sonido Analógico al Modelo de IA</a>
+  <ul class="collapse">
+  <li><a href="#puntos-clave-del-mapa-conceptual" id="toc-puntos-clave-del-mapa-conceptual" class="nav-link" data-scroll-target="#puntos-clave-del-mapa-conceptual">Puntos Clave del Mapa Conceptual</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+
+<section id="llm_audio" class="level1">
+<h1>Llm_audio</h1>
+<p><code>.wav</code>&nbsp;(Archivo de audio de forma de onda),&nbsp;<code>.flac</code>&nbsp;(Códec de audio gratuito sin pérdidas) y&nbsp;<code>.mp3</code>&nbsp;(Capa de audio MPEG-1 3). Cada uno comprime de manera diferente cada archivo</p>
+<section id="wav-archivo-de-audio-de-forma-de-onda" class="level2">
+<h2 class="anchored" data-anchor-id="wav-archivo-de-audio-de-forma-de-onda">WAV (Archivo de audio de forma de onda)</h2>
+<p><strong>¿Qué es?</strong> Es un formato de audio sin comprimir que almacena datos de audio en su forma original, sin pérdida de calidad.</p>
+<p><strong>¿Cuándo se usa?</strong> Se utiliza principalmente en producción musical profesional, grabación de estudio, masterización y cuando se requiere la máxima calidad de audio.</p>
+<p><strong>Ventajas:</strong></p>
+<ul>
+<li>Calidad de audio máxima sin pérdida de información</li>
+<li>Compatible con prácticamente todos los programas de edición de audio</li>
+<li>Ideal para procesamiento y edición posterior</li>
+<li>No hay degradación por compresión</li>
+</ul>
+<p><strong>Desventajas:</strong></p>
+<ul>
+<li>Archivos muy grandes (aproximadamente 10 MB por minuto de audio estéreo)</li>
+<li>Consume mucho espacio de almacenamiento</li>
+<li>No es práctico para streaming o compartir por internet</li>
+</ul>
+</section>
+<section id="flac-códec-de-audio-gratuito-sin-pérdidas" class="level2">
+<h2 class="anchored" data-anchor-id="flac-códec-de-audio-gratuito-sin-pérdidas">FLAC (Códec de audio gratuito sin pérdidas)</h2>
+<p><strong>¿Qué es?</strong> Es un formato de audio comprimido sin pérdidas, lo que significa que reduce el tamaño del archivo sin sacrificar calidad.</p>
+<p><strong>¿Cuándo se usa?</strong> Se usa para archivar música de alta calidad, audiófilos que desean calidad superior sin ocupar tanto espacio como WAV, y para distribución de audio de alta fidelidad.</p>
+<p><strong>Ventajas:</strong></p>
+<ul>
+<li>Compresión sin pérdida de calidad (reduce archivos entre 30-50%)</li>
+<li>Mantiene toda la información del audio original</li>
+<li>Código abierto y gratuito</li>
+<li>Soporta metadatos completos</li>
+</ul>
+<p><strong>Desventajas:</strong></p>
+<ul>
+<li>Archivos aún relativamente grandes comparados con MP3</li>
+<li>No todos los dispositivos lo soportan nativamente</li>
+<li>Requiere más procesamiento para reproducción</li>
+</ul>
+</section>
+<section id="mp3-capa-de-audio-mpeg-1-3" class="level2">
+<h2 class="anchored" data-anchor-id="mp3-capa-de-audio-mpeg-1-3">MP3 (Capa de audio MPEG-1 3)</h2>
+<p><strong>¿Qué es?</strong> Es un formato de audio comprimido con pérdida que reduce significativamente el tamaño del archivo eliminando información que el oído humano típicamente no percibe.</p>
+<p><strong>¿Cuándo se usa?</strong> Se utiliza para música en dispositivos portátiles, streaming, podcasts, distribución en línea, y cuando el espacio de almacenamiento es limitado.</p>
+<p><strong>Ventajas:</strong></p>
+<ul>
+<li>Archivos muy pequeños (aproximadamente 1 MB por minuto con calidad estándar)</li>
+<li>Compatible con prácticamente todos los dispositivos y plataformas</li>
+<li>Excelente para compartir y transmitir por internet</li>
+<li>Balance razonable entre calidad y tamaño de archivo</li>
+</ul>
+<p><strong>Desventajas:</strong></p>
+<ul>
+<li>Pérdida de calidad de audio (compresión con pérdida)</li>
+<li>No recomendado para producción profesional o edición</li>
+<li>La calidad se degrada con cada re-codificación</li>
+<li>No es ideal para audiófilos o sistemas de audio de alta gama</li>
+</ul>
+</section>
+<section id="del-sonido-analógico-al-audio-digital" class="level2">
+<h2 class="anchored" data-anchor-id="del-sonido-analógico-al-audio-digital">Del sonido analógico al audio digital</h2>
+<p>El proceso de conversión de una señal de audio continua (analógica) a una representación digital implica varios pasos fundamentales:</p>
+<pre class="mermaid"><code>graph TD
+    A["Ondas sonoras"] --&gt; B["Micrófono"]
+    B --&gt; C["Señal eléctrica&lt;br/&gt;(analógica)"]
+    C --&gt; D["ADC"]
+    D --&gt; E["Muestreo"]
+    E --&gt; F["Cuantización"]
+    F --&gt; G["Señal digital"]</code></pre>
+<section id="explicación" class="level3">
+<h3 class="anchored" data-anchor-id="explicación">Explicación</h3>
+<ul>
+<li><strong>Ondas sonoras:</strong> Sonido continuo en el aire.</li>
+<li><strong>Micrófono:</strong> Convierte el sonido en señal eléctrica.</li>
+<li><strong>Señal eléctrica (analógica):</strong> Voltaje continuo que representa el sonido.</li>
+<li><strong>ADC:</strong> Convierte la señal analógica en datos.</li>
+<li><strong>Muestreo:</strong> Toma “fotos” de la señal a intervalos regulares.</li>
+<li><strong>Cuantización:</strong> Asigna un número a cada muestra.</li>
+<li><strong>Señal digital:</strong> Secuencia de valores lista para guardarse o procesarse.</li>
+</ul>
+</section>
+<section id="ejemplo-visual-del-muestreo" class="level3">
+<h3 class="anchored" data-anchor-id="ejemplo-visual-del-muestreo">Ejemplo visual del muestreo</h3>
+<p>Para ver el efecto, primero muestro un muestreo <strong>“desordenado”</strong> (intervalos irregulares y valores no consistentes), y luego el muestreo <strong>regular</strong>.</p>
+<p><strong>1) Muestreo “desordenado” (irregular)</strong></p>
+<pre class="mermaid"><code>%%{init: {'theme':'base', 'themeVariables': {'fontSize':'16px'}}}%%
+xychart-beta
+    title "Muestreo irregular (desordenado)"
+    x-axis "Tiempo (ms)" [0, 3, 9, 14, 18, 27, 31, 38, 44, 49, 50]
+    y-axis "Amplitud" -1.5 --&gt; 1.5
+    line [0, 0.35, 1.05, 0.70, 0.10, -0.80, -0.20, -1.10, -0.40, 0.50, 0.00]
+    bar  [0, 0.35, 1.05, 0.70, 0.10, -0.80, -0.20, -1.10, -0.40, 0.50, 0.00]</code></pre>
+<p><strong>2) Muestreo regular (uniforme)</strong></p>
+<p>A continuación se muestra cómo una señal continua (analógica) se convierte en una señal discreta (digital) mediante el muestreo:</p>
+<pre class="mermaid"><code>%%{init: {'theme':'base', 'themeVariables': {'fontSize':'16px'}}}%%
+xychart-beta
+    title "Muestreo de señal analógica a digital"
+    x-axis "Tiempo (ms)" [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
+    y-axis "Amplitud" -1.5 --&gt; 1.5
+    line [0, 0.59, 0.95, 0.95, 0.59, 0, -0.59, -0.95, -0.95, -0.59, 0]
+    bar [0, 0.59, 0.95, 0.95, 0.59, 0, -0.59, -0.95, -0.95, -0.59, 0]</code></pre>
+<p><strong>Interpretación de la gráfica:</strong></p>
+<ul>
+<li>La <strong>línea continua</strong> representa la señal analógica original (sonido real como una onda suave)</li>
+<li>Las <strong>barras verticales</strong> representan las muestras discretas tomadas a intervalos regulares de tiempo</li>
+<li>Cada barra captura el valor de amplitud en ese momento específico</li>
+<li>Entre más muestras por segundo (mayor frecuencia de muestreo), más precisa es la representación digital</li>
+<li>Con suficientes muestras, la señal digital puede reconstruir fielmente la señal analógica original</li>
+</ul>
+</section>
+</section>
+<section id="frecuencia-de-muestreo" class="level2">
+<h2 class="anchored" data-anchor-id="frecuencia-de-muestreo">Frecuencia de muestreo</h2>
+<p><strong>¿Qué es?</strong> Es el número de muestras tomadas por segundo al digitalizar audio, medida en hercios (Hz).</p>
+<p><strong>Ejemplos comunes:</strong></p>
+<ul>
+<li><strong>Audio de calidad CD:</strong> 44.100 Hz (44,1 kHz) - 44.100 muestras por segundo</li>
+<li><strong>Audio de alta resolución:</strong> 192.000 Hz (192 kHz)</li>
+<li><strong>Modelos de habla/IA:</strong> 16.000 Hz (16 kHz)</li>
+</ul>
+<p><strong>Principio:</strong> A mayor frecuencia de muestreo, mayor fidelidad en la reproducción del sonido original, pero también mayor tamaño de archivo.</p>
+</section>
+<section id="resumen-del-sonido-analógico-al-digital" class="level2">
+<h2 class="anchored" data-anchor-id="resumen-del-sonido-analógico-al-digital">Resumen: Del sonido analógico al digital</h2>
+<p>El audio digital se crea capturando muestras de una señal analógica a intervalos regulares. Este proceso se llama <strong>muestreo</strong>, y la <strong>frecuencia de muestreo</strong> determina cuántas veces por segundo se toma una “foto” del sonido.</p>
+</section>
+<section id="el-límite-de-nyquist" class="level2">
+<h2 class="anchored" data-anchor-id="el-límite-de-nyquist">El límite de Nyquist</h2>
+<p><strong>¿Qué es?</strong> El teorema de Nyquist-Shannon establece que para capturar correctamente una señal, la frecuencia de muestreo debe ser al menos el doble de la frecuencia más alta que queremos grabar.</p>
+<p><strong>Fórmula:</strong></p>
+<p><code>Frecuencia máxima capturable = Frecuencia de muestreo ÷ 2</code></p>
+<p><strong>Ejemplos prácticos:</strong></p>
+<ul>
+<li><strong>Habla humana (16 kHz):</strong> Captura hasta 8 kHz, suficiente para todas las frecuencias audibles del habla</li>
+<li><strong>Audio CD (44,1 kHz):</strong> Captura hasta 22,05 kHz, cubriendo todo el rango auditivo humano (20 Hz - 20 kHz)</li>
+<li><strong>Audio profesional (96 kHz):</strong> Captura hasta 48 kHz, más allá de la audición humana pero útil para procesamiento</li>
+</ul>
+<section id="por-qué-16-khz-es-suficiente-para-habla" class="level3">
+<h3 class="anchored" data-anchor-id="por-qué-16-khz-es-suficiente-para-habla">¿Por qué 16 kHz es suficiente para habla?</h3>
+<p>Las frecuencias importantes del habla humana están por debajo de 8 kHz:</p>
+<ul>
+<li>Vocales: 300 Hz - 3 kHz</li>
+<li>Consonantes: 2 kHz - 8 kHz</li>
+<li>Con 16 kHz de muestreo, se captura todo hasta 8 kHz (límite de Nyquist)</li>
+</ul>
+</section>
+<section id="qué-pasa-si-muestreamos-muy-bajo" class="level3">
+<h3 class="anchored" data-anchor-id="qué-pasa-si-muestreamos-muy-bajo">¿Qué pasa si muestreamos muy bajo?</h3>
+<p><strong>Submuestreo (undersampling):</strong> Si la frecuencia de muestreo es demasiado baja, ocurre <strong>aliasing</strong>:</p>
+<ul>
+<li>Se pierden frecuencias altas</li>
+<li>El audio suena “amortiguado” o “apagado”</li>
+<li>Ejemplo: habla a 8 kHz suena sin claridad porque solo captura hasta 4 kHz</li>
+</ul>
+</section>
+<section id="qué-pasa-si-muestreamos-muy-alto" class="level3">
+<h3 class="anchored" data-anchor-id="qué-pasa-si-muestreamos-muy-alto">¿Qué pasa si muestreamos muy alto?</h3>
+<p><strong>Sobremuestreo (oversampling):</strong></p>
+<ul>
+<li>No se captura información adicional útil (nada que el oído humano pueda percibir)</li>
+<li>Archivos más grandes innecesariamente</li>
+<li>Mayor costo computacional sin beneficio audible</li>
+</ul>
+</section>
+<section id="tabla-de-referencia" class="level3">
+<h3 class="anchored" data-anchor-id="tabla-de-referencia">Tabla de referencia</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Frecuencia de muestreo</strong></th>
+<th><strong>Límite de Nyquist</strong></th>
+<th><strong>Uso recomendado</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>8 kHz</td>
+<td>4 kHz</td>
+<td>Telefonía (baja calidad)</td>
+</tr>
+<tr class="even">
+<td>16 kHz</td>
+<td>8 kHz</td>
+<td>Modelos de habla/IA, reconocimiento de voz</td>
+</tr>
+<tr class="odd">
+<td>44,1 kHz</td>
+<td>22,05 kHz</td>
+<td>Audio CD, música estándar</td>
+</tr>
+<tr class="even">
+<td>48 kHz</td>
+<td>24 kHz</td>
+<td>Video profesional</td>
+</tr>
+<tr class="odd">
+<td>96 kHz</td>
+<td>48 kHz</td>
+<td>Producción musical profesional</td>
+</tr>
+<tr class="even">
+<td>192 kHz</td>
+<td>96 kHz</td>
+<td>Masterización de audio de alta resolución</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Conclusión:</strong> La frecuencia de muestreo debe elegirse según el contenido: 16 kHz es óptimo para habla porque captura todas las frecuencias necesarias sin desperdiciar recursos computacionales.</p>
+</section>
+</section>
+<section id="resumen-importancia-de-la-frecuencia-de-muestreo-y-preprocesamiento-de-audio" class="level2">
+<h2 class="anchored" data-anchor-id="resumen-importancia-de-la-frecuencia-de-muestreo-y-preprocesamiento-de-audio">Resumen: Importancia de la Frecuencia de Muestreo y Preprocesamiento de Audio</h2>
+<section id="frecuencia-de-muestreo-uniforme" class="level3">
+<h3 class="anchored" data-anchor-id="frecuencia-de-muestreo-uniforme">1. Frecuencia de Muestreo Uniforme</h3>
+<p><strong>Concepto clave:</strong> Todos los archivos de audio en tu conjunto de datos deben tener la misma frecuencia de muestreo.</p>
+<p><strong>¿Por qué?</strong> Un audio de 5 segundos a 16 kHz genera 80,000 valores, mientras que a 8 kHz genera solo 40,000 valores. Los modelos de IA no pueden generalizar bien entre diferentes frecuencias de muestreo porque tratan los datos como secuencias de diferente longitud.</p>
+<p><strong>Solución:</strong> El <strong>remuestreo</strong> ajusta la frecuencia de muestreo para que todos los archivos coincidan.</p>
+</section>
+<section id="amplitud-y-profundidad-de-bits" class="level3">
+<h3 class="anchored" data-anchor-id="amplitud-y-profundidad-de-bits">2. Amplitud y Profundidad de Bits</h3>
+<p><strong>Amplitud:</strong> Mide qué tan fuerte es un sonido en un momento dado (en decibeles). Ejemplo: voz normal ≈ 60 dB, concierto de rock ≈ 125 dB.</p>
+<p><strong>Profundidad de bits:</strong> Determina cuán precisamente se captura la amplitud:</p>
+<ul>
+<li><strong>16 bits:</strong> 65,536 niveles de precisión (suficiente para la mayoría de aplicaciones)</li>
+<li><strong>24 bits:</strong> 16,777,216 niveles (calidad profesional)</li>
+<li><strong>32 bits (punto flotante):</strong> Valores entre -1.0 y 1.0, ideal para aprendizaje automático</li>
+</ul>
+<p><strong>Nota sobre decibeles en audio digital:</strong> 0 dB es el máximo volumen posible, todo lo demás es negativo. Cada -6 dB reduce la amplitud a la mitad.</p>
+</section>
+<section id="visualizaciones-de-audio" class="level3">
+<h3 class="anchored" data-anchor-id="visualizaciones-de-audio">3. Visualizaciones de Audio</h3>
+</section>
+<section id="a-forma-de-onda-dominio-del-tiempo" class="level3">
+<h3 class="anchored" data-anchor-id="a-forma-de-onda-dominio-del-tiempo">a) Forma de Onda (Dominio del Tiempo)</h3>
+<p>Muestra cómo cambia la amplitud del sonido a lo largo del tiempo. Útil para ver el volumen general, detectar ruido y verificar que el preprocesamiento funcionó correctamente.</p>
+</section>
+<section id="b-espectro-de-frecuencia-dominio-de-frecuencia" class="level3">
+<h3 class="anchored" data-anchor-id="b-espectro-de-frecuencia-dominio-de-frecuencia">b) Espectro de Frecuencia (Dominio de Frecuencia)</h3>
+<p>Muestra qué frecuencias (tonos) están presentes en un momento específico y qué tan fuertes son. Se calcula usando la Transformada Discreta de Fourier (DFT o FFT).</p>
+</section>
+<section id="c-espectrograma" class="level3">
+<h3 class="anchored" data-anchor-id="c-espectrograma">c) Espectrograma</h3>
+<p>Combina tiempo y frecuencia en un solo gráfico. Muestra cómo cambian las frecuencias a lo largo del tiempo usando colores para indicar la intensidad. Se crea tomando múltiples DFTs de segmentos cortos del audio (usando STFT - Transformada de Fourier de Tiempo Corto).</p>
+</section>
+<section id="d-espectrograma-mel" class="level3">
+<h3 class="anchored" data-anchor-id="d-espectrograma-mel">d) Espectrograma Mel</h3>
+<p>Similar al espectrograma pero ajustado a cómo los humanos percibimos el sonido. Usa la “escala mel” que refleja que nuestros oídos son más sensibles a cambios en frecuencias bajas que altas.</p>
+<p><strong>Parámetros importantes:</strong></p>
+<ul>
+<li><code>n_mels</code>: Número de bandas de frecuencia (común: 40-80)</li>
+<li><code>fmax</code>: Frecuencia máxima a considerar</li>
+</ul>
+<p><strong>Espectrograma log-mel:</strong> Cuando las intensidades se expresan en decibeles (escala logarítmica).</p>
+</section>
+<section id="preprocesamiento-para-modelos-de-ia" class="level3">
+<h3 class="anchored" data-anchor-id="preprocesamiento-para-modelos-de-ia">4. Preprocesamiento para Modelos de IA</h3>
+<p>Los modelos de aprendizaje automático no pueden trabajar directamente con audio crudo. Necesitan que el audio se convierta en <strong>características de entrada</strong>.</p>
+</section>
+<section id="ejemplo-whisper-modelo-de-reconocimiento-de-voz" class="level3">
+<h3 class="anchored" data-anchor-id="ejemplo-whisper-modelo-de-reconocimiento-de-voz">Ejemplo: Whisper (modelo de reconocimiento de voz)</h3>
+<p><strong>Paso 1:</strong> Ajustar duración - Todos los ejemplos se ajustan a 30 segundos (rellena con ceros los cortos, recorta los largos).</p>
+<p><strong>Paso 2:</strong> Convertir a espectrograma log-mel - Transforma el audio en una representación visual que el modelo puede procesar.</p>
+</section>
+<section id="herramientas-en-transformers" class="level3">
+<h3 class="anchored" data-anchor-id="herramientas-en-transformers">Herramientas en 🤗 Transformers</h3>
+<ul>
+<li><strong>Feature Extractor:</strong> Convierte audio crudo en características que el modelo entiende</li>
+<li><strong>Tokenizer:</strong> Procesa texto (para tareas multimodales como reconocimiento de voz)</li>
+<li><strong>Processor:</strong> Combina ambos en una sola herramienta</li>
+</ul>
+</section>
+<section id="pasos-prácticos-de-preprocesamiento" class="level3">
+<h3 class="anchored" data-anchor-id="pasos-prácticos-de-preprocesamiento">5. Pasos Prácticos de Preprocesamiento</h3>
+<ol type="1">
+<li><strong>Remuestreo:</strong> Usar <code>cast_column</code> de 🤗Datasets para ajustar la frecuencia de muestreo</li>
+<li><strong>Filtrado:</strong> Eliminar ejemplos muy largos (por ejemplo, &gt;20 segundos) para evitar problemas de memoria</li>
+<li><strong>Conversión a características:</strong> Aplicar el feature extractor del modelo para transformar audio en el formato esperado</li>
+</ol>
+</section>
+</section>
+<section id="mapa-conceptual-del-sonido-analógico-al-modelo-de-ia" class="level2">
+<h2 class="anchored" data-anchor-id="mapa-conceptual-del-sonido-analógico-al-modelo-de-ia">Mapa Conceptual: Del Sonido Analógico al Modelo de IA</h2>
+<pre class="mermaid"><code>graph TB
+    Start["🎵 SONIDO ANALÓGICO&lt;br/&gt;(Ondas continuas en el aire)"]
+    
+    Start --&gt; Sample["📊 MUESTREO&lt;br/&gt;Capturar 'fotos' del sonido&lt;br/&gt;a intervalos regulares"]
+    
+    Sample --&gt; SampleRate["⏱️ FRECUENCIA DE MUESTREO&lt;br/&gt;Ej: 16 kHz = 16,000 muestras/seg&lt;br/&gt;⚠️ Debe ser uniforme en todo el dataset"]
+    
+    Sample --&gt; BitDepth["🎚️ PROFUNDIDAD DE BITS&lt;br/&gt;Precisión de cada muestra&lt;br/&gt;16 bits: 65,536 niveles&lt;br/&gt;32 bits float: [-1.0, 1.0]"]
+    
+    SampleRate --&gt; Digital["💾 AUDIO DIGITAL&lt;br/&gt;Serie de valores numéricos"]
+    BitDepth --&gt; Digital
+    
+    Digital --&gt; Viz["👁️ VISUALIZACIONES"]
+    
+    Viz --&gt; Waveform["📈 Forma de Onda&lt;br/&gt;(Dominio del Tiempo)&lt;br/&gt;Amplitud vs Tiempo"]
+    
+    Viz --&gt; FreqSpec["🌈 Espectro de Frecuencia&lt;br/&gt;(Dominio de Frecuencia)&lt;br/&gt;DFT/FFT&lt;br/&gt;Frecuencias vs Amplitud"]
+    
+    Viz --&gt; Spectro["🎨 Espectrograma&lt;br/&gt;STFT&lt;br/&gt;Tiempo + Frecuencia + Amplitud"]
+    
+    Spectro --&gt; MelSpec["🎧 Espectrograma Mel&lt;br/&gt;Ajustado a percepción humana&lt;br/&gt;Escala mel + log (dB)"]
+    
+    Digital --&gt; Preprocess["🔧 PREPROCESAMIENTO"]
+    
+    Preprocess --&gt; Resample["🔄 Remuestreo&lt;br/&gt;Igualar frecuencias de muestreo&lt;br/&gt;cast_column() en 🤗Datasets"]
+    
+    Preprocess --&gt; Filter["🗑️ Filtrado&lt;br/&gt;Eliminar ejemplos muy largos&lt;br/&gt;Crear columna duración → filtrar"]
+    
+    Preprocess --&gt; Convert["🔀 Conversión a Características"]
+    
+    Convert --&gt; FeatureExt["⚙️ Feature Extractor&lt;br/&gt;(ej: WhisperFeatureExtractor)"]
+    
+    FeatureExt --&gt; Padding["📏 Ajuste de Duración&lt;br/&gt;Padding (rellenar con 0s)&lt;br/&gt;o Truncamiento (recortar)"]
+    
+    FeatureExt --&gt; ToMel["🎵 → 🎨&lt;br/&gt;Convertir a espectrograma log-mel"]
+    
+    Padding --&gt; ModelInput["🤖 ENTRADA DEL MODELO&lt;br/&gt;input_features&lt;br/&gt;(espectrograma log-mel)"]
+    ToMel --&gt; ModelInput
+    
+    ModelInput --&gt; ML["🧠 MODELO DE IA&lt;br/&gt;(Reconocimiento de voz,&lt;br/&gt;Clasificación, etc.)"]
+    
+    ML --&gt; Output["📤 SALIDA&lt;br/&gt;Transcripción, clasificación,&lt;br/&gt;o nuevo audio"]
+    
+    style Start fill:#e1f5ff
+    style Digital fill:#fff4e1
+    style Viz fill:#f0e1ff
+    style Preprocess fill:#e1ffe1
+    style ModelInput fill:#ffe1e1
+    style ML fill:#ffe1f5
+    style Output fill:#f5ffe1</code></pre>
+<section id="puntos-clave-del-mapa-conceptual" class="level3">
+<h3 class="anchored" data-anchor-id="puntos-clave-del-mapa-conceptual">Puntos Clave del Mapa Conceptual</h3>
+<ul>
+<li><strong>Azul claro:</strong> Sonido analógico original</li>
+<li><strong>Amarillo:</strong> Audio digital (después del muestreo)</li>
+<li><strong>Morado:</strong> Diferentes formas de visualizar el audio</li>
+<li><strong>Verde:</strong> Pasos de preprocesamiento necesarios</li>
+<li><strong>Rojo:</strong> Datos listos para el modelo de IA</li>
+<li><strong>Rosa:</strong> Modelo de aprendizaje automático</li>
+<li><strong>Verde lima:</strong> Resultado final</li>
+</ul>
+<p><strong>Conclusión:</strong> El audio pasa por múltiples transformaciones desde el sonido real hasta los datos que un modelo de IA puede procesar. Cada paso es crucial: frecuencia de muestreo uniforme, conversión a características adecuadas (como espectrogramas mel), y preprocesamiento correcto. Las herramientas de 🤗 Transformers y 🤗 Datasets automatizan gran parte de este proceso.</p>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

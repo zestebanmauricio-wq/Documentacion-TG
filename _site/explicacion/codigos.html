@@ -1,0 +1,1533 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>codigos – STT &amp; Biometría</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-09ba96c0d5bd9b5a424140e5f62c27f6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-0c37c67c5a2489b69ddbaf0001f5d64b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-dark"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = true;
+    const darkModeDefault = authorPrefersDark;
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">STT &amp; Biometría</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Inicio</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Conceptos Teóricos</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/01_fundamentos_audio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fundamentos de Procesamiento de Audio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/02_modelos_stt_y_evaluacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Modelos de Transcripción (STT) y Evaluación</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Biometría Avanzada</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/03_biometria_voz_xvectors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Biometría de Voz y X-Vectors</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/04_diarizacion_hibrida.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">El Reto de la Diarización Continua y la Arquitectura Híbrida</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Arquitectura y Códigos</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/05_implementacion_tecnica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Implementación Técnica y Abstracción de Código</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/codigo_vosk.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Código de VoskHelper</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/codigo_whisper.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Código de WhisperHelper</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/codigo_juez.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Orquestador Principal (juez.py)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#explicación-detallada-modulo_vosk.py" id="toc-explicación-detallada-modulo_vosk.py" class="nav-link active" data-scroll-target="#explicación-detallada-modulo_vosk.py">Explicación Detallada: <code>modulo_vosk.py</code> 🎙️</a>
+  <ul class="collapse">
+  <li><a href="#el-rol-de-la-clase-voskhelper" id="toc-el-rol-de-la-clase-voskhelper" class="nav-link" data-scroll-target="#el-rol-de-la-clase-voskhelper">El Rol de la Clase <code>VoskHelper</code> 🛠️</a></li>
+  <li><a href="#arquitectura-de-modelos-en-vosk" id="toc-arquitectura-de-modelos-en-vosk" class="nav-link" data-scroll-target="#arquitectura-de-modelos-en-vosk">Arquitectura de Modelos en Vosk 🌍</a></li>
+  <li><a href="#implementación-actual-vosk-model-small-es" id="toc-implementación-actual-vosk-model-small-es" class="nav-link" data-scroll-target="#implementación-actual-vosk-model-small-es">Implementación Actual: <code>vosk-model-small-es</code> 🧠</a></li>
+  <li><a href="#conceptos-clave-qué-es-json" id="toc-conceptos-clave-qué-es-json" class="nav-link" data-scroll-target="#conceptos-clave-qué-es-json">Conceptos Clave: ¿Qué es JSON? 📦</a></li>
+  <li><a href="#bloque-1-importaciones-e-inicialización-__init__" id="toc-bloque-1-importaciones-e-inicialización-__init__" class="nav-link" data-scroll-target="#bloque-1-importaciones-e-inicialización-__init__">Bloque 1: Importaciones e Inicialización (<code>__init__</code>)</a></li>
+  <li><a href="#librerías-utilizadas" id="toc-librerías-utilizadas" class="nav-link" data-scroll-target="#librerías-utilizadas">Librerías Utilizadas 📚</a></li>
+  <li><a href="#bloque-2-validación-del-audio-preparar_audio_wav" id="toc-bloque-2-validación-del-audio-preparar_audio_wav" class="nav-link" data-scroll-target="#bloque-2-validación-del-audio-preparar_audio_wav">Bloque 2: Validación del Audio (<code>preparar_audio_wav</code>) 🌊</a></li>
+  <li><a href="#bloque-3-el-motor-de-transcripción-transcribir_archivo" id="toc-bloque-3-el-motor-de-transcripción-transcribir_archivo" class="nav-link" data-scroll-target="#bloque-3-el-motor-de-transcripción-transcribir_archivo">Bloque 3: El Motor de Transcripción (<code>transcribir_archivo</code>) ⚙️</a></li>
+  <li><a href="#bloque-4-transcripción-de-bytes-en-vivo-transcribir_bytes" id="toc-bloque-4-transcripción-de-bytes-en-vivo-transcribir_bytes" class="nav-link" data-scroll-target="#bloque-4-transcripción-de-bytes-en-vivo-transcribir_bytes">Bloque 4: Transcripción de Bytes en Vivo (<code>transcribir_bytes</code>) 🎤</a></li>
+  </ul></li>
+  <li><a href="#explicación-detallada-modulos_wisper.py" id="toc-explicación-detallada-modulos_wisper.py" class="nav-link" data-scroll-target="#explicación-detallada-modulos_wisper.py">Explicación Detallada: <code>modulos_wisper.py</code> 🤖</a>
+  <ul class="collapse">
+  <li><a href="#arquitectura-de-modelos-en-whisper" id="toc-arquitectura-de-modelos-en-whisper" class="nav-link" data-scroll-target="#arquitectura-de-modelos-en-whisper">Arquitectura de Modelos en Whisper 🌍</a></li>
+  <li><a href="#bloque-1-importaciones-e-inicialización-__init__-1" id="toc-bloque-1-importaciones-e-inicialización-__init__-1" class="nav-link" data-scroll-target="#bloque-1-importaciones-e-inicialización-__init__-1">Bloque 1: Importaciones e Inicialización (<code>__init__</code>)</a></li>
+  <li><a href="#bloque-2-preparación-del-audio-preparar_audio_archivo" id="toc-bloque-2-preparación-del-audio-preparar_audio_archivo" class="nav-link" data-scroll-target="#bloque-2-preparación-del-audio-preparar_audio_archivo">Bloque 2: Preparación del Audio (<code>preparar_audio_archivo</code>)</a></li>
+  <li><a href="#bloque-3-el-motor-de-transcripción-transcribir" id="toc-bloque-3-el-motor-de-transcripción-transcribir" class="nav-link" data-scroll-target="#bloque-3-el-motor-de-transcripción-transcribir">Bloque 3: El Motor de Transcripción (<code>transcribir</code>)</a></li>
+  </ul></li>
+  <li><a href="#explicación-detallada-juez.py" id="toc-explicación-detallada-juez.py" class="nav-link" data-scroll-target="#explicación-detallada-juez.py">Explicación Detallada: <code>juez.py</code> ⚖️</a>
+  <ul class="collapse">
+  <li><a href="#bloque-1-importaciones-e-inicialización" id="toc-bloque-1-importaciones-e-inicialización" class="nav-link" data-scroll-target="#bloque-1-importaciones-e-inicialización">Bloque 1: Importaciones e Inicialización</a></li>
+  <li><a href="#bloque-2-captura-de-audio-directa-grabar_audio" id="toc-bloque-2-captura-de-audio-directa-grabar_audio" class="nav-link" data-scroll-target="#bloque-2-captura-de-audio-directa-grabar_audio">Bloque 2: Captura de Audio Directa (<code>grabar_audio</code>)</a></li>
+  <li><a href="#bloque-3-menú-de-frases-y-referencias-menu_frases" id="toc-bloque-3-menú-de-frases-y-referencias-menu_frases" class="nav-link" data-scroll-target="#bloque-3-menú-de-frases-y-referencias-menu_frases">Bloque 3: Menú de Frases y Referencias (<code>menu_frases</code>)</a></li>
+  <li><a href="#bloque-4-selector-de-archivos-inteligente-seleccionar_archivo_audio" id="toc-bloque-4-selector-de-archivos-inteligente-seleccionar_archivo_audio" class="nav-link" data-scroll-target="#bloque-4-selector-de-archivos-inteligente-seleccionar_archivo_audio">Bloque 4: Selector de Archivos Inteligente (<code>seleccionar_archivo_audio</code>)</a></li>
+  <li><a href="#bloque-5-evaluación-y-resultados-calcular_y_mostrar_resultados" id="toc-bloque-5-evaluación-y-resultados-calcular_y_mostrar_resultados" class="nav-link" data-scroll-target="#bloque-5-evaluación-y-resultados-calcular_y_mostrar_resultados">Bloque 5: Evaluación y Resultados (<code>calcular_y_mostrar_resultados</code>)</a></li>
+  <li><a href="#bloque-6-el-menú-principal-comparar_stt" id="toc-bloque-6-el-menú-principal-comparar_stt" class="nav-link" data-scroll-target="#bloque-6-el-menú-principal-comparar_stt">Bloque 6: El Menú Principal (<code>comparar_stt</code>)</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+
+<section id="explicación-detallada-modulo_vosk.py" class="level1">
+<h1>Explicación Detallada: <code>modulo_vosk.py</code> 🎙️</h1>
+<section id="el-rol-de-la-clase-voskhelper" class="level3">
+<h3 class="anchored" data-anchor-id="el-rol-de-la-clase-voskhelper">El Rol de la Clase <code>VoskHelper</code> 🛠️</h3>
+<p>La clase <code>VoskHelper</code> no es solo un conjunto de funciones; es un <strong>Wrapper (Envoltorio)</strong> diseñado para abstraer la complejidad del motor Kaldi (el núcleo de Vosk). Su objetivo primordial es simplificar la interacción entre el hardware de audio y el procesamiento matemático de redes neuronales.</p>
+<section id="por-qué-usar-un-helper" class="level4">
+<h4 class="anchored" data-anchor-id="por-qué-usar-un-helper">¿Por qué usar un “Helper”?</h4>
+<ol type="1">
+<li><strong>Encapsulamiento</strong>: Aisla los detalles técnicos (como el manejo de buffers de audio y la conversión de JSON) del resto de la aplicación.</li>
+<li><strong>Gestión de Recursos</strong>: Asegura que el modelo acústico (que es pesado) se cargue <strong>una sola vez</strong> en memoria, optimizando el rendimiento.</li>
+<li><strong>Estandarización</strong>: Garantiza que cualquier audio procesado cumpla estrictamente con los requisitos del motor (Mono, PCM 16-bit), evitando errores en tiempo de ejecución.</li>
+</ol>
+<p>En resumen, actúa como un traductor entre el mundo del audio digital y el texto procesable por el sistema.</p>
+</section>
+<section id="un-ejemplo-para-entenderlo-mejor" class="level4">
+<h4 class="anchored" data-anchor-id="un-ejemplo-para-entenderlo-mejor">💡 Un ejemplo para entenderlo mejor:</h4>
+<p>Piensa en <code>VoskHelper</code> como un <strong>Interprete en un restaurante extranjero</strong>: * <strong>Vosk</strong> es el Chef que solo habla un idioma técnico muy complejo. * <strong>El Audio</strong> es el pedido del cliente (lo que el usuario dijo). * <strong>VoskHelper</strong> es el mesero que: 1. Revisa que el pedido se entienda bien antes de llevarlo a la cocina (Validación). 2. Le traduce al Chef exactamente lo que tiene que preparar (Abstracción). 3. Cuando el Chef termina, el mesero te trae el plato limpio y listo para comer, sin que tú tengas que entrar a la cocina a pelear con ollas y sartenes (JSON a Texto).</p>
+<hr>
+</section>
+</section>
+<section id="arquitectura-de-modelos-en-vosk" class="level3">
+<h3 class="anchored" data-anchor-id="arquitectura-de-modelos-en-vosk">Arquitectura de Modelos en Vosk 🌍</h3>
+<p>Vosk segmenta sus modelos principalmente en dos categorías para adaptarse a diferentes entornos de hardware:</p>
+<section id="tipos-de-arquitectura-general" class="level4">
+<h4 class="anchored" data-anchor-id="tipos-de-arquitectura-general">1. Tipos de Arquitectura General</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 5%">
+<col style="width: 7%">
+<col style="width: 47%">
+<col style="width: 31%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Categoría</th>
+<th style="text-align: left;">Tamaño</th>
+<th style="text-align: left;">RAM Req.</th>
+<th style="text-align: left;">Uso Óptimo</th>
+<th style="text-align: left;">Vocabulario</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Small</strong></td>
+<td style="text-align: left;">~50 MB</td>
+<td style="text-align: left;">~300 MB</td>
+<td style="text-align: left;">Móviles, Raspberry Pi, aplicaciones en tiempo real.</td>
+<td style="text-align: left;">Dinámico (Configurable en runtime).</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Big</strong></td>
+<td style="text-align: left;">1-2 GB</td>
+<td style="text-align: left;">4-16 GB</td>
+<td style="text-align: left;">Servidores, transcripción de alta precisión (Batch).</td>
+<td style="text-align: left;">Estático (Alta fidelidad).</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="ecosistema-para-español" class="level4">
+<h4 class="anchored" data-anchor-id="ecosistema-para-español">2. Ecosistema para Español</h4>
+<p>Si se requiere escalar en precisión o funcionalidad, estas son las alternativas oficiales:</p>
+<ul>
+<li><strong><code>vosk-model-small-es-0.42</code></strong>: Evolución del modelo actual con mejoras acústicas manteniendo la ligereza.</li>
+<li><strong><code>vosk-model-es-0.42</code></strong>: El modelo “Big”. Ideal para procesar audios grabados donde la precisión es crítica.</li>
+<li><strong><code>vosk-model-spk-0.4</code></strong>: Modelo especializado en <strong>Identificación de Locutores</strong> (quién habla).</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="implementación-actual-vosk-model-small-es" class="level3">
+<h3 class="anchored" data-anchor-id="implementación-actual-vosk-model-small-es">Implementación Actual: <code>vosk-model-small-es</code> 🧠</h3>
+<p>Para este proyecto, hemos seleccionado el modelo <strong>Small</strong> por su eficiencia en entornos locales. A continuación, se detallan sus especificaciones técnicas:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 17%">
+<col style="width: 63%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Categoría</th>
+<th style="text-align: left;">Atributo Técnico</th>
+<th style="text-align: left;">Descripción Detallada</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Características</strong></td>
+<td style="text-align: left;"><strong>Arquitectura Offline</strong></td>
+<td style="text-align: left;">Inferencia local (Edge Computing) que garantiza privacidad y operabilidad sin internet.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><strong>Licenciamiento</strong></td>
+<td style="text-align: left;">Distribución bajo Apache 2.0. Código abierto y gratuito.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><strong>Huella de Memoria</strong></td>
+<td style="text-align: left;">Tamaño reducido (~40-50 MB), minimizando el impacto en RAM.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Ventajas (Pros)</strong></td>
+<td style="text-align: left;"><strong>Eficiencia</strong></td>
+<td style="text-align: left;">Optimizado para CPU, no requiere GPU.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><strong>Baja Latencia (RTF)</strong></td>
+<td style="text-align: left;">Respuesta casi en tiempo real para comandos sonoros.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Desventajas (Contras)</strong></td>
+<td style="text-align: left;"><strong>Precisión (WER)</strong></td>
+<td style="text-align: left;">Tasa de error mayor frente a modelos “Big”.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><strong>Susceptibilidad</strong></td>
+<td style="text-align: left;">Sensible al ruido de fondo y solapamiento de voces.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><strong>Restricción Léxica</strong></td>
+<td style="text-align: left;">Menor eficacia ante terminologías técnicas muy específicas.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="conceptos-clave-qué-es-json" class="level3">
+<h3 class="anchored" data-anchor-id="conceptos-clave-qué-es-json">Conceptos Clave: ¿Qué es JSON? 📦</h3>
+<p>A lo largo del código verás que usamos mucho la librería <code>json</code>. <strong>JSON</strong> (JavaScript Object Notation) es simplemente un formato para guardar e intercambiar información de forma organizada.</p>
+<p>Piensa en JSON como una <strong>ficha técnica</strong> o un <strong>formulario</strong>: En lugar de recibir un mensaje desordenado, recibimos algo como esto:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"text"</span><span class="fu">:</span> <span class="st">"hola como estas"</span><span class="fu">,</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"confianza"</span><span class="fu">:</span> <span class="fl">0.98</span><span class="fu">,</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"duracion"</span><span class="fu">:</span> <span class="fl">2.5</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>¿Por qué es importante en Vosk?</strong> Vosk no nos entrega solo el texto; nos entrega un “paquete” (un string de JSON) con mucha información extra. Usamos la función <code>json.loads()</code> para “abrir el paquete” y sacar solo el pedazo de texto que nos interesa.</p>
+<hr>
+</section>
+<section id="bloque-1-importaciones-e-inicialización-__init__" class="level3">
+<h3 class="anchored" data-anchor-id="bloque-1-importaciones-e-inicialización-__init__">Bloque 1: Importaciones e Inicialización (<code>__init__</code>)</h3>
+<p>Este bloque se encarga de cargar el “cerebro” de la IA en la memoria RAM para que esté listo para escuchar.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> wave</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> vosk</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> VoskHelper:</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, model_path<span class="op">=</span><span class="st">"model"</span>):</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> os.path.exists(model_path):</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">FileNotFoundError</span>(<span class="ss">f"La carpeta del modelo Vosk '</span><span class="sc">{</span>model_path<span class="sc">}</span><span class="ss">' no existe."</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"[VoskHelper] Cargando modelo desde '</span><span class="sc">{</span>model_path<span class="sc">}</span><span class="ss">'..."</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.model <span class="op">=</span> vosk.Model(model_path)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"[VoskHelper] Modelo cargado."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><strong>¿Qué hace?</strong>: Verifica que la carpeta del modelo exista. Si todo está bien, crea el objeto <code>self.model</code>.</li>
+<li><strong>Importancia</strong>: Cargar el modelo es la parte más pesada; al hacerlo en el <code>__init__</code>, solo se hace una vez al inicio del programa.</li>
+</ul>
+</section>
+<section id="librerías-utilizadas" class="level3">
+<h3 class="anchored" data-anchor-id="librerías-utilizadas">Librerías Utilizadas 📚</h3>
+<p>Para la correcta ejecución de los procesos de transcripción, el sistema utiliza las siguientes dependencias:</p>
+<ol type="1">
+<li><strong><code>os</code> (Operating System)</strong>: Proporciona una interfaz para interactuar con el sistema operativo. Se emplea para validar la existencia física del modelo antes de iniciar la carga.
+<ul>
+<li><em>Ejemplo</em>: Es como “tocar la puerta” de la carpeta del modelo para verificar que realmente está ahí.</li>
+</ul></li>
+<li><strong><code>wave</code></strong>: Librería especializada en la gestión de archivos de audio <code>.wav</code>. Permite acceder a las cabeceras para verificar canales, tasa de muestreo y codificación.
+<ul>
+<li><em>Ejemplo</em>: Es quien nos avisa: “Oye, este audio es estéreo, pero yo necesito que sea Mono”, leyendo la “etiqueta” interna del archivo.</li>
+</ul></li>
+<li><strong><code>json</code> (JavaScript Object Notation)</strong>: Utilizada para la deserialización de datos. Convierte las cadenas de texto estructuradas de Vosk en diccionarios de Python.
+<ul>
+<li><em>Ejemplo</em>: Transforma un paquete de datos complejo como <code>{"text": "hola"}</code> en algo que podamos imprimir simplemente como <code>hola</code>.</li>
+</ul></li>
+<li><strong><code>vosk</code></strong>: Núcleo del motor de reconocimiento de voz. Implementa algoritmos y redes neuronales para la conversión de audio a texto.
+<ul>
+<li><em>Ejemplo</em>: Es el experto que escucha los milisegundos de audio y decide que ese sonido corresponde a la palabra “computadora”.</li>
+</ul></li>
+</ol>
+</section>
+<section id="bloque-2-validación-del-audio-preparar_audio_wav" class="level3">
+<h3 class="anchored" data-anchor-id="bloque-2-validación-del-audio-preparar_audio_wav">Bloque 2: Validación del Audio (<code>preparar_audio_wav</code>) 🌊</h3>
+<p>Este bloque funciona como un <strong>“Control de Calidad”</strong> antes de que el audio llegue a la IA.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> preparar_audio_wav(<span class="va">self</span>, ruta_audio):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>        wf <span class="op">=</span> wave.<span class="bu">open</span>(ruta_audio, <span class="st">"rb"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Validaciones para Vosk</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> wf.getnchannels() <span class="op">!=</span> <span class="dv">1</span>:</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"[Advertencia VoskHelper] El audio no es Mono..."</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> wf.getsampwidth() <span class="op">!=</span> <span class="dv">2</span>:</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"[Advertencia VoskHelper] El audio no es de 16-bit..."</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> wf.getcomptype() <span class="op">!=</span> <span class="st">"NONE"</span>:</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"[Advertencia VoskHelper] El audio parece estar comprimido..."</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> wf</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="qué-es-wave-realmente" class="level4">
+<h4 class="anchored" data-anchor-id="qué-es-wave-realmente">¿Qué es <code>wave</code> realmente?</h4>
+<p><code>wave</code> es la herramienta que nos permite “leer las tripas” de un archivo de audio sin tener que escucharlo. Nos permite ver su configuración técnica antes de procesarlo.</p>
+</section>
+<section id="entendiendo-las-validaciones-los-if" class="level4">
+<h4 class="anchored" data-anchor-id="entendiendo-las-validaciones-los-if">Entendiendo las validaciones (los <code>if</code>):</h4>
+<p>Aquí es donde revisamos que el audio sea apto para la IA:</p>
+<ol type="1">
+<li><strong><code>wf.getnchannels() != 1</code></strong>: Verifica el número de canales de audio.
+<ul>
+<li><strong>Valores comunes</strong>: <code>1</code> significa <strong>Mono</strong> (un solo canal) y <code>2</code> significa <strong>Estéreo</strong> (izquierdo y derecho). Vosk requiere <code>1</code> porque solo procesa una señal a la vez.</li>
+</ul></li>
+<li><strong><code>wf.getsampwidth() != 2</code></strong>: Controla el ancho de muestra o “profundidad de bits”.
+<ul>
+<li><strong>Valores comunes</strong>: <code>1</code> (8 bits, baja calidad), <code>2</code> (<strong>16 bits</strong>, estándar CD/Vosk), <code>3</code> (24 bits) o <code>4</code> (32 bits, alta fidelidad).</li>
+</ul></li>
+<li><strong><code>wf.getcomptype() != "NONE"</code></strong>: Detecta el tipo de compresión del archivo.
+<ul>
+<li><strong>Valores comunes</strong>: <code>"NONE"</code> significa <strong>PCM</strong> (audio puro sin comprimir). Otros valores como <code>"ULAW"</code> o <code>"ALAW"</code> indican formatos comprimidos antiguos que el motor no puede leer directamente.</li>
+</ul></li>
+</ol>
+</section>
+<section id="analogía-del-control-de-calidad" class="level4">
+<h4 class="anchored" data-anchor-id="analogía-del-control-de-calidad">💡 Analogía del Control de Calidad:</h4>
+<p>Imagina que Vosk es un <strong>escáner de documentos</strong>: * <code>getnchannels</code> revisa que no metas dos hojas pegadas (Estéreo). * <code>getsampwidth</code> revisa que la tinta sea lo suficientemente oscura para leerse (16-bit). * <code>getcomptype</code> revisa que la hoja no venga arrugada o doblada (Compresión).</p>
+<hr>
+</section>
+</section>
+<section id="bloque-3-el-motor-de-transcripción-transcribir_archivo" class="level3">
+<h3 class="anchored" data-anchor-id="bloque-3-el-motor-de-transcripción-transcribir_archivo">Bloque 3: El Motor de Transcripción (<code>transcribir_archivo</code>) ⚙️</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> transcribir_archivo(<span class="va">self</span>, ruta_audio):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>        wf <span class="op">=</span> <span class="va">self</span>.preparar_audio_wav(ruta_audio)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        rec <span class="op">=</span> vosk.KaldiRecognizer(<span class="va">self</span>.model, wf.getframerate())</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        textos <span class="op">=</span> []</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>            data <span class="op">=</span> wf.readframes(<span class="dv">4000</span>) <span class="co"># Lee trozos de 4000 frames</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="bu">len</span>(data) <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>                <span class="cf">break</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> rec.AcceptWaveform(data):</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>                result <span class="op">=</span> json.loads(rec.Result())</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> result.get(<span class="st">'text'</span>):</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>                    textos.append(result[<span class="st">'text'</span>])</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>                    </span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>        final <span class="op">=</span> json.loads(rec.FinalResult())</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> final.get(<span class="st">'text'</span>):</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>            textos.append(final[<span class="st">'text'</span>])</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>        wf.close()</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">" "</span>.join(textos).strip()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Aquí es donde ocurre la conversión real de sonido a texto. Para no saturar la computadora, el proceso se hace por “pedazos”.</p>
+<section id="el-paso-a-paso-del-código" class="level4">
+<h4 class="anchored" data-anchor-id="el-paso-a-paso-del-código">El paso a paso del código:</h4>
+<ol type="1">
+<li><strong><code>KaldiRecognizer(self.model, wf.getframerate())</code></strong>: Es el objeto que hace el trabajo pesado. Necesita dos cosas: el “cerebro” (el modelo que cargamos) y la “velocidad” del audio (el framerate) para saber qué tan rápido debe escuchar.</li>
+<li><strong><code>wf.readframes(4000)</code></strong>: No podemos darle todo el audio de golpe a la IA porque se saturaría. Por eso leemos el archivo en trozos.
+<ul>
+<li><strong>¿Qué es un frame? (La analogía del cine)</strong>: Imagina que el audio es una <strong>película</strong>. Una película no es más que una tira de muchas <strong>fotos (frames)</strong> puestas una detrás de otra.
+<ul>
+<li>Si la frecuencia es de <strong>16,000 Hz</strong>, significa que en cada segundo de audio hay <strong>16,000 fotos de sonido</strong>.</li>
+<li>Entonces, <code>readframes(4000)</code> es como si cortaras un pedazo de esa película que mide exactamente <strong>4,000 fotos</strong>.</li>
+<li>Haciendo la cuenta (<code>4000 / 16000</code>), ese “pedazo de cinta” dura <strong>0.25 segundos</strong>.</li>
+</ul></li>
+<li><strong>¿Por qué usamos 4,000?</strong>: Es una cuestión de equilibrio (Buffer).
+<ul>
+<li>Si el número fuera muy pequeño (ej. 100), la computadora se cansaría de procesar tantos pedidos por segundo.</li>
+<li>Si fuera muy grande (ej. 50,000), tendríamos que esperar muchos segundos de silencio para que la IA empezara a escribir, perdiendo el efecto de “tiempo real”.</li>
+<li><strong>4,000</strong> es el punto ideal: es ligero para el procesador y lo suficientemente rápido para que la transcripción parezca instantánea.</li>
+</ul></li>
+<li>Los frames son la “distancia” o cantidad de información de sonido que recorremos en el tiempo.</li>
+</ul></li>
+<li><strong><code>if len(data) == 0: break</code></strong>: Es el detector de “fin de pista”. Comprueba si el trozo de audio que acabamos de intentar leer está vacío; si ya no queda nada, dejamos de procesar y cerramos el ciclo.</li>
+<li><strong><code>rec.AcceptWaveform(data)</code></strong>: Es la función que “mastica” el audio. Devuelve <code>True</code> solamente cuando detecta un silencio o el final de una frase clara.</li>
+<li><strong><code>rec.Result()</code> y <code>rec.FinalResult()</code></strong>:
+<ul>
+<li><code>Result()</code> se usa mientras el audio se está reproduciendo para obtener frases terminadas.</li>
+<li><code>FinalResult()</code> es como “limpiar el plato”; se asegura de capturar las últimas palabras que se dijeron justo antes de que el archivo se apagara.</li>
+</ul></li>
+<li><strong><code>" ".join(textos)</code></strong>: Como fuimos guardando frases sueltas en una lista, al final las pegamos todas con un espacio para formar un párrafo completo.</li>
+</ol>
+</section>
+<section id="analogía-del-traductor-de-conferencias" class="level4">
+<h4 class="anchored" data-anchor-id="analogía-del-traductor-de-conferencias">💡 Analogía del Traductor de Conferencias:</h4>
+<p>Imagina que hay un traductor escuchando un discurso largo: * <strong><code>readframes</code></strong>: Es el traductor escuchando 3 o 4 palabras. * <strong><code>AcceptWaveform</code></strong>: Es el traductor esperando a que el orador tome aire o haga una pausa. * <strong><code>Result</code></strong>: Es cuando el traductor aprovecha esa pausa para escribir rápidamente la frase en su libreta. * <strong><code>FinalResult</code></strong>: Es lo que el traductor escribe al final del discurso, incluso si el orador no terminó la última frase. * <strong><code>join</code></strong>: Es cuando te entrega la libreta con todo el discurso escrito de corrido.</p>
+<hr>
+</section>
+</section>
+<section id="bloque-4-transcripción-de-bytes-en-vivo-transcribir_bytes" class="level3">
+<h3 class="anchored" data-anchor-id="bloque-4-transcripción-de-bytes-en-vivo-transcribir_bytes">Bloque 4: Transcripción de Bytes en Vivo (<code>transcribir_bytes</code>) 🎤</h3>
+<p>Este bloque es la versión “rápida” y directa. Se usa cuando el audio ya está dentro de la memoria de la computadora (por ejemplo, viniendo directamente de un micrófono) y no necesitamos leer un archivo del disco duro.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> transcribir_bytes(<span class="va">self</span>, audio_bytes, framerate<span class="op">=</span><span class="dv">16000</span>):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>        rec <span class="op">=</span> vosk.KaldiRecognizer(<span class="va">self</span>.model, framerate)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        rec.AcceptWaveform(audio_bytes)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        final <span class="op">=</span> json.loads(rec.FinalResult())</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> final.get(<span class="st">'text'</span>, <span class="st">""</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="en-qué-se-diferencia-del-bloque-3" class="level4">
+<h4 class="anchored" data-anchor-id="en-qué-se-diferencia-del-bloque-3">¿En qué se diferencia del Bloque 3?</h4>
+<p>Mientras que el bloque anterior lee un archivo poco a poco, este recibe una “ráfaga” de información binaria (bytes) y la procesa de un solo golpe. Es ideal para aplicaciones de respuesta instantánea.</p>
+</section>
+<section id="el-paso-a-paso-del-código-1" class="level4">
+<h4 class="anchored" data-anchor-id="el-paso-a-paso-del-código-1">El paso a paso del código:</h4>
+<ol type="1">
+<li><strong><code>audio_bytes</code></strong>: Es el parámetro que recibe los datos puros. Aquí no hay nombres de archivos, solo la información binaria del sonido.</li>
+<li><strong><code>rec.AcceptWaveform(audio_bytes)</code></strong>: Le entregamos la ráfaga completa de sonido al motor para que la analice en ese mismo instante.</li>
+<li><strong><code>json.loads(rec.FinalResult())</code></strong>: Como es un proceso de “un solo disparo”, pedimos el resultado final de inmediato.</li>
+<li><strong><code>return final.get('text', "")</code></strong>: Extraemos el texto del paquete JSON. Si por alguna razón no se entendió nada, devolvemos un texto vacío (<code>""</code>) para que el programa no falle.</li>
+</ol>
+</section>
+<section id="analogía-del-walkie-talkie" class="level4">
+<h4 class="anchored" data-anchor-id="analogía-del-walkie-talkie">💡 Analogía del Walkie-Talkie:</h4>
+<ul>
+<li><strong>Bloque 3</strong> (el de antes) era como recibir una <strong>carta por correo</strong>: tienes que abrir el sobre, leer hoja por hoja y luego contar de qué trataba.</li>
+<li><strong>Bloque 4</strong> es como hablar por un <strong>Walkie-Talkie</strong>: recibes el audio directamente en el aire, lo escuchas en el momento y respondes de inmediato. No hay papeles ni sobres de por medio; es una comunicación directa.</li>
+</ul>
+<hr>
+</section>
+</section>
+</section>
+<section id="explicación-detallada-modulos_wisper.py" class="level1">
+<h1>Explicación Detallada: <code>modulos_wisper.py</code> 🤖</h1>
+<p>Este archivo contiene la clase <code>WhisperHelper</code>. Whisper es un modelo de reconocimiento de voz desarrollado por OpenAI. A diferencia de Vosk, que usa modelos estadísticos más tradicionales, Whisper utiliza una red neuronal transformer masiva entrenada con miles de horas de audio de internet.</p>
+<section id="arquitectura-de-modelos-en-whisper" class="level3">
+<h3 class="anchored" data-anchor-id="arquitectura-de-modelos-en-whisper">Arquitectura de Modelos en Whisper 🌍</h3>
+<p>Whisper ofrece varios tamaños de modelo. A mayor tamaño, más precisión, pero también requiere más potencia de cómputo (especialmente una tarjeta gráfica o GPU).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 14%">
+<col style="width: 25%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Modelo</th>
+<th style="text-align: left;">Parámetros</th>
+<th style="text-align: left;">Velocidad Relativa</th>
+<th style="text-align: left;">Memoria RAM Requerida</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Tiny</strong></td>
+<td style="text-align: left;">39 M</td>
+<td style="text-align: left;">~32x</td>
+<td style="text-align: left;">~1 GB</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Base</strong> (Usado aquí)</td>
+<td style="text-align: left;">74 M</td>
+<td style="text-align: left;">~16x</td>
+<td style="text-align: left;">~1 GB</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Small</strong></td>
+<td style="text-align: left;">244 M</td>
+<td style="text-align: left;">~6x</td>
+<td style="text-align: left;">~2 GB</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Medium</strong></td>
+<td style="text-align: left;">769 M</td>
+<td style="text-align: left;">~2x</td>
+<td style="text-align: left;">~5 GB</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Large</strong></td>
+<td style="text-align: left;">1550 M</td>
+<td style="text-align: left;">1x</td>
+<td style="text-align: left;">~10 GB</td>
+</tr>
+</tbody>
+</table>
+<p><em>Nota: En este proyecto usamos la versión <strong>Base</strong>, ya que ofrece un equilibrio perfecto entre velocidad y precisión para funcionar en una computadora normal sin necesidad de una tarjeta de video potente.</em></p>
+<hr>
+<section id="librerías-utilizadas-1" class="level4">
+<h4 class="anchored" data-anchor-id="librerías-utilizadas-1">Librerías Utilizadas:</h4>
+<ul>
+<li><strong><code>whisper</code></strong>: Es la biblioteca de OpenAI que contiene la red neuronal procesadora de voz. Sin ella no habría transcripción inteligente.</li>
+<li><strong><code>librosa</code></strong>: Es el “laboratorio” de audio. Se usa para cargar los archivos y asegurarse de que tengan los 16,000 Hz que pide la IA.</li>
+<li><strong><code>numpy</code></strong>: Se utiliza para realizar cálculos matemáticos complejos sobre el sonido (como la normalización).
+<ul>
+<li><em>Ejemplo</em>: Si el volumen del audio es muy bajo, Numpy lo “estira” matemáticamente para que sea más claro.</li>
+</ul></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="bloque-1-importaciones-e-inicialización-__init__-1" class="level3">
+<h3 class="anchored" data-anchor-id="bloque-1-importaciones-e-inicialización-__init__-1">Bloque 1: Importaciones e Inicialización (<code>__init__</code>)</h3>
+<p>En esta parte cargamos el “cerebro” de la IA en la memoria.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> whisper</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> librosa</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> WhisperHelper:</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, model_name<span class="op">=</span><span class="st">"base"</span>, device<span class="op">=</span><span class="st">"cpu"</span>):</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Carga el modelo específico (base, tiny, etc.)</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.model <span class="op">=</span> whisper.load_model(model_name, device<span class="op">=</span>device)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="el-paso-a-paso-del-código-2" class="level4">
+<h4 class="anchored" data-anchor-id="el-paso-a-paso-del-código-2">El paso a paso del código:</h4>
+<ol type="1">
+<li><strong><code>whisper.load_model(model_name)</code></strong>: Enciende el cerebro de Whisper. A diferencia de Vosk, este modelo se descarga y se carga con un nombre (como “base”, “small” o “medium”) que indica qué tan inteligente (y pesado) será.</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="bloque-2-preparación-del-audio-preparar_audio_archivo" class="level3">
+<h3 class="anchored" data-anchor-id="bloque-2-preparación-del-audio-preparar_audio_archivo">Bloque 2: Preparación del Audio (<code>preparar_audio_archivo</code>)</h3>
+<p>Whisper es muy exigente con el formato del sonido y aquí lo arreglamos.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> preparar_audio_archivo(<span class="va">self</span>, ruta_audio):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Whisper exige 16000Hz y formato float32</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        audio_array, _ <span class="op">=</span> librosa.load(ruta_audio, sr<span class="op">=</span><span class="dv">16000</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> audio_array</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> preparar_audio_bytes(<span class="va">self</span>, frames_bytes):</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Convierte los bytes del micrófono a números decimales (float32)</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        audio_np <span class="op">=</span> np.frombuffer(frames_bytes, dtype<span class="op">=</span>np.int16).astype(np.float32) <span class="op">/</span> <span class="fl">32768.0</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> audio_np</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="el-paso-a-paso-del-código-3" class="level4">
+<h4 class="anchored" data-anchor-id="el-paso-a-paso-del-código-3">El paso a paso del código:</h4>
+<ol type="1">
+<li><strong><code>librosa.load(ruta_audio, sr=16000)</code></strong>: Es el “preparador” del audio. Whisper necesita que el sonido sea exactamente de 16,000 Hz. Librosa se encarga de peinar y preparar el sonido para que la IA no se confunda.</li>
+<li><strong><code>np.frombuffer(...) / 32768.0</code></strong>: Es una operación de <strong>normalización</strong>. Convierte los números del audio en decimales entre -1 y 1. El número <code>32768</code> es el límite de los audios de 16 bits; al dividir por él, “escalamos” el sonido a la medida exacta que pide la IA.</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="bloque-3-el-motor-de-transcripción-transcribir" class="level3">
+<h3 class="anchored" data-anchor-id="bloque-3-el-motor-de-transcripción-transcribir">Bloque 3: El Motor de Transcripción (<code>transcribir</code>)</h3>
+<p>Aquí se realiza el análisis final para obtener el texto.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> transcribir(<span class="va">self</span>, input_data, language<span class="op">=</span><span class="st">"es"</span>, es_archivo<span class="op">=</span><span class="va">False</span>):</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> es_archivo:</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>            audio <span class="op">=</span> <span class="va">self</span>.preparar_audio_archivo(input_data)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>            audio <span class="op">=</span> input_data</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Realiza la transcripción final</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> <span class="va">self</span>.model.transcribe(audio, language<span class="op">=</span>language, fp16<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> result[<span class="st">"text"</span>].strip()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="analogía-del-erudito-de-biblioteca" class="level4">
+<h4 class="anchored" data-anchor-id="analogía-del-erudito-de-biblioteca">💡 Analogía del Erudito de Biblioteca:</h4>
+<p>Si Vosk era un traductor rápido de oficina, <strong>Whisper es un erudito de biblioteca</strong>. * <strong>Vosk</strong> traduce palabra por palabra muy rápido. * <strong>Whisper</strong> se toma su tiempo para leer toda la frase, entender el contexto y luego darte una respuesta más elegante. Por eso Whisper necesita que le “limpien” el audio primero (con Librosa) antes de empezar a leer.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="explicación-detallada-juez.py" class="level1">
+<h1>Explicación Detallada: <code>juez.py</code> ⚖️</h1>
+<p>Este es el cerebro central del proyecto. No solo transcribe, sino que gestiona el hardware, interactúa con el usuario y genera los reportes finales.</p>
+<hr>
+<section id="librerías-utilizadas-2" class="level4">
+<h4 class="anchored" data-anchor-id="librerías-utilizadas-2">Librerías Utilizadas:</h4>
+<ul>
+<li><strong><code>pyaudio</code></strong>: El controlador maestro del micrófono.</li>
+<li><strong><code>jiwer</code></strong>: La calculadora científica para medir la precisión (WER).</li>
+<li><strong><code>keyboard</code></strong>: El sensor táctil para detectar la tecla Espacio.</li>
+<li><strong><code>wave</code></strong>: El bibliotecario que guarda los archivos <code>.wav</code>.</li>
+<li><strong><code>Modulo_wab</code> y <code>modulo_reportes</code></strong>: Herramientas personalizadas para limpiar el audio y crear el informe final.</li>
+</ul>
+<hr>
+</section>
+<section id="bloque-1-importaciones-e-inicialización" class="level3">
+<h3 class="anchored" data-anchor-id="bloque-1-importaciones-e-inicialización">Bloque 1: Importaciones e Inicialización</h3>
+<p>Aquí el Juez se prepara y define sus reglas básicas.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> jiwer</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyaudio</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> keyboard</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> wave</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> modulo_vosk <span class="im">import</span> VoskHelper</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> modulos_wisper <span class="im">import</span> WhisperHelper</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> Modulo_wab <span class="im">import</span> ConvertidorWab</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> modulo_reportes <span class="im">import</span> GeneradorReporte</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Ignoramos avisos técnicos irrelevantes</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">"ignore"</span>)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Configuración de los modelos</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>MODEL_VOSK_PATH <span class="op">=</span> <span class="st">"model"</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>MODEL_WHISPER_NAME <span class="op">=</span> <span class="st">"base"</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>TEMP_WAV <span class="op">=</span> <span class="st">"temp_comparacion.wav"</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>AUDIOS_FOLDER <span class="op">=</span> <span class="st">"audios"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="el-paso-a-paso-del-código-4" class="level4">
+<h4 class="anchored" data-anchor-id="el-paso-a-paso-del-código-4">El paso a paso del código:</h4>
+<ol type="1">
+<li><strong>Imports</strong>: Traemos tanto las librerías estándar como los “Expertos” que creamos antes (<code>VoskHelper</code> y <code>WhisperHelper</code>).</li>
+<li><strong>Configuración</strong>: Definimos dónde está el cerebro de Vosk (<code>model</code>) y qué versión de Whisper usaremos (<code>base</code>).</li>
+<li><strong>TEMP_WAV</strong>: Es el nombre del archivo “borrador” donde se guardará lo que grabes por el micrófono.</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="bloque-2-captura-de-audio-directa-grabar_audio" class="level3">
+<h3 class="anchored" data-anchor-id="bloque-2-captura-de-audio-directa-grabar_audio">Bloque 2: Captura de Audio Directa (<code>grabar_audio</code>)</h3>
+<p>La función que da vida al micrófono.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> grabar_audio():</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> pyaudio.PyAudio()</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    rate <span class="op">=</span> <span class="dv">16000</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    chunk <span class="op">=</span> <span class="dv">1024</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Presiona ESPACIO para comenzar a grabar..."</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    keyboard.wait(<span class="st">'space'</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Grabando..."</span>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    frames <span class="op">=</span> []</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    stream <span class="op">=</span> p.<span class="bu">open</span>(<span class="bu">format</span><span class="op">=</span>pyaudio.paInt16, channels<span class="op">=</span><span class="dv">1</span>, rate<span class="op">=</span>rate,</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">input</span><span class="op">=</span><span class="va">True</span>, frames_per_buffer<span class="op">=</span>chunk)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>        data <span class="op">=</span> stream.read(chunk, exception_on_overflow<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>        frames.append(data)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> keyboard.is_pressed(<span class="st">'space'</span>): <span class="co"># Detiene al presionar de nuevo</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Guardado del archivo .wav</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    wf <span class="op">=</span> wave.<span class="bu">open</span>(TEMP_WAV, <span class="st">'wb'</span>)</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    wf.setnchannels(<span class="dv">1</span>)</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    wf.setsampwidth(p.get_sample_size(pyaudio.paInt16)) </span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>    wf.setframerate(rate)</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>    wf.writeframes(<span class="st">b''</span>.join(frames))</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>    wf.close()</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> TEMP_WAV</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="el-paso-a-paso-del-código-5" class="level4">
+<h4 class="anchored" data-anchor-id="el-paso-a-paso-del-código-5">El paso a paso del código:</h4>
+<ol type="1">
+<li><strong><code>keyboard.wait('space')</code></strong>: El programa se queda congelado hasta que tú decidas empezar.</li>
+<li><strong>El bucle <code>while</code></strong>: Mientras el archivo se está grabando, la computadora no hace nada más que escuchar y guardar datos en la lista <code>frames</code>.</li>
+<li><strong><code>pyaudio.paInt16</code></strong>: Asegura que el sonido sea compatible con la inteligencia artificial (Mono y de 16 bits).</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="bloque-3-menú-de-frases-y-referencias-menu_frases" class="level3">
+<h3 class="anchored" data-anchor-id="bloque-3-menú-de-frases-y-referencias-menu_frases">Bloque 3: Menú de Frases y Referencias (<code>menu_frases</code>)</h3>
+<p>Aquí el Juez define qué es lo que intentamos decir para tener una base de comparación.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>FRASES_PRESET <span class="op">=</span> [</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"el sistema de procesamiento de lenguaje natural funciona correctamente en mi computadora local"</span>,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"hoy es lunes seis de abril y estoy probando modelos de transcripcion automatica"</span>,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"tres tristes tigres tragaban trigo en un trigal"</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> menu_frases():</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">PASO 1: Elegir frase de referencia"</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">35</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"1. El sistema de procesamiento de lenguaje natural..."</span>)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"2. Hoy es lunes seis de abril..."</span>)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"3. Tres tristes tigres..."</span>)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"4. Escribir frase personalizada"</span>)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    opc <span class="op">=</span> <span class="bu">input</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Elige una opción: "</span>)</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> opc <span class="op">==</span> <span class="st">"1"</span>: <span class="cf">return</span> FRASES_PRESET[<span class="dv">0</span>]</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> opc <span class="op">==</span> <span class="st">"2"</span>: <span class="cf">return</span> FRASES_PRESET[<span class="dv">1</span>]</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> opc <span class="op">==</span> <span class="st">"3"</span>: <span class="cf">return</span> FRASES_PRESET[<span class="dv">2</span>]</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> opc <span class="op">==</span> <span class="st">"4"</span>: <span class="cf">return</span> <span class="bu">input</span>(<span class="st">"Escribe tu frase:</span><span class="ch">\n</span><span class="st">&gt; "</span>).lower().strip()</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">None</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="el-paso-a-paso-del-código-6" class="level4">
+<h4 class="anchored" data-anchor-id="el-paso-a-paso-del-código-6">El paso a paso del código:</h4>
+<ol type="1">
+<li><strong><code>FRASES_PRESET</code></strong>: Es una lista de “frases maestras”. Sirven como la referencia perfecta para calcular qué tanto se equivoca la IA.</li>
+<li><strong><code>opc == "4"</code></strong>: Permite flexibilidad, dejando que el usuario escriba cualquier cosa en el momento.</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="bloque-4-selector-de-archivos-inteligente-seleccionar_archivo_audio" class="level3">
+<h3 class="anchored" data-anchor-id="bloque-4-selector-de-archivos-inteligente-seleccionar_archivo_audio">Bloque 4: Selector de Archivos Inteligente (<code>seleccionar_archivo_audio</code>)</h3>
+<p>Esta función busca audios guardados y, lo más importante, busca automáticamente su transcripción correcta.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> seleccionar_archivo_audio():</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">¿De qué carpeta quieres el audio?"</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"1. 'audios' (Normales)"</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"2. 'audios procesados' (Limpios y optimizados)"</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    folder_opc <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Elige una opción (1-2): "</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    target_folder <span class="op">=</span> AUDIOS_FOLDER <span class="cf">if</span> folder_opc <span class="op">==</span> <span class="st">"1"</span> <span class="cf">else</span> <span class="st">"audios procesados"</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Busca archivos con extensiones de audio válidas</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    extensiones_validas <span class="op">=</span> (<span class="st">'.wav'</span>, <span class="st">'.mp3'</span>, <span class="st">'.m4a'</span>, <span class="st">'.ogg'</span>, <span class="st">'.flac'</span>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    archivos <span class="op">=</span> <span class="bu">sorted</span>([f <span class="cf">for</span> f <span class="kw">in</span> os.listdir(target_folder) <span class="cf">if</span> f.lower().endswith(extensiones_validas)])</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, archivo <span class="kw">in</span> <span class="bu">enumerate</span>(archivos, <span class="dv">1</span>):</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">. </span><span class="sc">{</span>archivo<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    idx <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Elige el número del archivo: "</span>)) <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    nombre_archivo <span class="op">=</span> archivos[idx]</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    ruta_audio <span class="op">=</span> os.path.join(target_folder, nombre_archivo)</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Búsqueda automática del archivo .txt asociado</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    nombre_base <span class="op">=</span> os.path.splitext(nombre_archivo)[<span class="dv">0</span>].replace(<span class="st">"_limpio"</span>, <span class="st">""</span>)</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    ruta_txt <span class="op">=</span> os.path.join(AUDIOS_FOLDER, nombre_base <span class="op">+</span> <span class="st">".txt"</span>)</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(ruta_txt, <span class="st">"r"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> f:</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>        referencia <span class="op">=</span> f.read().lower().strip()</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ruta_audio, referencia</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="el-paso-a-paso-del-código-7" class="level4">
+<h4 class="anchored" data-anchor-id="el-paso-a-paso-del-código-7">El paso a paso del código:</h4>
+<ol type="1">
+<li><strong><code>target_folder</code></strong>: Filtra entre los audios “crudos” y los que ya pasaron por un proceso de limpieza.</li>
+<li><strong><code>nombre_base</code></strong>: Es un truco inteligente. Si el audio se llama <code>grabacion1.wav</code>, el Juez sabe que debe buscar un archivo llamado <code>grabacion1.txt</code> para leer la referencia.</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="bloque-5-evaluación-y-resultados-calcular_y_mostrar_resultados" class="level3">
+<h3 class="anchored" data-anchor-id="bloque-5-evaluación-y-resultados-calcular_y_mostrar_resultados">Bloque 5: Evaluación y Resultados (<code>calcular_y_mostrar_resultados</code>)</h3>
+<p>Aquí se procesa el audio simultáneamente y se generan las estadísticas.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calcular_y_mostrar_resultados(ruta_audio, referencia, vosk_motor, whisper_motor):</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"TRANSCRIBIENDO..."</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Llamada a los expertos</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    texto_vosk <span class="op">=</span> vosk_motor.transcribir_archivo(ruta_audio).lower()</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    texto_whisper <span class="op">=</span> whisper_motor.transcribir(ruta_audio, es_archivo<span class="op">=</span><span class="va">True</span>).lower()</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Cálculo del WER (Error)</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    error_v <span class="op">=</span> jiwer.wer(referencia, texto_vosk)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    error_w <span class="op">=</span> jiwer.wer(referencia, texto_whisper)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Lógica de Ganador</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> error_w <span class="op">&lt;</span> error_v: ganador <span class="op">=</span> <span class="st">"WHISPER"</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> error_v <span class="op">&lt;</span> error_w: ganador <span class="op">=</span> <span class="st">"VOSK"</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>: ganador <span class="op">=</span> <span class="st">"EMPATE TÉCNICO"</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Creación del reporte gráfico final</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    GeneradorReporte.crear_reporte(referencia, texto_vosk, texto_whisper, error_v, error_w, ganador)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+<section id="bloque-6-el-menú-principal-comparar_stt" class="level3">
+<h3 class="anchored" data-anchor-id="bloque-6-el-menú-principal-comparar_stt">Bloque 6: El Menú Principal (<code>comparar_stt</code>)</h3>
+<p>Es la base sobre la que corre todo el programa.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> comparar_stt():</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Inicialización de modelos</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    vosk_motor <span class="op">=</span> VoskHelper(MODEL_VOSK_PATH)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    whisper_motor <span class="op">=</span> WhisperHelper(MODEL_WHISPER_NAME)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">1. Grabar audio con micrófono"</span>)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"2. Cargar audios locales"</span>)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"0. Salir"</span>)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>        opc <span class="op">=</span> <span class="bu">input</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Elige una opción: "</span>)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> opc <span class="op">==</span> <span class="st">"1"</span>:</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>            referencia <span class="op">=</span> menu_frases()</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>            ruta_temp <span class="op">=</span> grabar_audio()</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>            calcular_y_mostrar_resultados(ruta_temp, referencia, vosk_motor, whisper_motor)</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> opc <span class="op">==</span> <span class="st">"2"</span>:</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>            ruta_audio, _ref <span class="op">=</span> seleccionar_archivo_audio()</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> ruta_audio:</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>                ruta_optimizada <span class="op">=</span> ConvertidorWab.asegurar_wav(ruta_audio)</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>                calcular_y_mostrar_resultados(ruta_optimizada, _ref, vosk_motor, whisper_motor)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="analogía-del-juez-de-boxeo" class="level4">
+<h4 class="anchored" data-anchor-id="analogía-del-juez-de-boxeo">💡 Analogía del Juez de Boxeo:</h4>
+<p>Imagina que estás en un ring: * <strong>El Micrófono</strong> (Bloque 2) es el que suena la campana para iniciar la pelea. * <strong>Vosk y Whisper</strong> (Bloque 4) son los dos boxeadores que compiten por ver quién transcribe mejor. * <strong><code>juez.py</code></strong> es el árbitro que está en el medio: cronometra cuánto dura la grabación, gestiona los turnos (Bloque 5), observa los golpes (errores) con su regla matemática (Bloque 4) y al final levanta la mano del ganador entregando un reporte de la pelea.</p>
+<hr>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

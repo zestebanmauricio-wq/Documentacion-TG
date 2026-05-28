@@ -1,8 +1,18 @@
 # Código de VoskHelper {#sec-cod-vosk}
 
+**Archivo fuente:** `Codigos/modulo_vosk.py`
+
 La clase `VoskHelper` actúa como un **Intérprete** entre el hardware de audio y el complejo motor de Vosk (basado en Kaldi). Como vimos en la sección de [Modelos STT](02_modelos_stt_y_evaluacion.qmd#sec-stt), Vosk es un motor local muy rápido.
 
-## 1. Inicialización y Carga de Modelo
+## 1. Propósito del Wrapper
+
+Este helper se encarga de:
+* validar que el audio sea mono, 16-bit PCM y sin compresión,
+* cargar el modelo Vosk en memoria una sola vez,
+* dividir el audio en chunks y transcribirlos con `AcceptWaveform()`, y
+* devolver el texto consolidado listo para comparar o evaluar.
+
+## 2. Inicialización y Carga de Modelo
 Cargar el modelo en memoria es el proceso más pesado. Al hacerlo dentro del método `__init__`, nos aseguramos de que el sistema "encienda el cerebro" solo una vez cuando el programa arranca.
 
 ```python
@@ -18,7 +28,7 @@ class VoskHelper:
         self.model = vosk.Model(model_path)
 ```
 
-## 2. Validación Física del Audio (El Control de Calidad)
+## 3. Validación Física del Audio (El Control de Calidad)
 Antes de enviar un archivo al motor, debemos asegurarnos de que cumple las estrictas reglas de Kaldi. La librería `wave` nos permite leer el encabezado del archivo sin reproducirlo.
 
 ```python
@@ -38,7 +48,7 @@ Antes de enviar un archivo al motor, debemos asegurarnos de que cumple las estri
 *   `getsampwidth() != 2`: Se requiere audio de 16 bits de profundidad (ver [Fundamentos de Audio](01_fundamentos_audio.qmd#sec-audio-fund)).
 *   `getcomptype() != "NONE"`: Vosk no soporta MP3 o formatos comprimidos directamente.
 
-## 3. El Bucle de Transcripción por Chunks (Frames)
+## 4. El Bucle de Transcripción por Chunks (Frames)
 No podemos darle un archivo de 10 minutos de golpe al procesador. Debemos cortarlo en "fotos" de sonido llamadas frames. Esto se enlaza con el concepto de Orquestación visto en la sección de [Implementación Técnica](05_implementacion_tecnica.qmd#sec-arq).
 
 ```python
@@ -67,3 +77,11 @@ No podemos darle un archivo de 10 minutos de golpe al procesador. Debemos cortar
         wf.close()
         return " ".join(textos).strip()
 ```
+
+## 5. Salida y Postprocesamiento
+
+El método `transcribir_archivo` devuelve el texto unido con espacios.
+* `json.loads(rec.Result())` transforma el JSON crudo de Vosk en datos manejables.
+* `final.get('text', '')` asegura que no se rompa el flujo incluso si no hay texto al final del audio.
+
+Este texto luego puede compararse con referencias o enviarse al módulo `juez.py` para calcular el WER.

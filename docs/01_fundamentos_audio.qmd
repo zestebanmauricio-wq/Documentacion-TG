@@ -6,15 +6,12 @@ El sonido es una onda continua que contiene un número infinito de valores en un
 
 La señal acústica es capturada y transformada siguiendo este flujo técnico:
 
-```{mermaid}
-graph TD
-    A[Ondas Sonoras - Aire] --> B[Micrófono]
-    B --> C[Señal Eléctrica Analógica]
-    C --> D[ADC - Conversor]
-    D --> E[Muestreo]
-    E --> F[Cuantización]
-    F --> G[Archivo Digital WAV, FLAC, MP3]
-```
+1.  Las ondas sonoras ingresan al micrófono.
+2.  El micrófono convierte el sonido en una señal eléctrica.
+3.  El conversor analógico-digital (ADC) transforma esa señal en muestras numéricas.
+4.  El proceso de muestreo crea una serie de valores discretos en el tiempo.
+5.  La cuantización asigna un valor digital a cada muestra.
+6.  El resultado final es un archivo digital como WAV, FLAC o MP3.
 
 El audio digital se crea capturando muestras de una señal analógica a intervalos regulares. Este proceso se llama **muestreo**, y la **frecuencia de muestreo** determina cuántas veces por segundo se toma una "foto" del sonido.
 
@@ -59,12 +56,12 @@ Muestra qué frecuencias componen el sonido en un instante específico utilizand
 Es la representación más utilizada en el Procesamiento de Lenguaje Natural (PLN).
 Combina tiempo, frecuencia y amplitud en un "mapa de calor". Además, utiliza la **Escala Mel**, una escala logarítmica que imita el oído humano: somos mucho más precisos diferenciando cambios en frecuencias graves que en agudas.
 
-```{mermaid}
-graph TD
-    STFT[Audio Crudo - STFT] --> FB[Banco de Filtros Mel]
-    FB --> LOG[Logaritmo - Decibelios]
-    LOG --> ML[Input para Modelos Transformers]
-```
+El flujo de procesamiento típico es:
+
+1.  Partir del audio crudo.
+2.  Aplicar STFT para obtener la representación de frecuencia en el tiempo.
+3.  Filtrar con un banco de filtros Mel.
+4.  Calcular la escala logarítmica como entrada para modelos Transformer.
 
 ---
 

@@ -24,16 +24,22 @@ La arquitectura se fundamenta en separar de manera tajante el reconocimiento tem
 
 ```{mermaid}
 graph TD
-    A[Grabación Completa] --> B(Whisper - "El Escriba Temporal")
-    B -->|Segmentos Marcados| C[0.5s - 1.2s: 'Texto']
-    B -->|Segmentos Marcados| D[1.3s - 2.8s: 'Texto']
-    C --> E{Librosa: Recorte Preciso}
-    D --> E
-    E -->|Audio 1 Aislado| F[Vosk SpkModel - "El Detective"]
-    E -->|Audio 2 Aislado| F
-    F -->|Comparación X-Vector| G[Asignación de Identidad Biométrica]
-    G --> H[Reporte Final Mermaid]
+    A[Grabación Completa] --> B[Whisper]
+    B --> C[Segmentos Temporales]
+    C --> D[Recorte con Librosa]
+    D --> E[Vosk SpkModel]
+    E --> F[Identidad Biométrica]
+    F --> G[Reporte Final]
 ```
+
+### Nota técnica del código
+
+El script real `Codigos/WHISPER_PRUEBA.py` utiliza:
+* `whisper.load_model("base")` para cargar el modelo de Whisper.
+* `librosa.load(ruta_audio, sr=16000)` para normalizar la frecuencia a 16 kHz.
+* `obtener_vector_vosk(ruta_audio, inicio, fin, vosk_model, spk_model)` para cargar cada segmento exacto con `offset` y `duration`.
+
+De este modo, cada segmento extraído por Whisper se transforma en un fragmento de audio que Vosk procesa de manera aislada, evitando la mezcla de voces.
 
 ### El Papel de "El Escriba Temporal" (Whisper)
 

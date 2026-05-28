@@ -17,6 +17,17 @@ Una vez que el audio ha sido digitalizado y preprocesado adecuadamente, es proce
 
 Debido a que Whisper intenta encontrar un "contexto" o sentido lógico a todo sonido, en ocasiones en las que la acústica es defectuosa (presencia de eco excesivo, compresión agresiva como MP3, o silencios largos), la IA puede intentar rellenar los vacíos "inventando" palabras que lógicamente deberían estar allí. Esto se soluciona alimentando al modelo con audios muy limpios utilizando filtros VAD (Voice Activity Detection).
 
+### Calidad de la señal: muestreo y profundidad de bits
+
+El capítulo de fundamentos de audio (`PLN_CURSO/fundamentos.md`) explica por qué el audio debe estar estandarizado para ambos modelos:
+
+*   **16 kHz**: Es la frecuencia mínima aceptable para voz humana y la que usan Whisper y los modelos de Vosk en este proyecto. Permite reconstruir hasta 8 kHz, rango donde están las consonantes críticas.
+*   **16 bits (PCM)**: Define la precisión de cada muestra. Vosk requiere audio sin comprimir para evitar distorsiones de cuantización.
+*   **Mono**: Evita problemas de fase y permite que el motor procese una única señal limpia.
+*   **Resampling con Librosa**: El código de `Codigos/modulos_wisper.py` fuerza todas las grabaciones a 16 kHz y convierte las muestras a `float32` en el rango `[-1.0, 1.0]`.
+
+Estos pasos son la diferencia entre un audio que Whisper puede transcribir con contexto y otro que la misma red Transformer interpretará como ruido.
+
 ---
 
 ## Métrica Científica: El Word Error Rate (WER) {#sec-wer}

@@ -16,6 +16,8 @@ El script `modulo_vosk.py` aísla por completo el núcleo "Kaldi" y se asegura d
 Alojado en `modulos_wisper.py`, este wrapper se encarga de acondicionar el terreno para la delicada red Transformer.
 Dado que Whisper no tolera desajustes temporales, el Helper inyecta los audios a través de un proceso de estandarización empleando Numpy (`np.frombuffer(...) / 32768.0`) y Librosa, los cuales toman las grabaciones y las reescalan para que sus armónicos ocupen estrictamente el espacio que abarca de `-1.0` a `1.0` (Profundidad de Bits Float32), garantizando una matriz de características impecable.
 
+**Además, el código usa `librosa.load(..., sr=16000)` para forzar todas las entradas a 16 kHz y `whisper.load_model("base")` para balancear velocidad y precisión en hardware modesto.**
+
 ---
 
 ## El Orquestador Central: `juez.py`

@@ -410,9 +410,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#sec-cod-whisper" id="toc-sec-cod-whisper" class="nav-link active" data-scroll-target="#sec-cod-whisper">Código de WhisperHelper</a>
   <ul class="collapse">
-  <li><a href="#carga-del-modelo-base" id="toc-carga-del-modelo-base" class="nav-link" data-scroll-target="#carga-del-modelo-base">1. Carga del Modelo Base</a></li>
-  <li><a href="#normalización-matemática-y-resampling-librosa" id="toc-normalización-matemática-y-resampling-librosa" class="nav-link" data-scroll-target="#normalización-matemática-y-resampling-librosa">2. Normalización Matemática y Resampling (Librosa)</a></li>
-  <li><a href="#inferencia-y-transcripción" id="toc-inferencia-y-transcripción" class="nav-link" data-scroll-target="#inferencia-y-transcripción">3. Inferencia y Transcripción</a></li>
+  <li><a href="#propósito-del-wrapper" id="toc-propósito-del-wrapper" class="nav-link" data-scroll-target="#propósito-del-wrapper">1. Propósito del Wrapper</a></li>
+  <li><a href="#carga-del-modelo-base" id="toc-carga-del-modelo-base" class="nav-link" data-scroll-target="#carga-del-modelo-base">2. Carga del Modelo Base</a></li>
+  <li><a href="#normalización-matemática-y-resampling-librosa" id="toc-normalización-matemática-y-resampling-librosa" class="nav-link" data-scroll-target="#normalización-matemática-y-resampling-librosa">3. Normalización Matemática y Resampling (Librosa)</a></li>
+  <li><a href="#inferencia-y-transcripción" id="toc-inferencia-y-transcripción" class="nav-link" data-scroll-target="#inferencia-y-transcripción">4. Inferencia y Transcripción</a></li>
+  <li><a href="#uso-en-la-arquitectura-del-proyecto" id="toc-uso-en-la-arquitectura-del-proyecto" class="nav-link" data-scroll-target="#uso-en-la-arquitectura-del-proyecto">5. Uso en la Arquitectura del Proyecto</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -426,9 +428,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="sec-cod-whisper" class="level1">
 <h1>Código de WhisperHelper</h1>
+<p><strong>Archivo fuente:</strong> <code>Codigos/modulos_wisper.py</code></p>
 <p>A diferencia de Vosk, Whisper utiliza redes Transformer de OpenAI, y es mucho más exigente matemáticamente con el audio entrante. Su especialidad es el análisis del contexto, como se explica en la comparativa de <a href="../docs/02_modelos_stt_y_evaluacion.html#sec-stt">Modelos STT</a>.</p>
+<section id="propósito-del-wrapper" class="level2">
+<h2 class="anchored" data-anchor-id="propósito-del-wrapper">1. Propósito del Wrapper</h2>
+<p>Este helper está diseñado para: * cargar el modelo <code>base</code> de Whisper, * normalizar el audio a <code>16 kHz</code> y <code>float32</code>, * convertir bytes del micrófono en señales numéricas, y * transcribir audio de archivo o en memoria.</p>
+</section>
 <section id="carga-del-modelo-base" class="level2">
-<h2 class="anchored" data-anchor-id="carga-del-modelo-base">1. Carga del Modelo Base</h2>
+<h2 class="anchored" data-anchor-id="carga-del-modelo-base">2. Carga del Modelo Base</h2>
 <p>Descargamos y cargamos el modelo utilizando la librería oficial de Whisper. El modelo “Base” ofrece un balance perfecto entre velocidad y precisión sin necesidad de GPU.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> whisper</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> librosa</span>
@@ -440,7 +447,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.model <span class="op">=</span> whisper.load_model(model_name, device<span class="op">=</span>device)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="normalización-matemática-y-resampling-librosa" class="level2">
-<h2 class="anchored" data-anchor-id="normalización-matemática-y-resampling-librosa">2. Normalización Matemática y Resampling (Librosa)</h2>
+<h2 class="anchored" data-anchor-id="normalización-matemática-y-resampling-librosa">3. Normalización Matemática y Resampling (Librosa)</h2>
 <p>Como explicamos en la sección de <a href="../docs/01_fundamentos_audio.html#sec-audio-fund">Fundamentos de Audio</a>, Whisper exige que el audio esté formateado en <em>Float32</em> (decimales entre <code>-1.0</code> y <code>1.0</code>). La librería Numpy hace este cálculo matemático dividiendo la señal eléctrica bruta entre el límite máximo de 16 bits.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> preparar_audio_archivo(<span class="va">self</span>, ruta_audio):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Librosa fuerza el audio a 16kHz</span></span>
@@ -454,7 +461,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> audio_np</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="inferencia-y-transcripción" class="level2">
-<h2 class="anchored" data-anchor-id="inferencia-y-transcripción">3. Inferencia y Transcripción</h2>
+<h2 class="anchored" data-anchor-id="inferencia-y-transcripción">4. Inferencia y Transcripción</h2>
 <p>Una vez el audio está correctamente escalado y muestreado, se envía al motor.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> transcribir(<span class="va">self</span>, input_data, language<span class="op">=</span><span class="st">"es"</span>, es_archivo<span class="op">=</span><span class="va">False</span>):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> es_archivo:</span>
@@ -465,6 +472,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Realiza la transcripción final</span></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> <span class="va">self</span>.model.transcribe(audio, language<span class="op">=</span>language, fp16<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> result[<span class="st">"text"</span>].strip()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="uso-en-la-arquitectura-del-proyecto" class="level2">
+<h2 class="anchored" data-anchor-id="uso-en-la-arquitectura-del-proyecto">5. Uso en la Arquitectura del Proyecto</h2>
+<p>Este helper se utiliza principalmente en dos lugares del proyecto: * <code>Codigos/WHISPER_PRUEBA.py</code> para la diarización híbrida con Whisper + Vosk. * <code>docs/codigo_juez.qmd</code> describe cómo el módulo de Whisper compite con Vosk en la evaluación de WER.</p>
+<p>Al integrarse con <code>VoskHelper</code>, Whisper aporta la precisión temporal y el contexto; Vosk aporta la velocidad y la biometría.</p>
 
 
 </section>
@@ -557,7 +569,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/zestebanmauricio-wq\.github\.io\/Documentacion-TG\/");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

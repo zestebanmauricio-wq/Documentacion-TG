@@ -1,8 +1,18 @@
 # Código de WhisperHelper {#sec-cod-whisper}
 
+**Archivo fuente:** `Codigos/modulos_wisper.py`
+
 A diferencia de Vosk, Whisper utiliza redes Transformer de OpenAI, y es mucho más exigente matemáticamente con el audio entrante. Su especialidad es el análisis del contexto, como se explica en la comparativa de [Modelos STT](02_modelos_stt_y_evaluacion.qmd#sec-stt).
 
-## 1. Carga del Modelo Base
+## 1. Propósito del Wrapper
+
+Este helper está diseñado para:
+* cargar el modelo `base` de Whisper,
+* normalizar el audio a `16 kHz` y `float32`,
+* convertir bytes del micrófono en señales numéricas, y
+* transcribir audio de archivo o en memoria.
+
+## 2. Carga del Modelo Base
 Descargamos y cargamos el modelo utilizando la librería oficial de Whisper. El modelo "Base" ofrece un balance perfecto entre velocidad y precisión sin necesidad de GPU.
 
 ```python
@@ -16,7 +26,7 @@ class WhisperHelper:
         self.model = whisper.load_model(model_name, device=device)
 ```
 
-## 2. Normalización Matemática y Resampling (Librosa)
+## 3. Normalización Matemática y Resampling (Librosa)
 Como explicamos en la sección de [Fundamentos de Audio](01_fundamentos_audio.qmd#sec-audio-fund), Whisper exige que el audio esté formateado en *Float32* (decimales entre `-1.0` y `1.0`). La librería Numpy hace este cálculo matemático dividiendo la señal eléctrica bruta entre el límite máximo de 16 bits.
 
 ```python
@@ -32,7 +42,7 @@ Como explicamos en la sección de [Fundamentos de Audio](01_fundamentos_audio.qm
         return audio_np
 ```
 
-## 3. Inferencia y Transcripción
+## 4. Inferencia y Transcripción
 Una vez el audio está correctamente escalado y muestreado, se envía al motor.
 
 ```python
@@ -46,3 +56,11 @@ Una vez el audio está correctamente escalado y muestreado, se envía al motor.
         result = self.model.transcribe(audio, language=language, fp16=False)
         return result["text"].strip()
 ```
+
+## 5. Uso en la Arquitectura del Proyecto
+
+Este helper se utiliza principalmente en dos lugares del proyecto:
+* `Codigos/WHISPER_PRUEBA.py` para la diarización híbrida con Whisper + Vosk.
+* `docs/codigo_juez.qmd` describe cómo el módulo de Whisper compite con Vosk en la evaluación de WER.
+
+Al integrarse con `VoskHelper`, Whisper aporta la precisión temporal y el contexto; Vosk aporta la velocidad y la biometría.
