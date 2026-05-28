@@ -378,6 +378,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#comparativa-de-tecnologías-stt" id="toc-comparativa-de-tecnologías-stt" class="nav-link" data-scroll-target="#comparativa-de-tecnologías-stt">Comparativa de Tecnologías STT</a>
   <ul class="collapse">
   <li><a href="#las-alucinaciones-de-whisper" id="toc-las-alucinaciones-de-whisper" class="nav-link" data-scroll-target="#las-alucinaciones-de-whisper">Las “Alucinaciones” de Whisper</a></li>
+  <li><a href="#calidad-de-la-señal-muestreo-y-profundidad-de-bits" id="toc-calidad-de-la-señal-muestreo-y-profundidad-de-bits" class="nav-link" data-scroll-target="#calidad-de-la-señal-muestreo-y-profundidad-de-bits">Calidad de la señal: muestreo y profundidad de bits</a></li>
   </ul></li>
   <li><a href="#sec-wer" id="toc-sec-wer" class="nav-link" data-scroll-target="#sec-wer">Métrica Científica: El Word Error Rate (WER)</a>
   <ul class="collapse">
@@ -448,6 +449,17 @@ ul.task-list li input[type="checkbox"] {
 <section id="las-alucinaciones-de-whisper" class="level3">
 <h3 class="anchored" data-anchor-id="las-alucinaciones-de-whisper">Las “Alucinaciones” de Whisper</h3>
 <p>Debido a que Whisper intenta encontrar un “contexto” o sentido lógico a todo sonido, en ocasiones en las que la acústica es defectuosa (presencia de eco excesivo, compresión agresiva como MP3, o silencios largos), la IA puede intentar rellenar los vacíos “inventando” palabras que lógicamente deberían estar allí. Esto se soluciona alimentando al modelo con audios muy limpios utilizando filtros VAD (Voice Activity Detection).</p>
+</section>
+<section id="calidad-de-la-señal-muestreo-y-profundidad-de-bits" class="level3">
+<h3 class="anchored" data-anchor-id="calidad-de-la-señal-muestreo-y-profundidad-de-bits">Calidad de la señal: muestreo y profundidad de bits</h3>
+<p>El capítulo de fundamentos de audio (<code>PLN_CURSO/fundamentos.md</code>) explica por qué el audio debe estar estandarizado para ambos modelos:</p>
+<ul>
+<li><strong>16 kHz</strong>: Es la frecuencia mínima aceptable para voz humana y la que usan Whisper y los modelos de Vosk en este proyecto. Permite reconstruir hasta 8 kHz, rango donde están las consonantes críticas.</li>
+<li><strong>16 bits (PCM)</strong>: Define la precisión de cada muestra. Vosk requiere audio sin comprimir para evitar distorsiones de cuantización.</li>
+<li><strong>Mono</strong>: Evita problemas de fase y permite que el motor procese una única señal limpia.</li>
+<li><strong>Resampling con Librosa</strong>: El código de <code>Codigos/modulos_wisper.py</code> fuerza todas las grabaciones a 16 kHz y convierte las muestras a <code>float32</code> en el rango <code>[-1.0, 1.0]</code>.</li>
+</ul>
+<p>Estos pasos son la diferencia entre un audio que Whisper puede transcribir con contexto y otro que la misma red Transformer interpretará como ruido.</p>
 <hr>
 </section>
 </section>
@@ -559,7 +571,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/zestebanmauricio-wq\.github\.io\/Documentacion-TG\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

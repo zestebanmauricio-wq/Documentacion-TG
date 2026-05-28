@@ -405,6 +405,7 @@ window.Quarto = {
   <li><a href="#sec-biometria" id="toc-sec-biometria" class="nav-link active" data-scroll-target="#sec-biometria">Biometría de Voz y X-Vectors</a>
   <ul class="collapse">
   <li><a href="#diferencia-entre-stt-y-reconocimiento-de-locutor" id="toc-diferencia-entre-stt-y-reconocimiento-de-locutor" class="nav-link" data-scroll-target="#diferencia-entre-stt-y-reconocimiento-de-locutor">Diferencia entre STT y Reconocimiento de Locutor</a></li>
+  <li><a href="#implementación-práctica-en-el-código" id="toc-implementación-práctica-en-el-código" class="nav-link" data-scroll-target="#implementación-práctica-en-el-código">Implementación práctica en el código</a></li>
   <li><a href="#la-arquitectura-x-vector-speaker-embeddings" id="toc-la-arquitectura-x-vector-speaker-embeddings" class="nav-link" data-scroll-target="#la-arquitectura-x-vector-speaker-embeddings">La Arquitectura X-Vector (Speaker Embeddings)</a></li>
   <li><a href="#métrica-de-similitud-la-distancia-coseno" id="toc-métrica-de-similitud-la-distancia-coseno" class="nav-link" data-scroll-target="#métrica-de-similitud-la-distancia-coseno">Métrica de Similitud: La Distancia Coseno</a></li>
   <li><a href="#flujo-operativo-y-visualización" id="toc-flujo-operativo-y-visualización" class="nav-link" data-scroll-target="#flujo-operativo-y-visualización">Flujo Operativo y Visualización</a></li>
@@ -428,6 +429,17 @@ window.Quarto = {
 <li><strong>Modelo de Lenguaje (STT):</strong> Entrena a la IA para entender <em>qué</em> palabras se están pronunciando mediante la búsqueda de fonemas.</li>
 <li><strong>Modelo de Locutor (Biometría):</strong> Entrena a la IA para identificar <em>quién</em> habla. Ignora el significado del texto y se enfoca exclusivamente en las texturas físicas del sonido (características paralingüísticas).</li>
 </ul>
+</section>
+<section id="implementación-práctica-en-el-código" class="level2">
+<h2 class="anchored" data-anchor-id="implementación-práctica-en-el-código">Implementación práctica en el código</h2>
+<p>En <code>Codigos/VOSK_PRUEBA.py</code> se ve claramente esta separación de roles:</p>
+<ol type="1">
+<li><strong><code>cargar_voces_conocidas()</code></strong> lee los archivos <code>.json</code> guardados en <code>Codigos/voces_guardadas/</code> y convierte cada vector guardado en arrays de NumPy.</li>
+<li><strong><code>obtener_vector_vosk(...)</code></strong> recorta el audio a partir de los tiempos de inicio y fin, convierte los valores a 16-bit PCM y llama a <code>KaldiRecognizer</code>.</li>
+<li><strong><code>calcular_distancia_coseno(v1, v2)</code></strong> compara el vector nuevo con cada perfil guardado y devuelve la similitud máxima.</li>
+<li>El umbral de confianza aplicado en el código es <strong>0.65</strong>: por debajo de ese valor se devuelve <code>Desconocido</code>.</li>
+</ol>
+<p>Esto significa que la biometría del proyecto no es solo teoría; está codificada en un flujo real que usa <code>Vosk</code> para extraer X-vectors y <code>NumPy</code> para comparar matemáticamente las voces.</p>
 </section>
 <section id="la-arquitectura-x-vector-speaker-embeddings" class="level2">
 <h2 class="anchored" data-anchor-id="la-arquitectura-x-vector-speaker-embeddings">La Arquitectura X-Vector (Speaker Embeddings)</h2>
@@ -541,7 +553,7 @@ window.Quarto = {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/zestebanmauricio-wq\.github\.io\/Documentacion-TG\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

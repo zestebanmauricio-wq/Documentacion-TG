@@ -438,6 +438,7 @@ window.Quarto = {
 <section id="b.-la-clase-whisperhelper-el-erudito-reflexivo" class="level3">
 <h3 class="anchored" data-anchor-id="b.-la-clase-whisperhelper-el-erudito-reflexivo">B. La Clase <code>WhisperHelper</code> (El Erudito Reflexivo)</h3>
 <p>Alojado en <code>modulos_wisper.py</code>, este wrapper se encarga de acondicionar el terreno para la delicada red Transformer. Dado que Whisper no tolera desajustes temporales, el Helper inyecta los audios a través de un proceso de estandarización empleando Numpy (<code>np.frombuffer(...) / 32768.0</code>) y Librosa, los cuales toman las grabaciones y las reescalan para que sus armónicos ocupen estrictamente el espacio que abarca de <code>-1.0</code> a <code>1.0</code> (Profundidad de Bits Float32), garantizando una matriz de características impecable.</p>
+<p><strong>Además, el código usa <code>librosa.load(..., sr=16000)</code> para forzar todas las entradas a 16 kHz y <code>whisper.load_model("base")</code> para balancear velocidad y precisión en hardware modesto.</strong></p>
 <hr>
 </section>
 </section>
@@ -546,7 +547,7 @@ window.Quarto = {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/zestebanmauricio-wq\.github\.io\/Documentacion-TG\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

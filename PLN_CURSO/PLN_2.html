@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>codigo_vosk – STT &amp; Biometría</title>
+<title>pln_2 – STT &amp; Biometría</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -65,8 +30,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../docs/codigo_whisper.html" rel="next">
-<link href="../docs/05_implementacion_tecnica.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -305,7 +268,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../docs/05_implementacion_tecnica.html">Arquitectura y Códigos</a></li><li class="breadcrumb-item"><a href="../docs/codigo_vosk.html">Código de VoskHelper</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -365,13 +328,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
  <span class="menu-text">Arquitectura y Códigos</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../docs/05_implementacion_tecnica.html" class="sidebar-item-text sidebar-link">
@@ -380,7 +343,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/codigo_vosk.html" class="sidebar-item-text sidebar-link active">
+  <a href="../docs/codigo_vosk.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Código de VoskHelper</span></a>
   </div>
 </li>
@@ -408,100 +371,405 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#sec-cod-vosk" id="toc-sec-cod-vosk" class="nav-link active" data-scroll-target="#sec-cod-vosk">Código de VoskHelper</a>
+  <li><a href="#llm_audio" id="toc-llm_audio" class="nav-link active" data-scroll-target="#llm_audio">Llm_audio</a>
   <ul class="collapse">
-  <li><a href="#propósito-del-wrapper" id="toc-propósito-del-wrapper" class="nav-link" data-scroll-target="#propósito-del-wrapper">1. Propósito del Wrapper</a></li>
-  <li><a href="#inicialización-y-carga-de-modelo" id="toc-inicialización-y-carga-de-modelo" class="nav-link" data-scroll-target="#inicialización-y-carga-de-modelo">2. Inicialización y Carga de Modelo</a></li>
-  <li><a href="#validación-física-del-audio-el-control-de-calidad" id="toc-validación-física-del-audio-el-control-de-calidad" class="nav-link" data-scroll-target="#validación-física-del-audio-el-control-de-calidad">3. Validación Física del Audio (El Control de Calidad)</a></li>
-  <li><a href="#el-bucle-de-transcripción-por-chunks-frames" id="toc-el-bucle-de-transcripción-por-chunks-frames" class="nav-link" data-scroll-target="#el-bucle-de-transcripción-por-chunks-frames">4. El Bucle de Transcripción por Chunks (Frames)</a></li>
-  <li><a href="#salida-y-postprocesamiento" id="toc-salida-y-postprocesamiento" class="nav-link" data-scroll-target="#salida-y-postprocesamiento">5. Salida y Postprocesamiento</a></li>
+  <li><a href="#wav-archivo-de-audio-de-forma-de-onda" id="toc-wav-archivo-de-audio-de-forma-de-onda" class="nav-link" data-scroll-target="#wav-archivo-de-audio-de-forma-de-onda">WAV (Archivo de audio de forma de onda)</a></li>
+  <li><a href="#flac-códec-de-audio-gratuito-sin-pérdidas" id="toc-flac-códec-de-audio-gratuito-sin-pérdidas" class="nav-link" data-scroll-target="#flac-códec-de-audio-gratuito-sin-pérdidas">FLAC (Códec de audio gratuito sin pérdidas)</a></li>
+  <li><a href="#mp3-capa-de-audio-mpeg-1-3" id="toc-mp3-capa-de-audio-mpeg-1-3" class="nav-link" data-scroll-target="#mp3-capa-de-audio-mpeg-1-3">MP3 (Capa de audio MPEG-1 3)</a></li>
+  <li><a href="#del-sonido-analógico-al-audio-digital" id="toc-del-sonido-analógico-al-audio-digital" class="nav-link" data-scroll-target="#del-sonido-analógico-al-audio-digital">Del sonido analógico al audio digital</a>
+  <ul class="collapse">
+  <li><a href="#explicación" id="toc-explicación" class="nav-link" data-scroll-target="#explicación">Explicación</a></li>
+  <li><a href="#ejemplo-visual-del-muestreo" id="toc-ejemplo-visual-del-muestreo" class="nav-link" data-scroll-target="#ejemplo-visual-del-muestreo">Ejemplo visual del muestreo</a></li>
+  </ul></li>
+  <li><a href="#frecuencia-de-muestreo" id="toc-frecuencia-de-muestreo" class="nav-link" data-scroll-target="#frecuencia-de-muestreo">Frecuencia de muestreo</a></li>
+  <li><a href="#resumen-del-sonido-analógico-al-digital" id="toc-resumen-del-sonido-analógico-al-digital" class="nav-link" data-scroll-target="#resumen-del-sonido-analógico-al-digital">Resumen: Del sonido analógico al digital</a></li>
+  <li><a href="#el-límite-de-nyquist" id="toc-el-límite-de-nyquist" class="nav-link" data-scroll-target="#el-límite-de-nyquist">El límite de Nyquist</a>
+  <ul class="collapse">
+  <li><a href="#por-qué-16-khz-es-suficiente-para-habla" id="toc-por-qué-16-khz-es-suficiente-para-habla" class="nav-link" data-scroll-target="#por-qué-16-khz-es-suficiente-para-habla">¿Por qué 16 kHz es suficiente para habla?</a></li>
+  <li><a href="#qué-pasa-si-muestreamos-muy-bajo" id="toc-qué-pasa-si-muestreamos-muy-bajo" class="nav-link" data-scroll-target="#qué-pasa-si-muestreamos-muy-bajo">¿Qué pasa si muestreamos muy bajo?</a></li>
+  <li><a href="#qué-pasa-si-muestreamos-muy-alto" id="toc-qué-pasa-si-muestreamos-muy-alto" class="nav-link" data-scroll-target="#qué-pasa-si-muestreamos-muy-alto">¿Qué pasa si muestreamos muy alto?</a></li>
+  <li><a href="#tabla-de-referencia" id="toc-tabla-de-referencia" class="nav-link" data-scroll-target="#tabla-de-referencia">Tabla de referencia</a></li>
+  </ul></li>
+  <li><a href="#resumen-importancia-de-la-frecuencia-de-muestreo-y-preprocesamiento-de-audio" id="toc-resumen-importancia-de-la-frecuencia-de-muestreo-y-preprocesamiento-de-audio" class="nav-link" data-scroll-target="#resumen-importancia-de-la-frecuencia-de-muestreo-y-preprocesamiento-de-audio">Resumen: Importancia de la Frecuencia de Muestreo y Preprocesamiento de Audio</a>
+  <ul class="collapse">
+  <li><a href="#frecuencia-de-muestreo-uniforme" id="toc-frecuencia-de-muestreo-uniforme" class="nav-link" data-scroll-target="#frecuencia-de-muestreo-uniforme">1. Frecuencia de Muestreo Uniforme</a></li>
+  <li><a href="#amplitud-y-profundidad-de-bits" id="toc-amplitud-y-profundidad-de-bits" class="nav-link" data-scroll-target="#amplitud-y-profundidad-de-bits">2. Amplitud y Profundidad de Bits</a></li>
+  <li><a href="#visualizaciones-de-audio" id="toc-visualizaciones-de-audio" class="nav-link" data-scroll-target="#visualizaciones-de-audio">3. Visualizaciones de Audio</a></li>
+  <li><a href="#a-forma-de-onda-dominio-del-tiempo" id="toc-a-forma-de-onda-dominio-del-tiempo" class="nav-link" data-scroll-target="#a-forma-de-onda-dominio-del-tiempo">a) Forma de Onda (Dominio del Tiempo)</a></li>
+  <li><a href="#b-espectro-de-frecuencia-dominio-de-frecuencia" id="toc-b-espectro-de-frecuencia-dominio-de-frecuencia" class="nav-link" data-scroll-target="#b-espectro-de-frecuencia-dominio-de-frecuencia">b) Espectro de Frecuencia (Dominio de Frecuencia)</a></li>
+  <li><a href="#c-espectrograma" id="toc-c-espectrograma" class="nav-link" data-scroll-target="#c-espectrograma">c) Espectrograma</a></li>
+  <li><a href="#d-espectrograma-mel" id="toc-d-espectrograma-mel" class="nav-link" data-scroll-target="#d-espectrograma-mel">d) Espectrograma Mel</a></li>
+  <li><a href="#preprocesamiento-para-modelos-de-ia" id="toc-preprocesamiento-para-modelos-de-ia" class="nav-link" data-scroll-target="#preprocesamiento-para-modelos-de-ia">4. Preprocesamiento para Modelos de IA</a></li>
+  <li><a href="#ejemplo-whisper-modelo-de-reconocimiento-de-voz" id="toc-ejemplo-whisper-modelo-de-reconocimiento-de-voz" class="nav-link" data-scroll-target="#ejemplo-whisper-modelo-de-reconocimiento-de-voz">Ejemplo: Whisper (modelo de reconocimiento de voz)</a></li>
+  <li><a href="#herramientas-en-transformers" id="toc-herramientas-en-transformers" class="nav-link" data-scroll-target="#herramientas-en-transformers">Herramientas en 🤗 Transformers</a></li>
+  <li><a href="#pasos-prácticos-de-preprocesamiento" id="toc-pasos-prácticos-de-preprocesamiento" class="nav-link" data-scroll-target="#pasos-prácticos-de-preprocesamiento">5. Pasos Prácticos de Preprocesamiento</a></li>
+  </ul></li>
+  <li><a href="#mapa-conceptual-del-sonido-analógico-al-modelo-de-ia" id="toc-mapa-conceptual-del-sonido-analógico-al-modelo-de-ia" class="nav-link" data-scroll-target="#mapa-conceptual-del-sonido-analógico-al-modelo-de-ia">Mapa Conceptual: Del Sonido Analógico al Modelo de IA</a>
+  <ul class="collapse">
+  <li><a href="#puntos-clave-del-mapa-conceptual" id="toc-puntos-clave-del-mapa-conceptual" class="nav-link" data-scroll-target="#puntos-clave-del-mapa-conceptual">Puntos Clave del Mapa Conceptual</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../docs/05_implementacion_tecnica.html">Arquitectura y Códigos</a></li><li class="breadcrumb-item"><a href="../docs/codigo_vosk.html">Código de VoskHelper</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
 
 
-<section id="sec-cod-vosk" class="level1">
-<h1>Código de VoskHelper</h1>
-<p><strong>Archivo fuente:</strong> <code>Codigos/modulo_vosk.py</code></p>
-<p>La clase <code>VoskHelper</code> actúa como un <strong>Intérprete</strong> entre el hardware de audio y el complejo motor de Vosk (basado en Kaldi). Como vimos en la sección de <a href="../docs/02_modelos_stt_y_evaluacion.html#sec-stt">Modelos STT</a>, Vosk es un motor local muy rápido.</p>
-<section id="propósito-del-wrapper" class="level2">
-<h2 class="anchored" data-anchor-id="propósito-del-wrapper">1. Propósito del Wrapper</h2>
-<p>Este helper se encarga de: * validar que el audio sea mono, 16-bit PCM y sin compresión, * cargar el modelo Vosk en memoria una sola vez, * dividir el audio en chunks y transcribirlos con <code>AcceptWaveform()</code>, y * devolver el texto consolidado listo para comparar o evaluar.</p>
-</section>
-<section id="inicialización-y-carga-de-modelo" class="level2">
-<h2 class="anchored" data-anchor-id="inicialización-y-carga-de-modelo">2. Inicialización y Carga de Modelo</h2>
-<p>Cargar el modelo en memoria es el proceso más pesado. Al hacerlo dentro del método <code>__init__</code>, nos aseguramos de que el sistema “encienda el cerebro” solo una vez cuando el programa arranca.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> wave</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> vosk</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> VoskHelper:</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, model_path<span class="op">=</span><span class="st">"model"</span>):</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> os.path.exists(model_path):</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">FileNotFoundError</span>(<span class="ss">f"La carpeta del modelo '</span><span class="sc">{</span>model_path<span class="sc">}</span><span class="ss">' no existe."</span>)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.model <span class="op">=</span> vosk.Model(model_path)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="validación-física-del-audio-el-control-de-calidad" class="level2">
-<h2 class="anchored" data-anchor-id="validación-física-del-audio-el-control-de-calidad">3. Validación Física del Audio (El Control de Calidad)</h2>
-<p>Antes de enviar un archivo al motor, debemos asegurarnos de que cumple las estrictas reglas de Kaldi. La librería <code>wave</code> nos permite leer el encabezado del archivo sin reproducirlo.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> preparar_audio_wav(<span class="va">self</span>, ruta_audio):</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>        wf <span class="op">=</span> wave.<span class="bu">open</span>(ruta_audio, <span class="st">"rb"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> wf.getnchannels() <span class="op">!=</span> <span class="dv">1</span>:</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"[Advertencia] El audio no es Mono..."</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> wf.getsampwidth() <span class="op">!=</span> <span class="dv">2</span>:</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"[Advertencia] El audio no es de 16-bit..."</span>)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> wf.getcomptype() <span class="op">!=</span> <span class="st">"NONE"</span>:</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"[Advertencia] El audio parece estar comprimido (no es PCM puro)..."</span>)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> wf</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="llm_audio" class="level1">
+<h1>Llm_audio</h1>
+<p><code>.wav</code>&nbsp;(Archivo de audio de forma de onda),&nbsp;<code>.flac</code>&nbsp;(Códec de audio gratuito sin pérdidas) y&nbsp;<code>.mp3</code>&nbsp;(Capa de audio MPEG-1 3). Cada uno comprime de manera diferente cada archivo</p>
+<section id="wav-archivo-de-audio-de-forma-de-onda" class="level2">
+<h2 class="anchored" data-anchor-id="wav-archivo-de-audio-de-forma-de-onda">WAV (Archivo de audio de forma de onda)</h2>
+<p><strong>¿Qué es?</strong> Es un formato de audio sin comprimir que almacena datos de audio en su forma original, sin pérdida de calidad.</p>
+<p><strong>¿Cuándo se usa?</strong> Se utiliza principalmente en producción musical profesional, grabación de estudio, masterización y cuando se requiere la máxima calidad de audio.</p>
+<p><strong>Ventajas:</strong></p>
 <ul>
-<li><code>getnchannels() != 1</code>: Vosk solo puede escuchar por un “oído” a la vez (Mono).</li>
-<li><code>getsampwidth() != 2</code>: Se requiere audio de 16 bits de profundidad (ver <a href="../docs/01_fundamentos_audio.html#sec-audio-fund">Fundamentos de Audio</a>).</li>
-<li><code>getcomptype() != "NONE"</code>: Vosk no soporta MP3 o formatos comprimidos directamente.</li>
+<li>Calidad de audio máxima sin pérdida de información</li>
+<li>Compatible con prácticamente todos los programas de edición de audio</li>
+<li>Ideal para procesamiento y edición posterior</li>
+<li>No hay degradación por compresión</li>
+</ul>
+<p><strong>Desventajas:</strong></p>
+<ul>
+<li>Archivos muy grandes (aproximadamente 10 MB por minuto de audio estéreo)</li>
+<li>Consume mucho espacio de almacenamiento</li>
+<li>No es práctico para streaming o compartir por internet</li>
 </ul>
 </section>
-<section id="el-bucle-de-transcripción-por-chunks-frames" class="level2">
-<h2 class="anchored" data-anchor-id="el-bucle-de-transcripción-por-chunks-frames">4. El Bucle de Transcripción por Chunks (Frames)</h2>
-<p>No podemos darle un archivo de 10 minutos de golpe al procesador. Debemos cortarlo en “fotos” de sonido llamadas frames. Esto se enlaza con el concepto de Orquestación visto en la sección de <a href="../docs/05_implementacion_tecnica.html#sec-arq">Implementación Técnica</a>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> transcribir_archivo(<span class="va">self</span>, ruta_audio):</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>        wf <span class="op">=</span> <span class="va">self</span>.preparar_audio_wav(ruta_audio)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        rec <span class="op">=</span> vosk.KaldiRecognizer(<span class="va">self</span>.model, wf.getframerate())</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        textos <span class="op">=</span> []</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Cortamos el archivo en trozos de 4000 frames (0.25 segundos)</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>            data <span class="op">=</span> wf.readframes(<span class="dv">4000</span>)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="bu">len</span>(data) <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                <span class="cf">break</span> <span class="co"># Se acabó el archivo</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>            <span class="co"># AcceptWaveform() devuelve True si detectó una pausa clara (silencio)</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> rec.AcceptWaveform(data):</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>                result <span class="op">=</span> json.loads(rec.Result())</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> result.get(<span class="st">'text'</span>):</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>                    textos.append(result[<span class="st">'text'</span>])</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>                    </span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Limpiamos las palabras que hayan quedado a medias al final del audio</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>        final <span class="op">=</span> json.loads(rec.FinalResult())</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> final.get(<span class="st">'text'</span>):</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>            textos.append(final[<span class="st">'text'</span>])</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>        wf.close()</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">" "</span>.join(textos).strip()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="flac-códec-de-audio-gratuito-sin-pérdidas" class="level2">
+<h2 class="anchored" data-anchor-id="flac-códec-de-audio-gratuito-sin-pérdidas">FLAC (Códec de audio gratuito sin pérdidas)</h2>
+<p><strong>¿Qué es?</strong> Es un formato de audio comprimido sin pérdidas, lo que significa que reduce el tamaño del archivo sin sacrificar calidad.</p>
+<p><strong>¿Cuándo se usa?</strong> Se usa para archivar música de alta calidad, audiófilos que desean calidad superior sin ocupar tanto espacio como WAV, y para distribución de audio de alta fidelidad.</p>
+<p><strong>Ventajas:</strong></p>
+<ul>
+<li>Compresión sin pérdida de calidad (reduce archivos entre 30-50%)</li>
+<li>Mantiene toda la información del audio original</li>
+<li>Código abierto y gratuito</li>
+<li>Soporta metadatos completos</li>
+</ul>
+<p><strong>Desventajas:</strong></p>
+<ul>
+<li>Archivos aún relativamente grandes comparados con MP3</li>
+<li>No todos los dispositivos lo soportan nativamente</li>
+<li>Requiere más procesamiento para reproducción</li>
+</ul>
 </section>
-<section id="salida-y-postprocesamiento" class="level2">
-<h2 class="anchored" data-anchor-id="salida-y-postprocesamiento">5. Salida y Postprocesamiento</h2>
-<p>El método <code>transcribir_archivo</code> devuelve el texto unido con espacios. * <code>json.loads(rec.Result())</code> transforma el JSON crudo de Vosk en datos manejables. * <code>final.get('text', '')</code> asegura que no se rompa el flujo incluso si no hay texto al final del audio.</p>
-<p>Este texto luego puede compararse con referencias o enviarse al módulo <code>juez.py</code> para calcular el WER.</p>
+<section id="mp3-capa-de-audio-mpeg-1-3" class="level2">
+<h2 class="anchored" data-anchor-id="mp3-capa-de-audio-mpeg-1-3">MP3 (Capa de audio MPEG-1 3)</h2>
+<p><strong>¿Qué es?</strong> Es un formato de audio comprimido con pérdida que reduce significativamente el tamaño del archivo eliminando información que el oído humano típicamente no percibe.</p>
+<p><strong>¿Cuándo se usa?</strong> Se utiliza para música en dispositivos portátiles, streaming, podcasts, distribución en línea, y cuando el espacio de almacenamiento es limitado.</p>
+<p><strong>Ventajas:</strong></p>
+<ul>
+<li>Archivos muy pequeños (aproximadamente 1 MB por minuto con calidad estándar)</li>
+<li>Compatible con prácticamente todos los dispositivos y plataformas</li>
+<li>Excelente para compartir y transmitir por internet</li>
+<li>Balance razonable entre calidad y tamaño de archivo</li>
+</ul>
+<p><strong>Desventajas:</strong></p>
+<ul>
+<li>Pérdida de calidad de audio (compresión con pérdida)</li>
+<li>No recomendado para producción profesional o edición</li>
+<li>La calidad se degrada con cada re-codificación</li>
+<li>No es ideal para audiófilos o sistemas de audio de alta gama</li>
+</ul>
+</section>
+<section id="del-sonido-analógico-al-audio-digital" class="level2">
+<h2 class="anchored" data-anchor-id="del-sonido-analógico-al-audio-digital">Del sonido analógico al audio digital</h2>
+<p>El proceso de conversión de una señal de audio continua (analógica) a una representación digital implica varios pasos fundamentales:</p>
+<pre class="mermaid"><code>graph TD
+    A["Ondas sonoras"] --&gt; B["Micrófono"]
+    B --&gt; C["Señal eléctrica&lt;br/&gt;(analógica)"]
+    C --&gt; D["ADC"]
+    D --&gt; E["Muestreo"]
+    E --&gt; F["Cuantización"]
+    F --&gt; G["Señal digital"]</code></pre>
+<section id="explicación" class="level3">
+<h3 class="anchored" data-anchor-id="explicación">Explicación</h3>
+<ul>
+<li><strong>Ondas sonoras:</strong> Sonido continuo en el aire.</li>
+<li><strong>Micrófono:</strong> Convierte el sonido en señal eléctrica.</li>
+<li><strong>Señal eléctrica (analógica):</strong> Voltaje continuo que representa el sonido.</li>
+<li><strong>ADC:</strong> Convierte la señal analógica en datos.</li>
+<li><strong>Muestreo:</strong> Toma “fotos” de la señal a intervalos regulares.</li>
+<li><strong>Cuantización:</strong> Asigna un número a cada muestra.</li>
+<li><strong>Señal digital:</strong> Secuencia de valores lista para guardarse o procesarse.</li>
+</ul>
+</section>
+<section id="ejemplo-visual-del-muestreo" class="level3">
+<h3 class="anchored" data-anchor-id="ejemplo-visual-del-muestreo">Ejemplo visual del muestreo</h3>
+<p>Para ver el efecto, primero muestro un muestreo <strong>“desordenado”</strong> (intervalos irregulares y valores no consistentes), y luego el muestreo <strong>regular</strong>.</p>
+<p><strong>1) Muestreo “desordenado” (irregular)</strong></p>
+<pre class="mermaid"><code>%%{init: {'theme':'base', 'themeVariables': {'fontSize':'16px'}}}%%
+xychart-beta
+    title "Muestreo irregular (desordenado)"
+    x-axis "Tiempo (ms)" [0, 3, 9, 14, 18, 27, 31, 38, 44, 49, 50]
+    y-axis "Amplitud" -1.5 --&gt; 1.5
+    line [0, 0.35, 1.05, 0.70, 0.10, -0.80, -0.20, -1.10, -0.40, 0.50, 0.00]
+    bar  [0, 0.35, 1.05, 0.70, 0.10, -0.80, -0.20, -1.10, -0.40, 0.50, 0.00]</code></pre>
+<p><strong>2) Muestreo regular (uniforme)</strong></p>
+<p>A continuación se muestra cómo una señal continua (analógica) se convierte en una señal discreta (digital) mediante el muestreo:</p>
+<pre class="mermaid"><code>%%{init: {'theme':'base', 'themeVariables': {'fontSize':'16px'}}}%%
+xychart-beta
+    title "Muestreo de señal analógica a digital"
+    x-axis "Tiempo (ms)" [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
+    y-axis "Amplitud" -1.5 --&gt; 1.5
+    line [0, 0.59, 0.95, 0.95, 0.59, 0, -0.59, -0.95, -0.95, -0.59, 0]
+    bar [0, 0.59, 0.95, 0.95, 0.59, 0, -0.59, -0.95, -0.95, -0.59, 0]</code></pre>
+<p><strong>Interpretación de la gráfica:</strong></p>
+<ul>
+<li>La <strong>línea continua</strong> representa la señal analógica original (sonido real como una onda suave)</li>
+<li>Las <strong>barras verticales</strong> representan las muestras discretas tomadas a intervalos regulares de tiempo</li>
+<li>Cada barra captura el valor de amplitud en ese momento específico</li>
+<li>Entre más muestras por segundo (mayor frecuencia de muestreo), más precisa es la representación digital</li>
+<li>Con suficientes muestras, la señal digital puede reconstruir fielmente la señal analógica original</li>
+</ul>
+</section>
+</section>
+<section id="frecuencia-de-muestreo" class="level2">
+<h2 class="anchored" data-anchor-id="frecuencia-de-muestreo">Frecuencia de muestreo</h2>
+<p><strong>¿Qué es?</strong> Es el número de muestras tomadas por segundo al digitalizar audio, medida en hercios (Hz).</p>
+<p><strong>Ejemplos comunes:</strong></p>
+<ul>
+<li><strong>Audio de calidad CD:</strong> 44.100 Hz (44,1 kHz) - 44.100 muestras por segundo</li>
+<li><strong>Audio de alta resolución:</strong> 192.000 Hz (192 kHz)</li>
+<li><strong>Modelos de habla/IA:</strong> 16.000 Hz (16 kHz)</li>
+</ul>
+<p><strong>Principio:</strong> A mayor frecuencia de muestreo, mayor fidelidad en la reproducción del sonido original, pero también mayor tamaño de archivo.</p>
+</section>
+<section id="resumen-del-sonido-analógico-al-digital" class="level2">
+<h2 class="anchored" data-anchor-id="resumen-del-sonido-analógico-al-digital">Resumen: Del sonido analógico al digital</h2>
+<p>El audio digital se crea capturando muestras de una señal analógica a intervalos regulares. Este proceso se llama <strong>muestreo</strong>, y la <strong>frecuencia de muestreo</strong> determina cuántas veces por segundo se toma una “foto” del sonido.</p>
+</section>
+<section id="el-límite-de-nyquist" class="level2">
+<h2 class="anchored" data-anchor-id="el-límite-de-nyquist">El límite de Nyquist</h2>
+<p><strong>¿Qué es?</strong> El teorema de Nyquist-Shannon establece que para capturar correctamente una señal, la frecuencia de muestreo debe ser al menos el doble de la frecuencia más alta que queremos grabar.</p>
+<p><strong>Fórmula:</strong></p>
+<p><code>Frecuencia máxima capturable = Frecuencia de muestreo ÷ 2</code></p>
+<p><strong>Ejemplos prácticos:</strong></p>
+<ul>
+<li><strong>Habla humana (16 kHz):</strong> Captura hasta 8 kHz, suficiente para todas las frecuencias audibles del habla</li>
+<li><strong>Audio CD (44,1 kHz):</strong> Captura hasta 22,05 kHz, cubriendo todo el rango auditivo humano (20 Hz - 20 kHz)</li>
+<li><strong>Audio profesional (96 kHz):</strong> Captura hasta 48 kHz, más allá de la audición humana pero útil para procesamiento</li>
+</ul>
+<section id="por-qué-16-khz-es-suficiente-para-habla" class="level3">
+<h3 class="anchored" data-anchor-id="por-qué-16-khz-es-suficiente-para-habla">¿Por qué 16 kHz es suficiente para habla?</h3>
+<p>Las frecuencias importantes del habla humana están por debajo de 8 kHz:</p>
+<ul>
+<li>Vocales: 300 Hz - 3 kHz</li>
+<li>Consonantes: 2 kHz - 8 kHz</li>
+<li>Con 16 kHz de muestreo, se captura todo hasta 8 kHz (límite de Nyquist)</li>
+</ul>
+</section>
+<section id="qué-pasa-si-muestreamos-muy-bajo" class="level3">
+<h3 class="anchored" data-anchor-id="qué-pasa-si-muestreamos-muy-bajo">¿Qué pasa si muestreamos muy bajo?</h3>
+<p><strong>Submuestreo (undersampling):</strong> Si la frecuencia de muestreo es demasiado baja, ocurre <strong>aliasing</strong>:</p>
+<ul>
+<li>Se pierden frecuencias altas</li>
+<li>El audio suena “amortiguado” o “apagado”</li>
+<li>Ejemplo: habla a 8 kHz suena sin claridad porque solo captura hasta 4 kHz</li>
+</ul>
+</section>
+<section id="qué-pasa-si-muestreamos-muy-alto" class="level3">
+<h3 class="anchored" data-anchor-id="qué-pasa-si-muestreamos-muy-alto">¿Qué pasa si muestreamos muy alto?</h3>
+<p><strong>Sobremuestreo (oversampling):</strong></p>
+<ul>
+<li>No se captura información adicional útil (nada que el oído humano pueda percibir)</li>
+<li>Archivos más grandes innecesariamente</li>
+<li>Mayor costo computacional sin beneficio audible</li>
+</ul>
+</section>
+<section id="tabla-de-referencia" class="level3">
+<h3 class="anchored" data-anchor-id="tabla-de-referencia">Tabla de referencia</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Frecuencia de muestreo</strong></th>
+<th><strong>Límite de Nyquist</strong></th>
+<th><strong>Uso recomendado</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>8 kHz</td>
+<td>4 kHz</td>
+<td>Telefonía (baja calidad)</td>
+</tr>
+<tr class="even">
+<td>16 kHz</td>
+<td>8 kHz</td>
+<td>Modelos de habla/IA, reconocimiento de voz</td>
+</tr>
+<tr class="odd">
+<td>44,1 kHz</td>
+<td>22,05 kHz</td>
+<td>Audio CD, música estándar</td>
+</tr>
+<tr class="even">
+<td>48 kHz</td>
+<td>24 kHz</td>
+<td>Video profesional</td>
+</tr>
+<tr class="odd">
+<td>96 kHz</td>
+<td>48 kHz</td>
+<td>Producción musical profesional</td>
+</tr>
+<tr class="even">
+<td>192 kHz</td>
+<td>96 kHz</td>
+<td>Masterización de audio de alta resolución</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Conclusión:</strong> La frecuencia de muestreo debe elegirse según el contenido: 16 kHz es óptimo para habla porque captura todas las frecuencias necesarias sin desperdiciar recursos computacionales.</p>
+</section>
+</section>
+<section id="resumen-importancia-de-la-frecuencia-de-muestreo-y-preprocesamiento-de-audio" class="level2">
+<h2 class="anchored" data-anchor-id="resumen-importancia-de-la-frecuencia-de-muestreo-y-preprocesamiento-de-audio">Resumen: Importancia de la Frecuencia de Muestreo y Preprocesamiento de Audio</h2>
+<section id="frecuencia-de-muestreo-uniforme" class="level3">
+<h3 class="anchored" data-anchor-id="frecuencia-de-muestreo-uniforme">1. Frecuencia de Muestreo Uniforme</h3>
+<p><strong>Concepto clave:</strong> Todos los archivos de audio en tu conjunto de datos deben tener la misma frecuencia de muestreo.</p>
+<p><strong>¿Por qué?</strong> Un audio de 5 segundos a 16 kHz genera 80,000 valores, mientras que a 8 kHz genera solo 40,000 valores. Los modelos de IA no pueden generalizar bien entre diferentes frecuencias de muestreo porque tratan los datos como secuencias de diferente longitud.</p>
+<p><strong>Solución:</strong> El <strong>remuestreo</strong> ajusta la frecuencia de muestreo para que todos los archivos coincidan.</p>
+</section>
+<section id="amplitud-y-profundidad-de-bits" class="level3">
+<h3 class="anchored" data-anchor-id="amplitud-y-profundidad-de-bits">2. Amplitud y Profundidad de Bits</h3>
+<p><strong>Amplitud:</strong> Mide qué tan fuerte es un sonido en un momento dado (en decibeles). Ejemplo: voz normal ≈ 60 dB, concierto de rock ≈ 125 dB.</p>
+<p><strong>Profundidad de bits:</strong> Determina cuán precisamente se captura la amplitud:</p>
+<ul>
+<li><strong>16 bits:</strong> 65,536 niveles de precisión (suficiente para la mayoría de aplicaciones)</li>
+<li><strong>24 bits:</strong> 16,777,216 niveles (calidad profesional)</li>
+<li><strong>32 bits (punto flotante):</strong> Valores entre -1.0 y 1.0, ideal para aprendizaje automático</li>
+</ul>
+<p><strong>Nota sobre decibeles en audio digital:</strong> 0 dB es el máximo volumen posible, todo lo demás es negativo. Cada -6 dB reduce la amplitud a la mitad.</p>
+</section>
+<section id="visualizaciones-de-audio" class="level3">
+<h3 class="anchored" data-anchor-id="visualizaciones-de-audio">3. Visualizaciones de Audio</h3>
+</section>
+<section id="a-forma-de-onda-dominio-del-tiempo" class="level3">
+<h3 class="anchored" data-anchor-id="a-forma-de-onda-dominio-del-tiempo">a) Forma de Onda (Dominio del Tiempo)</h3>
+<p>Muestra cómo cambia la amplitud del sonido a lo largo del tiempo. Útil para ver el volumen general, detectar ruido y verificar que el preprocesamiento funcionó correctamente.</p>
+</section>
+<section id="b-espectro-de-frecuencia-dominio-de-frecuencia" class="level3">
+<h3 class="anchored" data-anchor-id="b-espectro-de-frecuencia-dominio-de-frecuencia">b) Espectro de Frecuencia (Dominio de Frecuencia)</h3>
+<p>Muestra qué frecuencias (tonos) están presentes en un momento específico y qué tan fuertes son. Se calcula usando la Transformada Discreta de Fourier (DFT o FFT).</p>
+</section>
+<section id="c-espectrograma" class="level3">
+<h3 class="anchored" data-anchor-id="c-espectrograma">c) Espectrograma</h3>
+<p>Combina tiempo y frecuencia en un solo gráfico. Muestra cómo cambian las frecuencias a lo largo del tiempo usando colores para indicar la intensidad. Se crea tomando múltiples DFTs de segmentos cortos del audio (usando STFT - Transformada de Fourier de Tiempo Corto).</p>
+</section>
+<section id="d-espectrograma-mel" class="level3">
+<h3 class="anchored" data-anchor-id="d-espectrograma-mel">d) Espectrograma Mel</h3>
+<p>Similar al espectrograma pero ajustado a cómo los humanos percibimos el sonido. Usa la “escala mel” que refleja que nuestros oídos son más sensibles a cambios en frecuencias bajas que altas.</p>
+<p><strong>Parámetros importantes:</strong></p>
+<ul>
+<li><code>n_mels</code>: Número de bandas de frecuencia (común: 40-80)</li>
+<li><code>fmax</code>: Frecuencia máxima a considerar</li>
+</ul>
+<p><strong>Espectrograma log-mel:</strong> Cuando las intensidades se expresan en decibeles (escala logarítmica).</p>
+</section>
+<section id="preprocesamiento-para-modelos-de-ia" class="level3">
+<h3 class="anchored" data-anchor-id="preprocesamiento-para-modelos-de-ia">4. Preprocesamiento para Modelos de IA</h3>
+<p>Los modelos de aprendizaje automático no pueden trabajar directamente con audio crudo. Necesitan que el audio se convierta en <strong>características de entrada</strong>.</p>
+</section>
+<section id="ejemplo-whisper-modelo-de-reconocimiento-de-voz" class="level3">
+<h3 class="anchored" data-anchor-id="ejemplo-whisper-modelo-de-reconocimiento-de-voz">Ejemplo: Whisper (modelo de reconocimiento de voz)</h3>
+<p><strong>Paso 1:</strong> Ajustar duración - Todos los ejemplos se ajustan a 30 segundos (rellena con ceros los cortos, recorta los largos).</p>
+<p><strong>Paso 2:</strong> Convertir a espectrograma log-mel - Transforma el audio en una representación visual que el modelo puede procesar.</p>
+</section>
+<section id="herramientas-en-transformers" class="level3">
+<h3 class="anchored" data-anchor-id="herramientas-en-transformers">Herramientas en 🤗 Transformers</h3>
+<ul>
+<li><strong>Feature Extractor:</strong> Convierte audio crudo en características que el modelo entiende</li>
+<li><strong>Tokenizer:</strong> Procesa texto (para tareas multimodales como reconocimiento de voz)</li>
+<li><strong>Processor:</strong> Combina ambos en una sola herramienta</li>
+</ul>
+</section>
+<section id="pasos-prácticos-de-preprocesamiento" class="level3">
+<h3 class="anchored" data-anchor-id="pasos-prácticos-de-preprocesamiento">5. Pasos Prácticos de Preprocesamiento</h3>
+<ol type="1">
+<li><strong>Remuestreo:</strong> Usar <code>cast_column</code> de 🤗Datasets para ajustar la frecuencia de muestreo</li>
+<li><strong>Filtrado:</strong> Eliminar ejemplos muy largos (por ejemplo, &gt;20 segundos) para evitar problemas de memoria</li>
+<li><strong>Conversión a características:</strong> Aplicar el feature extractor del modelo para transformar audio en el formato esperado</li>
+</ol>
+</section>
+</section>
+<section id="mapa-conceptual-del-sonido-analógico-al-modelo-de-ia" class="level2">
+<h2 class="anchored" data-anchor-id="mapa-conceptual-del-sonido-analógico-al-modelo-de-ia">Mapa Conceptual: Del Sonido Analógico al Modelo de IA</h2>
+<pre class="mermaid"><code>graph TB
+    Start["🎵 SONIDO ANALÓGICO&lt;br/&gt;(Ondas continuas en el aire)"]
+    
+    Start --&gt; Sample["📊 MUESTREO&lt;br/&gt;Capturar 'fotos' del sonido&lt;br/&gt;a intervalos regulares"]
+    
+    Sample --&gt; SampleRate["⏱️ FRECUENCIA DE MUESTREO&lt;br/&gt;Ej: 16 kHz = 16,000 muestras/seg&lt;br/&gt;⚠️ Debe ser uniforme en todo el dataset"]
+    
+    Sample --&gt; BitDepth["🎚️ PROFUNDIDAD DE BITS&lt;br/&gt;Precisión de cada muestra&lt;br/&gt;16 bits: 65,536 niveles&lt;br/&gt;32 bits float: [-1.0, 1.0]"]
+    
+    SampleRate --&gt; Digital["💾 AUDIO DIGITAL&lt;br/&gt;Serie de valores numéricos"]
+    BitDepth --&gt; Digital
+    
+    Digital --&gt; Viz["👁️ VISUALIZACIONES"]
+    
+    Viz --&gt; Waveform["📈 Forma de Onda&lt;br/&gt;(Dominio del Tiempo)&lt;br/&gt;Amplitud vs Tiempo"]
+    
+    Viz --&gt; FreqSpec["🌈 Espectro de Frecuencia&lt;br/&gt;(Dominio de Frecuencia)&lt;br/&gt;DFT/FFT&lt;br/&gt;Frecuencias vs Amplitud"]
+    
+    Viz --&gt; Spectro["🎨 Espectrograma&lt;br/&gt;STFT&lt;br/&gt;Tiempo + Frecuencia + Amplitud"]
+    
+    Spectro --&gt; MelSpec["🎧 Espectrograma Mel&lt;br/&gt;Ajustado a percepción humana&lt;br/&gt;Escala mel + log (dB)"]
+    
+    Digital --&gt; Preprocess["🔧 PREPROCESAMIENTO"]
+    
+    Preprocess --&gt; Resample["🔄 Remuestreo&lt;br/&gt;Igualar frecuencias de muestreo&lt;br/&gt;cast_column() en 🤗Datasets"]
+    
+    Preprocess --&gt; Filter["🗑️ Filtrado&lt;br/&gt;Eliminar ejemplos muy largos&lt;br/&gt;Crear columna duración → filtrar"]
+    
+    Preprocess --&gt; Convert["🔀 Conversión a Características"]
+    
+    Convert --&gt; FeatureExt["⚙️ Feature Extractor&lt;br/&gt;(ej: WhisperFeatureExtractor)"]
+    
+    FeatureExt --&gt; Padding["📏 Ajuste de Duración&lt;br/&gt;Padding (rellenar con 0s)&lt;br/&gt;o Truncamiento (recortar)"]
+    
+    FeatureExt --&gt; ToMel["🎵 → 🎨&lt;br/&gt;Convertir a espectrograma log-mel"]
+    
+    Padding --&gt; ModelInput["🤖 ENTRADA DEL MODELO&lt;br/&gt;input_features&lt;br/&gt;(espectrograma log-mel)"]
+    ToMel --&gt; ModelInput
+    
+    ModelInput --&gt; ML["🧠 MODELO DE IA&lt;br/&gt;(Reconocimiento de voz,&lt;br/&gt;Clasificación, etc.)"]
+    
+    ML --&gt; Output["📤 SALIDA&lt;br/&gt;Transcripción, clasificación,&lt;br/&gt;o nuevo audio"]
+    
+    style Start fill:#e1f5ff
+    style Digital fill:#fff4e1
+    style Viz fill:#f0e1ff
+    style Preprocess fill:#e1ffe1
+    style ModelInput fill:#ffe1e1
+    style ML fill:#ffe1f5
+    style Output fill:#f5ffe1</code></pre>
+<section id="puntos-clave-del-mapa-conceptual" class="level3">
+<h3 class="anchored" data-anchor-id="puntos-clave-del-mapa-conceptual">Puntos Clave del Mapa Conceptual</h3>
+<ul>
+<li><strong>Azul claro:</strong> Sonido analógico original</li>
+<li><strong>Amarillo:</strong> Audio digital (después del muestreo)</li>
+<li><strong>Morado:</strong> Diferentes formas de visualizar el audio</li>
+<li><strong>Verde:</strong> Pasos de preprocesamiento necesarios</li>
+<li><strong>Rojo:</strong> Datos listos para el modelo de IA</li>
+<li><strong>Rosa:</strong> Modelo de aprendizaje automático</li>
+<li><strong>Verde lima:</strong> Resultado final</li>
+</ul>
+<p><strong>Conclusión:</strong> El audio pasa por múltiples transformaciones desde el sonido real hasta los datos que un modelo de IA puede procesar. Cada paso es crucial: frecuencia de muestreo uniforme, conversión a características adecuadas (como espectrogramas mel), y preprocesamiento correcto. Las herramientas de 🤗 Transformers y 🤗 Datasets automatizan gran parte de este proceso.</p>
 
 
+</section>
 </section>
 </section>
 
@@ -919,18 +1187,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
   });
   </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../docs/05_implementacion_tecnica.html" class="pagination-link" aria-label="Implementación Técnica y Abstracción de Código">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Implementación Técnica y Abstracción de Código</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../docs/codigo_whisper.html" class="pagination-link" aria-label="Código de WhisperHelper">
-        <span class="nav-page-text">Código de WhisperHelper</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 
 

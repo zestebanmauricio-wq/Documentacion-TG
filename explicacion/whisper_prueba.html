@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>codigo_vosk – STT &amp; Biometría</title>
+<title>whisper_prueba – STT &amp; Biometría</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -65,8 +30,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../docs/codigo_whisper.html" rel="next">
-<link href="../docs/05_implementacion_tecnica.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -305,7 +268,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../docs/05_implementacion_tecnica.html">Arquitectura y Códigos</a></li><li class="breadcrumb-item"><a href="../docs/codigo_vosk.html">Código de VoskHelper</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -365,13 +328,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
  <span class="menu-text">Arquitectura y Códigos</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../docs/05_implementacion_tecnica.html" class="sidebar-item-text sidebar-link">
@@ -380,7 +343,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/codigo_vosk.html" class="sidebar-item-text sidebar-link active">
+  <a href="../docs/codigo_vosk.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Código de VoskHelper</span></a>
   </div>
 </li>
@@ -408,100 +371,156 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#sec-cod-vosk" id="toc-sec-cod-vosk" class="nav-link active" data-scroll-target="#sec-cod-vosk">Código de VoskHelper</a>
+  <li><a href="#whisper-vosk-arquitectura-de-diarización-biométrica-ligera" id="toc-whisper-vosk-arquitectura-de-diarización-biométrica-ligera" class="nav-link active" data-scroll-target="#whisper-vosk-arquitectura-de-diarización-biométrica-ligera">🎙️ Whisper + Vosk: Arquitectura de Diarización Biométrica Ligera</a>
   <ul class="collapse">
-  <li><a href="#propósito-del-wrapper" id="toc-propósito-del-wrapper" class="nav-link" data-scroll-target="#propósito-del-wrapper">1. Propósito del Wrapper</a></li>
-  <li><a href="#inicialización-y-carga-de-modelo" id="toc-inicialización-y-carga-de-modelo" class="nav-link" data-scroll-target="#inicialización-y-carga-de-modelo">2. Inicialización y Carga de Modelo</a></li>
-  <li><a href="#validación-física-del-audio-el-control-de-calidad" id="toc-validación-física-del-audio-el-control-de-calidad" class="nav-link" data-scroll-target="#validación-física-del-audio-el-control-de-calidad">3. Validación Física del Audio (El Control de Calidad)</a></li>
-  <li><a href="#el-bucle-de-transcripción-por-chunks-frames" id="toc-el-bucle-de-transcripción-por-chunks-frames" class="nav-link" data-scroll-target="#el-bucle-de-transcripción-por-chunks-frames">4. El Bucle de Transcripción por Chunks (Frames)</a></li>
-  <li><a href="#salida-y-postprocesamiento" id="toc-salida-y-postprocesamiento" class="nav-link" data-scroll-target="#salida-y-postprocesamiento">5. Salida y Postprocesamiento</a></li>
+  <li><a href="#qué-es-y-por-qué-se-creó" id="toc-qué-es-y-por-qué-se-creó" class="nav-link" data-scroll-target="#qué-es-y-por-qué-se-creó">1. ¿Qué es y por qué se creó?</a></li>
+  <li><a href="#cómo-funciona-diagrama-de-arquitectura" id="toc-cómo-funciona-diagrama-de-arquitectura" class="nav-link" data-scroll-target="#cómo-funciona-diagrama-de-arquitectura">2. ⚙️ ¿Cómo funciona? (Diagrama de Arquitectura)</a>
+  <ul class="collapse">
+  <li><a href="#paso-a-paso-del-código" id="toc-paso-a-paso-del-código" class="nav-link" data-scroll-target="#paso-a-paso-del-código">Paso a paso del código:</a></li>
+  </ul></li>
+  <li><a href="#profundización-por-qué-esta-arquitectura-es-ingeniosa" id="toc-profundización-por-qué-esta-arquitectura-es-ingeniosa" class="nav-link" data-scroll-target="#profundización-por-qué-esta-arquitectura-es-ingeniosa">3. 🧠 Profundización: ¿Por qué esta arquitectura es ingeniosa?</a>
+  <ul class="collapse">
+  <li><a href="#a.-los-roles-el-escriba-y-el-detective" id="toc-a.-los-roles-el-escriba-y-el-detective" class="nav-link" data-scroll-target="#a.-los-roles-el-escriba-y-el-detective">A. Los Roles: El “Escriba” y el “Detective”</a></li>
+  <li><a href="#b.-el-proceso-de-recorte-quirúrgico" id="toc-b.-el-proceso-de-recorte-quirúrgico" class="nav-link" data-scroll-target="#b.-el-proceso-de-recorte-quirúrgico">B. El Proceso de “Recorte Quirúrgico”</a></li>
+  </ul></li>
+  <li><a href="#detalle-técnico-de-whisper_prueba.py" id="toc-detalle-técnico-de-whisper_prueba.py" class="nav-link" data-scroll-target="#detalle-técnico-de-whisper_prueba.py">4. 🔧 Detalle técnico de <code>WHISPER_PRUEBA.py</code></a>
+  <ul class="collapse">
+  <li><a href="#estructura-de-archivos-usada-por-el-script" id="toc-estructura-de-archivos-usada-por-el-script" class="nav-link" data-scroll-target="#estructura-de-archivos-usada-por-el-script">Estructura de archivos usada por el script</a></li>
+  </ul></li>
+  <li><a href="#fundamentos-desde-pln_curso" id="toc-fundamentos-desde-pln_curso" class="nav-link" data-scroll-target="#fundamentos-desde-pln_curso">5. 📘 Fundamentos desde <code>PLN_CURSO</code></a>
+  <ul class="collapse">
+  <li><a href="#a.-por-qué-16-khz-es-crítico" id="toc-a.-por-qué-16-khz-es-crítico" class="nav-link" data-scroll-target="#a.-por-qué-16-khz-es-crítico">A. Por qué 16 kHz es crítico</a></li>
+  <li><a href="#b.-whisper-usa-log-mel-spectrograms" id="toc-b.-whisper-usa-log-mel-spectrograms" class="nav-link" data-scroll-target="#b.-whisper-usa-log-mel-spectrograms">B. Whisper usa Log-Mel Spectrograms</a></li>
+  <li><a href="#c.-vosk-usa-mfcc-y-x-vectors" id="toc-c.-vosk-usa-mfcc-y-x-vectors" class="nav-link" data-scroll-target="#c.-vosk-usa-mfcc-y-x-vectors">C. Vosk usa MFCC y X-vectors</a></li>
+  </ul></li>
+  <li><a href="#cómo-se-compara-la-biometría" id="toc-cómo-se-compara-la-biometría" class="nav-link" data-scroll-target="#cómo-se-compara-la-biometría">6. 🧮 Cómo se compara la biometría</a></li>
+  <li><a href="#ventajas-y-desventajas-de-la-implementación" id="toc-ventajas-y-desventajas-de-la-implementación" class="nav-link" data-scroll-target="#ventajas-y-desventajas-de-la-implementación">7. ⚖️ Ventajas y Desventajas de la Implementación</a>
+  <ul class="collapse">
+  <li><a href="#ventajas" id="toc-ventajas" class="nav-link" data-scroll-target="#ventajas">✅ Ventajas</a></li>
+  <li><a href="#desventajas" id="toc-desventajas" class="nav-link" data-scroll-target="#desventajas">❌ Desventajas</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../docs/05_implementacion_tecnica.html">Arquitectura y Códigos</a></li><li class="breadcrumb-item"><a href="../docs/codigo_vosk.html">Código de VoskHelper</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
 
 
-<section id="sec-cod-vosk" class="level1">
-<h1>Código de VoskHelper</h1>
-<p><strong>Archivo fuente:</strong> <code>Codigos/modulo_vosk.py</code></p>
-<p>La clase <code>VoskHelper</code> actúa como un <strong>Intérprete</strong> entre el hardware de audio y el complejo motor de Vosk (basado en Kaldi). Como vimos en la sección de <a href="../docs/02_modelos_stt_y_evaluacion.html#sec-stt">Modelos STT</a>, Vosk es un motor local muy rápido.</p>
-<section id="propósito-del-wrapper" class="level2">
-<h2 class="anchored" data-anchor-id="propósito-del-wrapper">1. Propósito del Wrapper</h2>
-<p>Este helper se encarga de: * validar que el audio sea mono, 16-bit PCM y sin compresión, * cargar el modelo Vosk en memoria una sola vez, * dividir el audio en chunks y transcribirlos con <code>AcceptWaveform()</code>, y * devolver el texto consolidado listo para comparar o evaluar.</p>
+<section id="whisper-vosk-arquitectura-de-diarización-biométrica-ligera" class="level1">
+<h1>🎙️ Whisper + Vosk: Arquitectura de Diarización Biométrica Ligera</h1>
+<section id="qué-es-y-por-qué-se-creó" class="level2">
+<h2 class="anchored" data-anchor-id="qué-es-y-por-qué-se-creó">1. ¿Qué es y por qué se creó?</h2>
+<p>Tras analizar la limitación de Vosk para separar voces en conversaciones continuas en vivo, creamos el script <code>WHISPER_PRUEBA.py</code>. Esta es una solución ingeniosa de <strong>Diarización Híbrida</strong>.</p>
+<p>En lugar de preguntar “cuántas personas hablaron” o agrupar voces a ciegas, este script combina la precisión de tiempos de <strong>OpenAI Whisper</strong> con la biometría matemática (X-Vectors) de <strong>Vosk</strong>.</p>
+<hr>
 </section>
-<section id="inicialización-y-carga-de-modelo" class="level2">
-<h2 class="anchored" data-anchor-id="inicialización-y-carga-de-modelo">2. Inicialización y Carga de Modelo</h2>
-<p>Cargar el modelo en memoria es el proceso más pesado. Al hacerlo dentro del método <code>__init__</code>, nos aseguramos de que el sistema “encienda el cerebro” solo una vez cuando el programa arranca.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> wave</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> vosk</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> VoskHelper:</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, model_path<span class="op">=</span><span class="st">"model"</span>):</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> os.path.exists(model_path):</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">FileNotFoundError</span>(<span class="ss">f"La carpeta del modelo '</span><span class="sc">{</span>model_path<span class="sc">}</span><span class="ss">' no existe."</span>)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.model <span class="op">=</span> vosk.Model(model_path)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="cómo-funciona-diagrama-de-arquitectura" class="level2">
+<h2 class="anchored" data-anchor-id="cómo-funciona-diagrama-de-arquitectura">2. ⚙️ ¿Cómo funciona? (Diagrama de Arquitectura)</h2>
+<pre class="mermaid"><code>graph TD
+    A[🎤 Grabación de Audio de Conversación] --&gt;|Archivo .wav temporal| B(🧠 OpenAI Whisper Base)
+    B --&gt;|Genera Segmentos de Texto| C[Marcas de tiempo exactas&lt;br/&gt;Ej: 0.5s a 2.0s: 'Hola']
+    C --&gt; D{Librosa / Recorte}
+    D --&gt;|Audio recortado| E[Vosk SpkModel]
+    E --&gt;|Genera X-Vector| F((Comparación Biométrica))
+    F --&gt;|Compara con voces_guardadas/| G[Esteban 90%]
+    F --&gt;|Compara con voces_guardadas/| H[Desconocido &lt; 65%]
+    G --&gt; I[📝 Reporte Final Markdown + Mermaid]
+    H --&gt; I</code></pre>
+<section id="paso-a-paso-del-código" class="level3">
+<h3 class="anchored" data-anchor-id="paso-a-paso-del-código">Paso a paso del código:</h3>
+<ol type="1">
+<li><strong>Grabación Offline:</strong> El sistema captura todo el entorno hasta que el usuario detiene la grabación.</li>
+<li><strong>Segmentación (Whisper):</strong> El modelo transcribe el audio y devuelve el texto estructurado en “segmentos” junto a su marca de tiempo exacta.</li>
+<li><strong>Extracción y Biometría:</strong> El script recorta ese milisegundo exacto de audio usando <code>librosa</code> y se lo inyecta directamente al <code>SpkModel</code> de Vosk para sacar el “X-Vector” (la huella dactilar de la voz).</li>
+<li><strong>Identificación:</strong> Busca en la carpeta <code>voces_guardadas/</code> la firma que más se le parezca usando la métrica de <em>distancia coseno</em>.</li>
+</ol>
+<hr>
 </section>
-<section id="validación-física-del-audio-el-control-de-calidad" class="level2">
-<h2 class="anchored" data-anchor-id="validación-física-del-audio-el-control-de-calidad">3. Validación Física del Audio (El Control de Calidad)</h2>
-<p>Antes de enviar un archivo al motor, debemos asegurarnos de que cumple las estrictas reglas de Kaldi. La librería <code>wave</code> nos permite leer el encabezado del archivo sin reproducirlo.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> preparar_audio_wav(<span class="va">self</span>, ruta_audio):</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>        wf <span class="op">=</span> wave.<span class="bu">open</span>(ruta_audio, <span class="st">"rb"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> wf.getnchannels() <span class="op">!=</span> <span class="dv">1</span>:</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"[Advertencia] El audio no es Mono..."</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> wf.getsampwidth() <span class="op">!=</span> <span class="dv">2</span>:</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"[Advertencia] El audio no es de 16-bit..."</span>)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> wf.getcomptype() <span class="op">!=</span> <span class="st">"NONE"</span>:</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"[Advertencia] El audio parece estar comprimido (no es PCM puro)..."</span>)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> wf</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="profundización-por-qué-esta-arquitectura-es-ingeniosa" class="level2">
+<h2 class="anchored" data-anchor-id="profundización-por-qué-esta-arquitectura-es-ingeniosa">3. 🧠 Profundización: ¿Por qué esta arquitectura es ingeniosa?</h2>
+<p>Para entender este sistema, podemos pensar en él como un equipo de trabajo con dos especialistas:</p>
+<section id="a.-los-roles-el-escriba-y-el-detective" class="level3">
+<h3 class="anchored" data-anchor-id="a.-los-roles-el-escriba-y-el-detective">A. Los Roles: El “Escriba” y el “Detective”</h3>
 <ul>
-<li><code>getnchannels() != 1</code>: Vosk solo puede escuchar por un “oído” a la vez (Mono).</li>
-<li><code>getsampwidth() != 2</code>: Se requiere audio de 16 bits de profundidad (ver <a href="../docs/01_fundamentos_audio.html#sec-audio-fund">Fundamentos de Audio</a>).</li>
-<li><code>getcomptype() != "NONE"</code>: Vosk no soporta MP3 o formatos comprimidos directamente.</li>
+<li><strong>Whisper (El Escriba):</strong> Tiene un “oído” gramatical excelente. Su trabajo es escuchar la cinta completa y anotar exactamente <strong>qué</strong> se dijo y en qué <strong>segundo exacto</strong> empezó y terminó cada frase. No le importa quién habla, solo el texto y el tiempo.</li>
+<li><strong>Vosk (El Detective):</strong> Tiene un “oído” biométrico. No le importa el significado de las palabras, sino el <strong>timbre</strong> de la voz. Su trabajo es recibir un audio limpio y decir: “Esta huella pertenece a Esteban”.</li>
 </ul>
 </section>
-<section id="el-bucle-de-transcripción-por-chunks-frames" class="level2">
-<h2 class="anchored" data-anchor-id="el-bucle-de-transcripción-por-chunks-frames">4. El Bucle de Transcripción por Chunks (Frames)</h2>
-<p>No podemos darle un archivo de 10 minutos de golpe al procesador. Debemos cortarlo en “fotos” de sonido llamadas frames. Esto se enlaza con el concepto de Orquestación visto en la sección de <a href="../docs/05_implementacion_tecnica.html#sec-arq">Implementación Técnica</a>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> transcribir_archivo(<span class="va">self</span>, ruta_audio):</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>        wf <span class="op">=</span> <span class="va">self</span>.preparar_audio_wav(ruta_audio)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        rec <span class="op">=</span> vosk.KaldiRecognizer(<span class="va">self</span>.model, wf.getframerate())</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        textos <span class="op">=</span> []</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Cortamos el archivo en trozos de 4000 frames (0.25 segundos)</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>            data <span class="op">=</span> wf.readframes(<span class="dv">4000</span>)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="bu">len</span>(data) <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                <span class="cf">break</span> <span class="co"># Se acabó el archivo</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>            <span class="co"># AcceptWaveform() devuelve True si detectó una pausa clara (silencio)</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> rec.AcceptWaveform(data):</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>                result <span class="op">=</span> json.loads(rec.Result())</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> result.get(<span class="st">'text'</span>):</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>                    textos.append(result[<span class="st">'text'</span>])</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>                    </span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Limpiamos las palabras que hayan quedado a medias al final del audio</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>        final <span class="op">=</span> json.loads(rec.FinalResult())</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> final.get(<span class="st">'text'</span>):</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>            textos.append(final[<span class="st">'text'</span>])</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>        wf.close()</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">" "</span>.join(textos).strip()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="b.-el-proceso-de-recorte-quirúrgico" class="level3">
+<h3 class="anchored" data-anchor-id="b.-el-proceso-de-recorte-quirúrgico">B. El Proceso de “Recorte Quirúrgico”</h3>
+<p>El problema de los sistemas convencionales es que si dos personas hablan rápido, las frecuencias se mezclan y la biometría falla. Nuestra solución usa la librería <strong>Librosa</strong> para actuar como un bisturí: 1. Toma el mapa de tiempos de Whisper. 2. Recorta el audio original en pedazos pequeños (segmentos). 3. Envía cada pedazo individual a Vosk. Esto garantiza que la IA de identificación solo escuche a una persona a la vez, aumentando la precisión drásticamente.</p>
+<hr>
 </section>
-<section id="salida-y-postprocesamiento" class="level2">
-<h2 class="anchored" data-anchor-id="salida-y-postprocesamiento">5. Salida y Postprocesamiento</h2>
-<p>El método <code>transcribir_archivo</code> devuelve el texto unido con espacios. * <code>json.loads(rec.Result())</code> transforma el JSON crudo de Vosk en datos manejables. * <code>final.get('text', '')</code> asegura que no se rompa el flujo incluso si no hay texto al final del audio.</p>
-<p>Este texto luego puede compararse con referencias o enviarse al módulo <code>juez.py</code> para calcular el WER.</p>
+</section>
+<section id="detalle-técnico-de-whisper_prueba.py" class="level2">
+<h2 class="anchored" data-anchor-id="detalle-técnico-de-whisper_prueba.py">4. 🔧 Detalle técnico de <code>WHISPER_PRUEBA.py</code></h2>
+<p>El script hace lo siguiente: * Carga un archivo de audio completo en <code>Codigos/audios/temp_conversacion.wav</code>. * Usa <code>librosa.load(..., sr=16000)</code> para normalizar el audio a <strong>16 kHz</strong> y convertirlo a <code>float32</code>, el formato que necesita Whisper. * Invoca el modelo con <code>whisper.load_model("base")</code> y <code>transcribe(..., language="es", fp16=False)</code>. * Recorre <code>resultado["segments"]</code>, que contiene el texto y los intervalos de inicio y fin de cada frase. * Para cada segmento, llama a <code>obtener_vector_vosk(...)</code>, que carga solo ese fragmento con <code>librosa.load(..., offset=inicio, duration=fin-inicio)</code> y lo convierte en bytes PCM para Vosk. * Vosk devuelve un vector de voz si detecta el parámetro <code>"spk"</code>. Ese vector se compara con los perfiles guardados. * Si ninguna voz supera el umbral de <strong>0.65</strong> en similitud coseno, el segmento se marca como <strong>Desconocido</strong>. * Finalmente, genera un reporte Markdown con una gráfica Mermaid y una tabla de tiempos.</p>
+<section id="estructura-de-archivos-usada-por-el-script" class="level3">
+<h3 class="anchored" data-anchor-id="estructura-de-archivos-usada-por-el-script">Estructura de archivos usada por el script</h3>
+<ul>
+<li><code>model/</code>: modelo de Vosk para reconocimiento de texto.</li>
+<li><code>model-spk/vosk-model-spk-0.4/</code>: modelo de locutor para extraer X-vectors.</li>
+<li><code>voces_guardadas/</code>: perfil biométrico de voces en <code>.json</code>.</li>
+<li><code>Reportes/</code>: guarda los informes generados.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="fundamentos-desde-pln_curso" class="level2">
+<h2 class="anchored" data-anchor-id="fundamentos-desde-pln_curso">5. 📘 Fundamentos desde <code>PLN_CURSO</code></h2>
+<section id="a.-por-qué-16-khz-es-crítico" class="level3">
+<h3 class="anchored" data-anchor-id="a.-por-qué-16-khz-es-crítico">A. Por qué 16 kHz es crítico</h3>
+<p>El procesamiento de audio digital se basa en el Teorema de Nyquist-Shannon. Para capturar la voz humana sin perder información útil, el proyecto usa <strong>16 kHz</strong> como frecuencia de muestreo. Esto permite reconstruir frecuencias de hasta 8 kHz, que son las más importantes para la inteligibilidad del habla.</p>
+</section>
+<section id="b.-whisper-usa-log-mel-spectrograms" class="level3">
+<h3 class="anchored" data-anchor-id="b.-whisper-usa-log-mel-spectrograms">B. Whisper usa Log-Mel Spectrograms</h3>
+<p>Whisper no procesa la forma de onda directamente. Convierte el audio en un <strong>espectrograma de Mel</strong> con escala logarítmica. Eso significa que: * el audio se analiza en ventanas cortas de tiempo, * se filtra con un banco de filtros Mel, * se convierte a decibelios logarítmicos.</p>
+<p>Ese espectrograma es precisamente el input que los Transformers de Whisper entienden mejor.</p>
+</section>
+<section id="c.-vosk-usa-mfcc-y-x-vectors" class="level3">
+<h3 class="anchored" data-anchor-id="c.-vosk-usa-mfcc-y-x-vectors">C. Vosk usa MFCC y X-vectors</h3>
+<p>Vosk, en cambio, trabaja con características acústicas tradicionales como los <strong>MFCC</strong>. Para la identificación de locutor usa un modelo de tipo <strong>X-vector</strong> que transforma cada segmento en un vector de 128 dimensiones.</p>
+<ul>
+<li>Whisper responde a <strong>qué se dijo</strong>.</li>
+<li>Vosk responde a <strong>quién lo dijo</strong>.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="cómo-se-compara-la-biometría" class="level2">
+<h2 class="anchored" data-anchor-id="cómo-se-compara-la-biometría">6. 🧮 Cómo se compara la biometría</h2>
+<p>Los perfiles guardados en la carpeta <code>voces_guardadas/</code> son archivos <code>.json</code> que contienen: * <code>nombre</code>: nombre de la persona. * <code>vector</code>: un array de 128 valores numéricos.</p>
+<p>El código calcula la similitud entre el vector del segmento y cada perfil guardado usando la <strong>Distancia Coseno</strong>. Esto es importante porque la magnitud del vector cambia con el volumen y la intensidad, mientras que el ángulo entre vectores captura mejor la identidad vocal.</p>
+<ul>
+<li>Si la similitud es mayor a <strong>0.65</strong>, se asigna el nombre registrado.</li>
+<li>Si es menor, se marca como <strong>Desconocido</strong>.</li>
+</ul>
+<hr>
+</section>
+<section id="ventajas-y-desventajas-de-la-implementación" class="level2">
+<h2 class="anchored" data-anchor-id="ventajas-y-desventajas-de-la-implementación">7. ⚖️ Ventajas y Desventajas de la Implementación</h2>
+<section id="ventajas" class="level3">
+<h3 class="anchored" data-anchor-id="ventajas">✅ Ventajas</h3>
+<ul>
+<li><strong>Ultra Ligero (Hardware Friendly):</strong> Corre perfectamente en un procesador i3 con 8GB de RAM sin GPU.</li>
+<li><strong>Soluciona las interrupciones:</strong> Al usar los recortes precisos de Whisper, evita que las huellas vocales de dos personas se mezclen.</li>
+<li><strong>Memoria Biométrica:</strong> Reconoce a las personas por su nombre (si fueron registradas antes en Vosk), eliminando la necesidad de decirle al sistema cuánta gente está hablando.</li>
+</ul>
+</section>
+<section id="desventajas" class="level3">
+<h3 class="anchored" data-anchor-id="desventajas">❌ Desventajas</h3>
+<ul>
+<li><strong>Pérdida del Tiempo Real (Live):</strong> Hay que terminar de grabar para que procese el audio.</li>
+<li><strong>Segmentos muy cortos:</strong> Si alguien dice un simple “ah”, el recorte de audio es tan corto que el <code>SpkModel</code> de Vosk podría fallar en extraer un vector confiable, resultando en “Desconocido”.</li>
+</ul>
 
 
+</section>
 </section>
 </section>
 
@@ -919,18 +938,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
   });
   </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../docs/05_implementacion_tecnica.html" class="pagination-link" aria-label="Implementación Técnica y Abstracción de Código">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Implementación Técnica y Abstracción de Código</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../docs/codigo_whisper.html" class="pagination-link" aria-label="Código de WhisperHelper">
-        <span class="nav-page-text">Código de WhisperHelper</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 
 

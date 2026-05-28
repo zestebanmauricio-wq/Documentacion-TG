@@ -72,10 +72,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
-<meta name="mermaid-theme" content="dark">
-<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -436,24 +432,14 @@ window.Quarto = {
 <section id="el-proceso-de-digitalización" class="level2">
 <h2 class="anchored" data-anchor-id="el-proceso-de-digitalización">El Proceso de Digitalización</h2>
 <p>La señal acústica es capturada y transformada siguiendo este flujo técnico:</p>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TD
-    A[Ondas Sonoras - Aire] --&gt; B[Micrófono]
-    B --&gt; C[Señal Eléctrica Analógica]
-    C --&gt; D[ADC - Conversor]
-    D --&gt; E[Muestreo]
-    E --&gt; F[Cuantización]
-    F --&gt; G[Archivo Digital WAV, FLAC, MP3]
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
+<ol type="1">
+<li>Las ondas sonoras ingresan al micrófono.</li>
+<li>El micrófono convierte el sonido en una señal eléctrica.</li>
+<li>El conversor analógico-digital (ADC) transforma esa señal en muestras numéricas.</li>
+<li>El proceso de muestreo crea una serie de valores discretos en el tiempo.</li>
+<li>La cuantización asigna un valor digital a cada muestra.</li>
+<li>El resultado final es un archivo digital como WAV, FLAC o MP3.</li>
+</ol>
 <p>El audio digital se crea capturando muestras de una señal analógica a intervalos regulares. Este proceso se llama <strong>muestreo</strong>, y la <strong>frecuencia de muestreo</strong> determina cuántas veces por segundo se toma una “foto” del sonido.</p>
 <section id="frecuencia-de-muestreo-sampling-rate" class="level3">
 <h3 class="anchored" data-anchor-id="frecuencia-de-muestreo-sampling-rate">1.1 Frecuencia de Muestreo (Sampling Rate)</h3>
@@ -497,21 +483,13 @@ window.Quarto = {
 <section id="c.-el-espectrograma-log-mel" class="level3">
 <h3 class="anchored" data-anchor-id="c.-el-espectrograma-log-mel">C. El Espectrograma Log-Mel</h3>
 <p>Es la representación más utilizada en el Procesamiento de Lenguaje Natural (PLN). Combina tiempo, frecuencia y amplitud en un “mapa de calor”. Además, utiliza la <strong>Escala Mel</strong>, una escala logarítmica que imita el oído humano: somos mucho más precisos diferenciando cambios en frecuencias graves que en agudas.</p>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TD
-    STFT[Audio Crudo - STFT] --&gt; FB[Banco de Filtros Mel]
-    FB --&gt; LOG[Logaritmo - Decibelios]
-    LOG --&gt; ML[Input para Modelos Transformers]
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
+<p>El flujo de procesamiento típico es:</p>
+<ol type="1">
+<li>Partir del audio crudo.</li>
+<li>Aplicar STFT para obtener la representación de frecuencia en el tiempo.</li>
+<li>Filtrar con un banco de filtros Mel.</li>
+<li>Calcular la escala logarítmica como entrada para modelos Transformer.</li>
+</ol>
 <hr>
 </section>
 </section>
@@ -617,7 +595,7 @@ window.Quarto = {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/zestebanmauricio-wq\.github\.io\/Documentacion-TG\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
